@@ -1,0 +1,233 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+
+model User {
+  id              String       @id @default(uuid())
+  email           String       @unique @db.VarChar(250)
+  password        String       @db.VarChar(250)
+  role            Role         @default(CUSTOMER) 
+  code        String       @unique @db.VarChar(100)
+  isEmailVerified Boolean      @default(false)
+  profile         Profile?
+  wallet          Wallet?
+  vouchers  Voucher[]
+  reviews Review[]
+  events          Event[]      
+   referrals  Referral[] 
+   logReferrals  ReferralLog[] 
+  transactions    Transaction[]
+  notifications   Notification[] 
+  attendee        Attendee[]
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+}
+
+enum Role {
+  CUSTOMER
+  ORGANIZER
+}
+
+model Profile {
+  id        String   @id @default(uuid())
+  userId    String   @unique @db.VarChar(250)
+  user      User     @relation(fields: [userId], references: [id])
+  imageProfile Gallery[]
+  name      String @db.VarChar(250)
+  phone     String?  @unique @db.VarChar(20)
+  address   String? @db.VarChar(250)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Wallet {
+  id         String   @id @default(uuid())
+  userId     String   @unique @db.VarChar(250)
+  user       User     @relation(fields: [userId], references: [id])
+  balance    Int      @default(0) 
+  points     Int      @default(0) 
+  pointLogs  PointLog[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model PointLog {
+  id          String   @id @default(uuid())
+  walletId    String @db.VarChar(250)
+  wallet      Wallet   @relation(fields: [walletId], references: [id])
+  type        PointLogType
+  amount      Int
+  description String @db.VarChar(250)
+  createdAt   DateTime @default(now())
+}
+
+enum PointLogType {
+  EARNED
+  SPENT
+  EXPIRED
+}
+
+model Referral {
+  id          String       @id @default(uuid())
+  referrerId  String?  @db.VarChar(230)       // ID pengguna yang memberikan referral
+  referrer    User?         @relation( fields: [referrerId], references: [id])
+  logs        ReferralLog[] 
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model ReferralLog {
+  id           String   @id @default(uuid())
+  referralsId String @db.VarChar(250)
+  referrals Referral @relation(fields: [referralsId], references: [id])
+   referredId   String   @db.VarChar(250)   // ID pengguna yang menggunakan referral
+  referred     User        @relation( fields: [referredId], references: [id])
+  rewardGiven  Boolean  @default(false) 
+  createdAt    DateTime @default(now())
+}
+model Notification {
+  id          String   @id @default(uuid())
+  userId      String @db.VarChar(250)
+  user        User     @relation(fields: [userId], references: [id])
+  title       String @db.VarChar(250)
+  message     String @db.VarChar(250)
+  isRead      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+model Category {
+  id       String  @id @default(uuid())
+  name     String  @unique @db.VarChar(250)
+  events   Event[]
+}
+
+model Gallery {
+  id          String     @id @default(uuid())
+  profileId      String @unique @db.VarChar(250)
+  profiles        Profile      @relation(fields: [profileId], references: [id])
+  eventId     String?    
+  event       Event?     @relation(fields: [eventId], references: [id])
+  imageUrl    String      @db.VarChar(220)
+  imageType   String      @db.VarChar(100)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+
+model Event {
+  id           String       @id @default(uuid())
+  name         String       @db.VarChar(250)  
+  description  String       @db.VarChar(250)
+  categoryId   String       @db.VarChar(250)
+  category     Category     @relation(fields: [categoryId], references: [id])
+  location     String       @db.VarChar(250)
+  startDate    DateTime
+  endDate      DateTime
+  price        Int
+  availableSeats Int
+  gallery      Gallery[]
+  organizerId  String       @db.VarChar(250)
+  organizer    User         @relation(fields: [organizerId], references: [id])
+  transactions Transaction[]
+  reviews      Review[]
+  vouchers     Voucher[]
+  attendees    Attendee[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model Review {
+  id         String   @id @default(uuid())
+  rating     Int
+  comment    String?   @db.VarChar(250)
+  customerId String    @db.VarChar(250)
+  customer   User     @relation(fields: [customerId], references: [id])
+  eventId    String     @db.VarChar(250)
+  event      Event    @relation(fields: [eventId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Transaction {
+  id            String      @id @default(uuid())
+  customerId    String      @db.VarChar(250)
+  customer      User        @relation(fields: [customerId], references: [id])
+  eventId       String      @db.VarChar(250)  
+  event         Event       @relation(fields: [eventId], references: [id])
+  status        TransactionStatus
+  ticketQuantity Int
+  totalPrice    Int
+  paymentProof  String?       @db.VarChar(250)
+  paymentMethod PaymentMethod
+  statusLogs    StatusLog[]
+  attendee    Attendee?
+  expiresAt     DateTime
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+enum PaymentMethod {
+  BANK_TRANSFER
+  E_WALLET
+  CREDIT_CARD
+}
+
+enum TransactionStatus {
+  WAITING_PAYMENT
+  WAITING_CONFIRMATION
+  DONE
+  REJECTED
+  EXPIRED
+  CANCELED
+}
+
+model StatusLog {
+  id             String        @id @default(uuid())
+  transactionId  String         @db.VarChar(250)
+  transaction    Transaction   @relation(fields: [transactionId], references: [id])
+  status         TransactionStatus
+  changedAt      DateTime      @default(now())
+}
+
+model Voucher {
+  id           String     @id @default(uuid())
+  code         String     @db.VarChar(250)
+  discount     Int
+  usageLimit   Int
+  global       Boolean
+  startDate    DateTime
+  endDate      DateTime
+  eventId      String?     @db.VarChar(250)
+  event        Event?     @relation(fields: [eventId], references: [id])
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  userId String? @unique @db.VarChar(250)
+  user User? @relation(fields: [userId],references: [id])
+}
+
+model Attendee {
+  id          String   @id @default(uuid())
+  transactionId String @unique
+  transaction Transaction @relation(fields: [transactionId], references: [id])
+  eventId     String    @db.VarChar(250)
+  event       Event     @relation(fields: [eventId], references: [id])
+  userId      String    @db.VarChar(250)
+  user        User      @relation(fields: [userId], references: [id])
+  ticketCount Int
+  checkedIn   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}

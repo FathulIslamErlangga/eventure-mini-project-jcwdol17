@@ -1,0 +1,27 @@
+{
+  "name": "mini-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "workspaces": [
+    "be-eventure",
+    "fe-eventure"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --filter=be-eventure... --filter=fe-eventure...",
+    "dev:backend": "cd be-eventure  && npm run dev",
+    "dev:frontend": "cd fe-eventure && npm run dev",
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "lint": "turbo run lint",
+    "deploy": "turbo run deploy",
+    "test": "turbo run test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "description": "",
+  "devDependencies": {
+    "turbo": "^2.3.3"
+  }
+}
