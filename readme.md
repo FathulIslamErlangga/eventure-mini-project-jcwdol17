@@ -1,16 +1,14 @@
 ---
-
 ## frontend
 
 http://localhost:3000
-npm run dev:frontend
-
+npm run dev:frontend  // running in root folder
 ---
 
 ## backend
 
 http://localhost:4000
-npm run dev:backend
+npm run dev:backend // running in root folder
 
 ---
 
