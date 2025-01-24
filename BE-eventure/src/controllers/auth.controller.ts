@@ -7,6 +7,7 @@ import { createSendToken, signToken } from "../utils/jwt";
 import { sendVerificationEmail } from "../utils/verifyEmail";
 import { IUser } from "../utils/interfaceCustom";
 import jwt from "jsonwebtoken";
+import slugify from "slugify/slugify";
 
 const prisma = new PrismaClient();
 interface jwtPayload {
@@ -29,6 +30,7 @@ export class Auth {
       .substring(2, 8)
       .toUpperCase()}`;
 
+    const slug = slugify(name,{lower:true, strict:true})
     const defaultProfile = process.env.PROFILE_DEFAULT!;
 
     let referrer = null;
@@ -48,6 +50,7 @@ export class Auth {
         email,
         password: hashPassword,
         role: isRole,
+        slug,
         code: referralCodeGenerated,
         profile: {
           create: {
@@ -69,6 +72,7 @@ export class Auth {
           },
         },
       },
+      include: { profile: true, wallet: true },
     });
 
     if (referrer) {

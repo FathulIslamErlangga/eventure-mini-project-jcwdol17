@@ -21,6 +21,7 @@ model User {
   password        String       @db.VarChar(250)
   role            Role         @default(CUSTOMER) 
   code        String       @unique @db.VarChar(100)
+  slug        String @unique @db.VarChar(250)
   isEmailVerified Boolean      @default(false)
   profile         Profile?
   wallet          Wallet?
@@ -45,10 +46,10 @@ model Profile {
   id        String   @id @default(uuid())
   userId    String   @unique @db.VarChar(250)
   user      User     @relation(fields: [userId], references: [id])
+  address Address?
   imageProfile Gallery[]
   name      String @db.VarChar(250)
   phone     String?  @unique @db.VarChar(20)
-  address   String? @db.VarChar(250)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -111,19 +112,30 @@ model Notification {
 model Category {
   id       String  @id @default(uuid())
   name     String  @unique @db.VarChar(250)
+  slug        String @unique @db.VarChar(250)
   events   Event[]
 }
 
 model Gallery {
   id          String     @id @default(uuid())
-  profileId      String @unique @db.VarChar(250)
-  profiles        Profile      @relation(fields: [profileId], references: [id])
+  profileId      String? @unique @db.VarChar(250)
+  profiles        Profile?      @relation(fields: [profileId], references: [id])
   eventId     String?    
   event       Event?     @relation(fields: [eventId], references: [id])
   imageUrl    String      @db.VarChar(220)
   imageType   String      @db.VarChar(100)
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
+}
+
+
+model Address {
+  id    String @id @default(uuid())
+  address String? @db.VarChar(250)
+  city String? @db.VarChar(150)
+  profileId String?  @unique @db.VarChar(150)
+  profiles Profile? @relation(fields: [profileId], references: [id])
+  events Event[]
 }
 
 
@@ -134,6 +146,9 @@ model Event {
   categoryId   String       @db.VarChar(250)
   category     Category     @relation(fields: [categoryId], references: [id])
   location     String       @db.VarChar(250)
+  slug        String @unique @db.VarChar(250)
+   addressId String  @db.VarChar(150)
+  address Address @relation(fields: [addressId], references: [id])
   startDate    DateTime
   endDate      DateTime
   price        Int

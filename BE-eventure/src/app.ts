@@ -2,6 +2,7 @@ import cookieParser from "cookie-parser";
 import express, { Application } from "express";
 import { PORT } from "./config";
 import authRouter from "./routes/auth.route";
+import profileRouter from "./routes/profile.route";
 
 export class App {
   private app: Application;
@@ -19,7 +20,7 @@ export class App {
   }
 
   routes() {
-    this.app.use("/eventure-api", authRouter());
+    this.app.use("/api", authRouter(), profileRouter());
   }
 
   errorHandle() {

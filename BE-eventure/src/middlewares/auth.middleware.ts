@@ -12,12 +12,15 @@ const prisma = new PrismaClient();
 export const protectedAuth = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const Request = req as ValidationRequest;
-    const authorization = Request.headers.authorization;
-
-    let token = authorization?.split("")[1];
-
+    const { authorization } = req.headers;
     const secret = process.env.JWT_SECRET!;
-    if (!token) {
+
+    let token: string | undefined;
+    if (authorization && authorization.startsWith("Bearer")) {
+      token = authorization.split(" ")[1];
+      console.log("token", token);
+    }
+    if (!token && req.cookies.jwt) {
       token = req.cookies.jwt;
     }
 
@@ -56,6 +59,7 @@ export const protectedAuth = asyncHandler(
         id: user!.id,
         email: user!.email,
         role: user!.role,
+        slug: user!.slug,
         isEmailVerified: user!.isEmailVerified,
       };
     }

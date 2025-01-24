@@ -29,6 +29,7 @@ export const createSendToken = (
     secure: isDev,
   };
 
+  res.setHeader("Authorization", `Bearer ${token}`);
   res.cookie("jwt", token, cookieOpstions);
 
   const withOutPassword = { ...user, password: undefined };

@@ -17,6 +17,7 @@ CREATE TABLE "User" (
     "password" VARCHAR(250) NOT NULL,
     "role" "Role" NOT NULL DEFAULT 'CUSTOMER',
     "code" VARCHAR(100) NOT NULL,
+    "slug" VARCHAR(250) NOT NULL,
     "isEmailVerified" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -30,7 +31,6 @@ CREATE TABLE "Profile" (
     "userId" VARCHAR(250) NOT NULL,
     "name" VARCHAR(250) NOT NULL,
     "phone" VARCHAR(20),
-    "address" VARCHAR(250),
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -98,6 +98,7 @@ CREATE TABLE "Notification" (
 CREATE TABLE "Category" (
     "id" TEXT NOT NULL,
     "name" VARCHAR(250) NOT NULL,
+    "slug" VARCHAR(250) NOT NULL,
 
     CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
 );
@@ -105,7 +106,7 @@ CREATE TABLE "Category" (
 -- CreateTable
 CREATE TABLE "Gallery" (
     "id" TEXT NOT NULL,
-    "profileId" VARCHAR(250) NOT NULL,
+    "profileId" VARCHAR(250),
     "eventId" TEXT,
     "imageUrl" VARCHAR(220) NOT NULL,
     "imageType" VARCHAR(100) NOT NULL,
@@ -116,12 +117,24 @@ CREATE TABLE "Gallery" (
 );
 
 -- CreateTable
+CREATE TABLE "Address" (
+    "id" TEXT NOT NULL,
+    "address" VARCHAR(250),
+    "city" VARCHAR(150),
+    "profileId" VARCHAR(150),
+
+    CONSTRAINT "Address_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Event" (
     "id" TEXT NOT NULL,
     "name" VARCHAR(250) NOT NULL,
     "description" VARCHAR(250) NOT NULL,
     "categoryId" VARCHAR(250) NOT NULL,
     "location" VARCHAR(250) NOT NULL,
+    "slug" VARCHAR(250) NOT NULL,
+    "addressId" VARCHAR(150) NOT NULL,
     "startDate" TIMESTAMP(3) NOT NULL,
     "endDate" TIMESTAMP(3) NOT NULL,
     "price" INTEGER NOT NULL,
@@ -211,6 +224,9 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 CREATE UNIQUE INDEX "User_code_key" ON "User"("code");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "User_slug_key" ON "User"("slug");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Profile_userId_key" ON "Profile"("userId");
 
 -- CreateIndex
@@ -223,7 +239,16 @@ CREATE UNIQUE INDEX "Wallet_userId_key" ON "Wallet"("userId");
 CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Category_slug_key" ON "Category"("slug");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Gallery_profileId_key" ON "Gallery"("profileId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Address_profileId_key" ON "Address"("profileId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Event_slug_key" ON "Event"("slug");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Voucher_userId_key" ON "Voucher"("userId");
@@ -253,13 +278,19 @@ ALTER TABLE "ReferralLog" ADD CONSTRAINT "ReferralLog_referredId_fkey" FOREIGN K
 ALTER TABLE "Notification" ADD CONSTRAINT "Notification_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Gallery" ADD CONSTRAINT "Gallery_profileId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Gallery" ADD CONSTRAINT "Gallery_profileId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Gallery" ADD CONSTRAINT "Gallery_eventId_fkey" FOREIGN KEY ("eventId") REFERENCES "Event"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "Address" ADD CONSTRAINT "Address_profileId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Event" ADD CONSTRAINT "Event_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Event" ADD CONSTRAINT "Event_addressId_fkey" FOREIGN KEY ("addressId") REFERENCES "Address"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Event" ADD CONSTRAINT "Event_organizerId_fkey" FOREIGN KEY ("organizerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
