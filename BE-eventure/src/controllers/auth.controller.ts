@@ -30,7 +30,7 @@ export class Auth {
       .substring(2, 8)
       .toUpperCase()}`;
 
-    const slug = slugify(name,{lower:true, strict:true})
+    const slug = slugify(name, { lower: true, strict: true });
     const defaultProfile = process.env.PROFILE_DEFAULT!;
 
     let referrer = null;
@@ -72,7 +72,7 @@ export class Auth {
           },
         },
       },
-      include: { profile: true, wallet: true },
+      include: { profile: true },
     });
 
     if (referrer) {
@@ -143,7 +143,6 @@ export class Auth {
     console.log("Decoded token:", decoded);
     if (typeof decoded !== "string") {
       const user = decoded as IUser;
-      console.log("User data", user);
       const existingUser = await prisma.user.findUnique({
         where: { id: user.id },
       });
@@ -169,7 +168,7 @@ export class Auth {
     const user = await prisma.user.findUnique({ where: { email } });
 
     if (!user) {
-      res.status(401).json({
+      res.status(404).json({
         message: "user not found",
       });
       return;

@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import asyncHandler from "./asyncHandler";
 import { IUser, ValidationRequest } from "../utils/interfaceCustom";
 import jwt from "jsonwebtoken";
-import { PrismaClient } from ".prisma/client";
+import { PrismaClient, Role } from ".prisma/client";
 
 interface jwtPayload {
   id: string;
@@ -66,3 +66,17 @@ export const protectedAuth = asyncHandler(
     next();
   }
 );
+
+export const checkRole = (role: string) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
+    const Request = req as ValidationRequest;
+    const user = Request.userData?.role;
+    console.log("akses:", user);
+    console.log("akses 2:", role);
+
+    if (user !== role) {
+      throw new Error("access forbidden");
+    }
+    next();
+  };
+};
