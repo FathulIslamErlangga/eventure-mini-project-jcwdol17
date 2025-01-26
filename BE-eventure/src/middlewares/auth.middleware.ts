@@ -3,7 +3,8 @@ import { Request, Response, NextFunction } from "express";
 import asyncHandler from "./asyncHandler";
 import { IUser, ValidationRequest } from "../utils/interfaceCustom";
 import jwt from "jsonwebtoken";
-import { PrismaClient, Role } from ".prisma/client";
+import { PrismaClient } from ".prisma/client";
+import { appError } from "../utils/responses";
 
 interface jwtPayload {
   id: string;
@@ -25,10 +26,7 @@ export const protectedAuth = asyncHandler(
     }
 
     if (!token) {
-      res.status(402).json({
-        message: "no authorized, no token provided",
-      });
-      return;
+      throw new appError("no authorized, no token provided", 401);
     }
 
     const jwtDecoded = jwt.verify(token!, secret) as jwtPayload;
@@ -44,15 +42,11 @@ export const protectedAuth = asyncHandler(
         },
       });
       if (!user) {
-        res.status(402).json({
-          message: "user not found",
-        });
+        throw new appError("User not found", 404);
       }
 
       if (!user?.isEmailVerified) {
-        res.status(402).json({
-          message: "Please verification your email",
-        });
+        throw new appError("User not found", 401);
       }
 
       Request.userData = {
@@ -75,7 +69,7 @@ export const checkRole = (role: string) => {
     console.log("akses 2:", role);
 
     if (user !== role) {
-      throw new Error("access forbidden");
+      throw new appError("Access forbidden", 403);
     }
     next();
   };

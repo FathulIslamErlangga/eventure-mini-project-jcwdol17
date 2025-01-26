@@ -3,6 +3,8 @@ import express, { Application } from "express";
 import { PORT } from "./config";
 import authRouter from "./routes/auth.route";
 import profileRouter from "./routes/profile.route";
+import { mailRoute } from "./routes/mail.route";
+import { errorMiddleware, pagetNotFound } from "./middlewares/errorMiddleware";
 
 export class App {
   private app: Application;
@@ -20,11 +22,12 @@ export class App {
   }
 
   routes() {
-    this.app.use("/api", authRouter(), profileRouter());
+    this.app.use("/api", authRouter(), profileRouter(), mailRoute());
   }
 
   errorHandle() {
-    // middlewares
+    this.app.use(pagetNotFound);
+    this.app.use(errorMiddleware);
   }
 
   start() {

@@ -1,6 +1,11 @@
 import nodemailer from "nodemailer";
 import "dotenv/config";
 export const sendVerificationEmail = async (email: string, token: string) => {
+  if (!email || typeof email !== "string" || !/\S+@\S+\.\S+/.test(email)) {
+    throw new Error("Invalid or missing recipient email address.");
+  }
+
+  console.log("Sending email to:", email); // Debug log for email
   const transport = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -11,7 +16,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
     },
   });
 
-  const verificatinUrl = `${process.env.PATH_URL}/eventure-api/verify-email?token=${token}`;
+  const verificatinUrl = `${process.env.PATH_URL}/api/verify-email?token=${token}`;
 
   const mailOptions = {
     from: process.env.EMAIL_USER,

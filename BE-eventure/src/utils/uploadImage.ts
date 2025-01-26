@@ -8,7 +8,7 @@ const storage = multer.diskStorage({
   },
   filename(req, file, callback) {
     const pathName = path.extname(file.originalname);
-    callback(null, `${file.fieldname}-${Date.now}-${pathName}`);
+    callback(null, `${file.fieldname}-${Date.now()}-${pathName}`);
   },
 });
 

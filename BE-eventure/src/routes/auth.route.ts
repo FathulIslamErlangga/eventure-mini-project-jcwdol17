@@ -1,7 +1,6 @@
-import { Auth } from "../controllers/auth.controller";
 import express from "express";
-import { checkRole, protectedAuth } from "../middlewares/auth.middleware";
-import { Role } from ".prisma/client";
+import { Auth } from "../controllers/auth.controller";
+import { protectedAuth } from "../middlewares/auth.middleware";
 import { validateRequest } from "../middlewares/validationRequest.middleware";
 import {
   loginUserSchema,
@@ -18,7 +17,7 @@ const authRouter = () => {
   );
   router.post("/auth/v2", validateRequest(loginUserSchema), auth.loginUser);
   router.get("/auth/v3", protectedAuth, auth.logoutUser);
-  router.get("/auth/v4", auth.verifyEmail);
+  // router.get("/verify-email", auth.verifyEmail);
 
   return router;
 };

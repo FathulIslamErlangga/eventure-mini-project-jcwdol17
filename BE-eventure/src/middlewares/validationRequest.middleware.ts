@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import { Schema } from "joi";
-import asyncHandler from "./asyncHandler";
 
 export const validateRequest =
   (schema: Schema) =>

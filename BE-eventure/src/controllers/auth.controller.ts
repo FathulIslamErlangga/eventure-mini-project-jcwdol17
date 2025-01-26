@@ -1,120 +1,19 @@
-import { PrismaClient } from ".prisma/client";
 import asyncHandler from "../middlewares/asyncHandler";
-import { Response, Request } from "express";
 import bcrypt from "bcrypt";
 import "dotenv/config";
+import prisma from "../utils/prismaClient";
+import { Response, Request } from "express";
 import { createSendToken, signToken } from "../utils/jwt";
 import { sendVerificationEmail } from "../utils/verifyEmail";
-import { IUser } from "../utils/interfaceCustom";
-import jwt from "jsonwebtoken";
-import slugify from "slugify/slugify";
+import { authService } from "../services/authRegister.services";
+import { appError, appSuccsess } from "../utils/responses";
 
-const prisma = new PrismaClient();
-interface jwtPayload {
-  id: string;
-}
+const authServices = new authService();
 export class Auth {
   registerUser = asyncHandler(async (req: Request, res: Response) => {
-    const { email, password, name } = req.body;
-    const referralCode = req.query.code as string;
-
-    const hashPassword = await bcrypt.hash(password, 10);
-    const countUser = await prisma.user.count();
-    const isRole = countUser === 0 ? "ORGANIZER" : "CUSTOMER";
-    const referralCodeGenerated = `REF-${Math.random()
-      .toString(36)
-      .substring(2, 8)
-      .toUpperCase()}`;
-    const voucherCodeGenerated = `DISC-${Math.random()
-      .toString(36)
-      .substring(2, 8)
-      .toUpperCase()}`;
-
-    const slug = slugify(name, { lower: true, strict: true });
-    const defaultProfile = process.env.PROFILE_DEFAULT!;
-
-    let referrer = null;
-    if (referralCode) {
-      referrer = await prisma.user.findUnique({
-        where: { code: referralCode },
-      });
-      if (!referrer) {
-        res.status(400).json({
-          message: "invalid referral code",
-        });
-      }
-    }
-
-    const newUser = await prisma.user.create({
-      data: {
-        email,
-        password: hashPassword,
-        role: isRole,
-        slug,
-        code: referralCodeGenerated,
-        profile: {
-          create: {
-            name,
-            imageProfile: {
-              create: [
-                {
-                  imageUrl: defaultProfile,
-                  imageType: "profile",
-                },
-              ],
-            },
-          },
-        },
-        wallet: {
-          create: {
-            balance: 0,
-            points: 0,
-          },
-        },
-      },
-      include: { profile: true },
-    });
-
-    if (referrer) {
-      const referral = await prisma.referral.create({
-        data: {
-          referrerId: referrer.id,
-        },
-      });
-
-      await prisma.referralLog.create({
-        data: {
-          referralsId: referral.id,
-          referredId: newUser.id,
-          rewardGiven: true,
-        },
-      });
-
-      await prisma.wallet.update({
-        where: { userId: referrer.id },
-        data: {
-          points: { increment: 10000 },
-          pointLogs: {
-            create: {
-              type: "EARNED",
-              amount: 10000,
-              description: "bonus point referral",
-            },
-          },
-        },
-      });
-
-      await prisma.voucher.create({
-        data: {
-          code: voucherCodeGenerated,
-          discount: 10,
-          usageLimit: 1,
-          global: true,
-          startDate: new Date(),
-          endDate: new Date(new Date().setMonth(new Date().getMonth() + 1)),
-          user: { connect: { id: newUser.id } },
-        },
-      });
+    const newUser = await authServices.registerUser(req);
+    if (!newUser || !newUser.email) {
+      throw new appError("Failed to register user or email not defined.", 400);
     }
     const token = signToken(newUser.id);
     await sendVerificationEmail(newUser.email, token);
@@ -126,61 +25,19 @@ export class Auth {
     );
   });
 
-  verifyEmail = asyncHandler(async (req: Request, res: Response) => {
-    const { token } = req.query;
-
-    if (!token) {
-      res.status(400).json({
-        message: "token is required",
-      });
-      return;
-    }
-
-    const decoded = jwt.verify(
-      token as string,
-      process.env.JWT_SECRET!
-    ) as jwtPayload;
-    console.log("Decoded token:", decoded);
-    if (typeof decoded !== "string") {
-      const user = decoded as IUser;
-      const existingUser = await prisma.user.findUnique({
-        where: { id: user.id },
-      });
-
-      if (!existingUser) {
-        res.status(404).json({
-          message: "User not found",
-        });
-        return;
-      }
-      await prisma.user.update({
-        where: { id: user.id },
-        data: {
-          isEmailVerified: true,
-        },
-      });
-      res.status(200).json({ message: "Email verified successfully." });
-    }
-  });
-
   loginUser = asyncHandler(async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const user = await prisma.user.findUnique({ where: { email } });
 
     if (!user) {
-      res.status(404).json({
-        message: "user not found",
-      });
-      return;
+      throw new appError("User not found.", 404);
     }
 
     const comparePassword = await bcrypt.compare(password, user.password);
     if (user && comparePassword) {
       return createSendToken(user, "User login successfully.", res, 201);
     }
-    res.status(402).json({
-      message: "invalid login",
-    });
+    throw new appError("nvalid login. Email or password is incorrect.", 401);
   });
 
   logoutUser = asyncHandler(async (req: Request, res: Response) => {
@@ -192,8 +49,6 @@ export class Auth {
       expires: new Date(0),
     });
 
-    res.status(201).json({
-      message: "User logout Succsessfully",
-    });
+    appSuccsess(201, "User logout Succsessfully", res);
   });
 }

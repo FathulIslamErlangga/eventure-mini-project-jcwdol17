@@ -9,6 +9,10 @@ export interface IUser {
   isEmailVerified: boolean;
 }
 
+export interface jwtPayload {
+  id: string;
+}
+
 export interface ValidationRequest extends Request {
   userData: IUser;
   file: Express.Multer.File;
