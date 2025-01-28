@@ -11,7 +11,7 @@ export const signToken = (id: string) => {
     throw new Error("JWT secret is not set in envroiment  ");
   }
   return jwt.sign({ id }, process.env.JWT_SECRET!, {
-    expiresIn: "3d",
+    expiresIn: "10d",
   });
 };
 
@@ -24,7 +24,7 @@ export const createSendToken = (
   const token = signToken(user.id);
   const isDev = process.env.NODE_ENV === "development" ? true : false;
   const cookieOpstions = {
-    expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+    expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
     httpOnly: true,
     secure: isDev,
   };

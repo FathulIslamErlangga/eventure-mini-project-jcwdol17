@@ -1,15 +1,11 @@
 import "dotenv/config";
 import { Request, Response, NextFunction } from "express";
 import asyncHandler from "./asyncHandler";
-import { IUser, ValidationRequest } from "../utils/interfaceCustom";
+import { IUser, jwtPayload, ValidationRequest } from "../utils/interfaceCustom";
 import jwt from "jsonwebtoken";
-import { PrismaClient } from ".prisma/client";
 import { appError } from "../utils/responses";
+import prisma from "../utils/prismaClient";
 
-interface jwtPayload {
-  id: string;
-}
-const prisma = new PrismaClient();
 export const protectedAuth = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const Request = req as ValidationRequest;
@@ -65,8 +61,6 @@ export const checkRole = (role: string) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const Request = req as ValidationRequest;
     const user = Request.userData?.role;
-    console.log("akses:", user);
-    console.log("akses 2:", role);
 
     if (user !== role) {
       throw new appError("Access forbidden", 403);

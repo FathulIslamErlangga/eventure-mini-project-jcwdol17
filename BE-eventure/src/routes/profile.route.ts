@@ -16,6 +16,7 @@ const profileRouter = () => {
     validateRequest(profileUpdateSchema),
     profile.updateProfile
   );
+  router.patch("/profiles/v3/:slug", protectedAuth, profile.changePassword);
   return router;
 };
 export default profileRouter;

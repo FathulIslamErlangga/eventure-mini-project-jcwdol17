@@ -115,17 +115,23 @@ export class profileServices {
     }
 
     return {
-      name: user.profile?.name,
-      phone: user.profile?.phone,
-      imageProfile: user.profile?.imageProfile.map((image) => ({
-        id: image.id,
-        imageUrl: image.imageUrl,
-        imageType: image.imageType,
-      })),
-      address: {
-        id: user.profile?.address?.id,
-        address: user.profile?.address?.address,
-        city: user.profile?.address?.city,
+      id: user.id,
+      email: user.email,
+      code: user.code,
+      profile: {
+        id: user.profile?.id,
+        name: user.profile?.name,
+        phone: user.profile?.phone,
+        imageProfile: user.profile?.imageProfile.map((image) => ({
+          id: image.id,
+          imageUrl: image.imageUrl,
+          imageType: image.imageType,
+        })),
+        address: {
+          id: user.profile?.address?.id,
+          address: user.profile?.address?.address,
+          city: user.profile?.address?.city,
+        },
       },
     };
   }

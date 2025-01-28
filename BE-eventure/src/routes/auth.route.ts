@@ -16,8 +16,9 @@ const authRouter = () => {
     auth.registerUser
   );
   router.post("/auth/v2", validateRequest(loginUserSchema), auth.loginUser);
-  router.get("/auth/v3", protectedAuth, auth.logoutUser);
-  // router.get("/verify-email", auth.verifyEmail);
+  router.get("/auth/v3", protectedAuth, auth.getUser);
+  router.get("/auth/v4", protectedAuth, auth.logoutUser);
+  router.post("/auth/v5", auth.forgotPassword);
 
   return router;
 };
