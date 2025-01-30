@@ -133,7 +133,6 @@ CREATE TABLE "Event" (
     "name" VARCHAR(250) NOT NULL,
     "description" VARCHAR(250) NOT NULL,
     "categoryId" VARCHAR(250) NOT NULL,
-    "location" VARCHAR(250) NOT NULL,
     "slug" VARCHAR(250) NOT NULL,
     "addressId" VARCHAR(150) NOT NULL,
     "startDate" TIMESTAMP(3) NOT NULL,

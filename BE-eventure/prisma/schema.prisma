@@ -146,7 +146,6 @@ model Event {
   description  String       @db.VarChar(250)
   categoryId   String       @db.VarChar(250)
   category     Category     @relation(fields: [categoryId], references: [id])
-  location     String       @db.VarChar(250)
   slug        String @unique @db.VarChar(250)
    addressId String  @db.VarChar(150)
   address Address @relation(fields: [addressId], references: [id])
