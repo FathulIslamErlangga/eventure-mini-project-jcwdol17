@@ -1,4 +1,4 @@
-import { IUser } from "../../../be-eventure/src/utils/interfaceCustom";
+import { IUser } from "../../../../be-eventure/src/utils/interfaceCustom";
 interface IUsers {
   id: string;
   email: string;
