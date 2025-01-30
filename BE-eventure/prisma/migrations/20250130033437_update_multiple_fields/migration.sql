@@ -55,6 +55,7 @@ CREATE TABLE "PointLog" (
     "walletId" VARCHAR(250) NOT NULL,
     "type" "PointLogType" NOT NULL,
     "amount" INTEGER NOT NULL,
+    "expirationDate" TIMESTAMP(3),
     "description" VARCHAR(250) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 

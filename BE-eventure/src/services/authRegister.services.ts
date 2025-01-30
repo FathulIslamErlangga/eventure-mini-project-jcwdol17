@@ -92,6 +92,9 @@ export class authService {
             create: {
               type: "EARNED",
               amount: 10000,
+              expirationDate: new Date(
+                new Date().setMonth(new Date().getMonth() + 3)
+              ),
               description: "bonus point referral",
             },
           },
@@ -105,7 +108,7 @@ export class authService {
           usageLimit: 1,
           global: true,
           startDate: new Date(),
-          endDate: new Date(new Date().setMonth(new Date().getMonth() + 1)),
+          endDate: new Date(new Date().setMonth(new Date().getMonth() + 3)),
           user: { connect: { id: newUser.id } },
         },
       });

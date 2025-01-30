@@ -71,6 +71,7 @@ model PointLog {
   wallet      Wallet   @relation(fields: [walletId], references: [id])
   type        PointLogType
   amount      Int
+  expirationDate DateTime?
   description String @db.VarChar(250)
   createdAt   DateTime @default(now())
 }
