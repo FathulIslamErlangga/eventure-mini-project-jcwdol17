@@ -1,4 +1,3 @@
-import { IUser } from "../../../../be-eventure/src/utils/interfaceCustom";
 interface IUsers {
   id: string;
   email: string;
@@ -95,7 +94,7 @@ interface IReviews {
   id: string;
   comment: string;
   rating: number;
-  customerId: IUser;
+  customerId: IUsers;
   event: IEvents;
   createdAt: Date;
   updatedAt: Date;
@@ -110,7 +109,7 @@ interface IEvents {
   categoryId: ICategory;
   addressId: IAddress;
   gallery: IGallery[];
-  organizerId: IUser;
+  organizerId: IUsers;
   transactions: ITransactions[];
   reviews: IReviews[];
   vouchers: IVoucher[];
@@ -130,7 +129,7 @@ interface ICategory {
 
 interface IReferrals {
   id: string;
-  referrerId: IUser;
+  referrerId: IUsers;
   logs: ILogReferrals[];
   createdAt: Date;
   updatedAt: Date;
@@ -139,7 +138,7 @@ interface ILogReferrals {
   id: string;
   rewardGiven: boolean;
   referralsId: IReferrals;
-  referredId: IUser;
+  referredId: IUsers;
   createdAt: Date;
 }
 interface ITransactions {
@@ -147,7 +146,7 @@ interface ITransactions {
   ticketQuantity: number;
   totalPrice: number;
   paymentProof: string;
-  customerId: IUser;
+  customerId: IUsers;
   eventId: IEvents;
   status: TransactionStatus;
   paymentMethod: PaymentMethod;
@@ -183,7 +182,7 @@ interface INotifications {
   title: string;
   message: string;
   isRead: boolean;
-  userId: IUser;
+  userId: IUsers;
   createdAt: Date;
 }
 interface IAtendees {
@@ -192,7 +191,7 @@ interface IAtendees {
   checkedIn: boolean;
   transactionId: ITransactions;
   eventId: IEvents;
-  userId: IUser;
+  userId: IUsers;
   createdAt: Date;
   updatedAt: Date;
 }
