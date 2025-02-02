@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .moreEvent{
+        @apply w-full h-fit flex flex-col gap-5 p-5 mt-20 mb-32;
+    }
+
+    @keyframes rotateAnimate1{
+        0%{
+            transform: rotate(-5deg);
+        }
+        50%{
+            transform: rotate(5deg);
+        }
+        100%{
+            transform: rotate(-5deg);
+        }
+    }
+
+    .moreEvent-title{
+        @apply w-full h-fit flex justify-between;
+    }
+
+    .moreEvent-title-text{
+        animation: rotateAnimate1 15s linear infinite;
+        transform-origin: center center;
+        font-family: var(--font-archivo-bold);
+        @apply w-fit h-fit p-3 bg-neutral text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-[22px] md:text-[24px] lg:text-[36px] rounded-[5px] rotate-[5deg];
+    }
+
+    .moreEvent-title-btn{
+        font-family: var(--font-archivo-bold);
+        @apply w-fit h-fit p-3 bg-primary text-neutral border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D]  text-[14px] md:text-[16px] lg:text-[18px] rounded-[5px];
+    }
+
+    .moreEvent-title-btn:hover{
+        @apply ease-in-out duration-300 scale-90 cursor-pointer shadow-[3px_2px_0_#04002D];
+    }
+
+    .moreEvent-content{
+        @apply w-full h-fit flex flex-col md:flex-col lg:flex-row gap-5;
+    }
+
+}
