@@ -5,6 +5,7 @@ import authRouter from "./routes/auth.route";
 import profileRouter from "./routes/profile.route";
 import { mailRoute } from "./routes/mail.route";
 import { errorMiddleware, pagetNotFound } from "./middlewares/errorMiddleware";
+import Cors from "./middlewares/cors.middleware";
 
 export class App {
   private app: Application;
@@ -19,6 +20,7 @@ export class App {
     this.app.use(express.json());
     this.app.use(cookieParser());
     this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(Cors);
   }
 
   routes() {

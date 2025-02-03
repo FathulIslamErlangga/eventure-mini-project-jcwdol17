@@ -42,7 +42,7 @@ export const protectedAuth = asyncHandler(
       }
 
       if (!user?.isEmailVerified) {
-        throw new appError("User not found", 401);
+        throw new appError("User not verify Email, please verify email", 401);
       }
 
       Request.userData = {

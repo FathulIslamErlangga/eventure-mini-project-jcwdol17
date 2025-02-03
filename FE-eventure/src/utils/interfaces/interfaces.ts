@@ -1,23 +1,23 @@
-interface IUsers {
+export interface IUsers {
   id: string;
   email: string;
-  password: string;
+  password?: string;
   role: Role;
   code: string;
   slug: string;
   isEmailVerified: boolean;
   profile?: IProfiles;
   wallet?: IWallet;
-  vouchers: IVoucher[];
-  reviews: IReviews[];
-  events: IEvents[];
-  refferals: IReferrals[];
-  logReferrals: ILogReferrals[];
-  transactions: ITransactions[];
-  notifications: INotifications[];
-  attendee: IAtendees[];
-  createdAt: Date;
-  updatedAt: Date;
+  vouchers?: IVoucher[];
+  reviews?: IReviews[];
+  events?: IEvents[];
+  refferals?: IReferrals[];
+  logReferrals?: ILogReferrals[];
+  transactions?: ITransactions[];
+  notifications?: INotifications[];
+  attendee?: IAtendees[];
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 enum Role {
@@ -25,17 +25,17 @@ enum Role {
   Customer = "CUSTOMER",
 }
 
-interface IProfiles {
+export interface IProfiles {
   id: string;
   name: string;
-  phone: string;
+  phone?: string;
   userId: IUsers;
-  address: IAddress;
+  address?: IAddress;
   imageProfile: IGallery[];
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
-interface IAddress {
+export interface IAddress {
   id: string;
   address?: string;
   city?: string;
@@ -44,17 +44,17 @@ interface IAddress {
   createdAt: Date;
   updatedAt: Date;
 }
-interface IGallery {
+export interface IGallery {
   id: string;
   imageUrl: string;
   imageType: string;
   eventId?: IEvents;
   profileId?: IProfiles;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-interface IWallet {
+export interface IWallet {
   id: string;
   balance: string;
   points: string;
@@ -63,7 +63,7 @@ interface IWallet {
   createdAt: Date;
   updatedAt: Date;
 }
-interface IPointLogs {
+export interface IPointLogs {
   id: string;
   amount: number;
   description: string;
@@ -77,7 +77,7 @@ enum PointLogType {
   Spent = "SPENT",
   Expired = "EXPIRED",
 }
-interface IVoucher {
+export interface IVoucher {
   id: string;
   code: string;
   discount: number;
@@ -90,7 +90,7 @@ interface IVoucher {
   createdAt: Date;
   updatedAt: Date;
 }
-interface IReviews {
+export interface IReviews {
   id: string;
   comment: string;
   rating: number;
@@ -99,7 +99,7 @@ interface IReviews {
   createdAt: Date;
   updatedAt: Date;
 }
-interface IEvents {
+export interface IEvents {
   id: string;
   name: string;
   description: string;
@@ -120,28 +120,28 @@ interface IEvents {
   updatedAt: Date;
 }
 
-interface ICategory {
+export interface ICategory {
   id: string;
   name: string;
   slug: string;
   events: IEvents[];
 }
 
-interface IReferrals {
+export interface IReferrals {
   id: string;
   referrerId: IUsers;
   logs: ILogReferrals[];
   createdAt: Date;
   updatedAt: Date;
 }
-interface ILogReferrals {
+export interface ILogReferrals {
   id: string;
   rewardGiven: boolean;
   referralsId: IReferrals;
   referredId: IUsers;
   createdAt: Date;
 }
-interface ITransactions {
+export interface ITransactions {
   id: string;
   ticketQuantity: number;
   totalPrice: number;
@@ -171,13 +171,13 @@ enum TransactionStatus {
   CANCELED = "CANCELED",
 }
 
-interface IStatusLogs {
+export interface IStatusLogs {
   id: string;
   transactionId: ITransactions;
   status: TransactionStatus;
   changedAt: Date;
 }
-interface INotifications {
+export interface INotifications {
   id: string;
   title: string;
   message: string;
@@ -185,7 +185,7 @@ interface INotifications {
   userId: IUsers;
   createdAt: Date;
 }
-interface IAtendees {
+export interface IAtendees {
   id: string;
   tiketCount: number;
   checkedIn: boolean;

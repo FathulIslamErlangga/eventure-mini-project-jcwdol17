@@ -16,7 +16,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
     },
   });
 
-  const verificatinUrl = `${process.env.PATH_URL}/api/verify-email?token=${token}`;
+  const verificatinUrl = `${process.env.PATH_URL}/verify-email?token=${token}`;
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
@@ -51,7 +51,7 @@ export const sendVerificationForgotPassword = async (
     },
   });
 
-  const verificatinUrl = `${process.env.PATH_URL}/api/forgot-passwords?token=${token}`;
+  const verificatinUrl = `${process.env.PATH_URL}/forgot-passwords?token=${token}`;
 
   const mailOptions = {
     from: process.env.EMAIL_USER,

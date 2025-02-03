@@ -38,6 +38,9 @@ export class Auth {
       throw new appError("User not found.", 404);
     }
 
+    if (user.isEmailVerified === false) {
+      throw new appError("Please verify your email before logging in.  ", 403);
+    }
     const comparePassword = await bcrypt.compare(password, user.password);
     if (user && comparePassword) {
       return createSendToken(user, "User login successfully.", res, 201);

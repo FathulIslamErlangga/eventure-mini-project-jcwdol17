@@ -1,0 +1,3 @@
+2025-01-31T17:19:03.302136Z  WARN turborepo_filewatch: failed to remove cookie file failed to remove file `C:\Users\User\Documents\latihan\mini-project\.turbo\cookies\.turbo-cookie`
+2025-01-31T17:19:05.722752Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2025-01-31T17:19:06.732803Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
