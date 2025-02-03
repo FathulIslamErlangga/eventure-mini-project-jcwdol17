@@ -1,9 +1,9 @@
-export default function EventDetails(){
-    return(
-        <>
-         <div>
-            <h1>Ini detail event-nya</h1>
-         </div>
-        </>
-    )
+import { EventDetailsPage } from "@/components/eventsPage/eventDetailsPage/main";
+
+export default function EventDetails() {
+  return (
+    <>
+      <EventDetailsPage />
+    </>
+  );
 }

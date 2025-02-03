@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    .event-details-page{
+        @apply w-full h-fit px-5 py-24 md:py-24 lg:py-32 relative gap-4;
+    }
+}

@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .eo-card{
+        @apply w-full h-fit flex flex-row gap-2 cursor-pointer border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-[5px];
+    }
+
+    .eo-card:hover{
+        @apply scale-90 transition-all duration-300;
+    }
+
+    .eo-card-pic{
+        @apply w-full h-full object-cover rounded-[5px];
+    }
+
+    .eo-card-identity{
+        @apply w-full h-full flex flex-col gap-2 p-4;
+    }
+
+    .eo-card-name{
+        font-family: var(--font-archivo-bold);
+        @apply w-fit h-fit text-[#04002D] text-[18px] md:text-[20px] lg:text-[24px] leading-[22px] md:leading-[24px] lg:leading-[28px];
+    }
+
+    .eo-card-rating{
+        @apply w-fit h-fit flex flex-row gap-2;
+    }
+
+    .eo-card-rating-star{
+        @apply w-full h-fit gap-1 flex;
+    }
+
+    .eo-card-rating-num{
+        font-family: var(--font-archivo-bold);
+        @apply w-fit h-fit text-[#04002D] text-[14px] md:text-[16px] lg:text-[18px];
+    }
+}

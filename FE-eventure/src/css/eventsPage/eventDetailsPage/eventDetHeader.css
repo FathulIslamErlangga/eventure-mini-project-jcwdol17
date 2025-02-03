@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .ed-header{
+        @apply w-full h-fit flex flex-row justify-between items-center relative p-4 border-[4px] border-[#04002D] shadow-[6px_4px_0_#04002D] bg-neutral rounded-[5px];
+    }
+
+    .ed-header-eo{
+        @apply w-fit h-fit flex flex-row items-center p-3 bg-info border-[4px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-[5px] gap-4;
+    }
+
+    .ed-header-eo:hover{
+        @apply scale-90 transition-all duration-300;
+    }
+
+    .ed-header-eo-pic{
+        @apply w-[60px] h-[40px] md:w-[80px] md:h-[60px] lg:w-[120px] lg:h-[80px] rounded-full border-[4px] border-[#04002D]; 
+    }
+
+    .ed-header-eo-pic img{
+        @apply w-full h-full object-cover rounded-full;
+    }
+
+    .ed-header-eo-iden{
+        @apply w-full h-full flex flex-col;
+    }
+
+    .ed-header-eo-iden-name{
+        font-family: var(--font-archivo-bold);
+        @apply text-[16px] md:text-[20px] lg:text-[22px];
+    }
+
+    .ed-header-eo-iden-rating{
+        @apply w-fit h-fit flex flex-row items-center gap-1;
+    }
+
+    .ed-header-eo-iden-rating-star{
+        @apply w-full h-fit gap-1 flex;
+    }
+
+    .ed-header-eo-iden-rating-num{
+        font-family: var(--font-archivo-bold);
+        @apply w-fit h-fit text-[16px] md:text-[18px] lg:text-[20px];
+    }
+
+    .ed-header-held{
+        @apply w-fit h-fit flex flex-row gap-10; 
+    }
+
+    .ed-header-held-dt{
+        @apply w-fit h-fit flex flex-row gap-2 items-center;
+    }
+
+    .ed-header-held-dt-img{
+        @apply w-[80px] h-[80px];
+    }
+
+    .ed-header-held-dt-img img{
+        @apply w-full h-full;
+    }
+
+    .ed-header-held-dt-text{
+        @apply w-full h-fit flex flex-col;
+    }
+
+    .ed-header-held-dt-text-1{
+        font-family: var(--font-archivo-bold);
+        @apply w-fit h-fit text-[16px] md:text-[18px] lg:text-[20px];
+    }
+
+    .ed-header-held-dt-text-2{
+        font-family: var(--font-archivo-regular);
+        @apply w-fit h-fit text-[14px] md:text-[16px] lg:text-[18px];
+    }
+}

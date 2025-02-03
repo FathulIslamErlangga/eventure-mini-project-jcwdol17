@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    .event-details-content{
+        @apply w-full h-fit flex flex-col gap-4 mt-4;
+    }
+
+    .eventdet-content-1{
+        @apply w-full h-fit flex flex-row gap-4;
+    }
+
+    .eventdet-content-1-1{
+        @apply w-full h-fit border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-[5px] relative bg-neutral;
+    }
+
+    .eventdet-content-1-1-img{
+        @apply w-full h-full overflow-hidden absolute;
+    }
+
+    .eventdet-content-1-1-img img{
+        @apply w-full h-full object-cover;
+    }
+
+    .eventdet-content-1-1-cov{
+        @apply w-full h-full bg-[#04002d4d] relative z-20 p-5 flex flex-col justify-between gap-20;
+    }
+
+    .eventdet-content-1-2{
+        @apply w-fit h-fit flex flex-col justify-between items-center gap-8;
+    }
+
+    .event-counter{
+        @apply w-fit h-fit flex flex-row items-center justify-center gap-6 p-5 border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-[10px];
+    }
+
+    .btn-counter-add{
+        font-family: var(--font-archivo-bold);
+        @apply w-[60px] h-[60px] rounded-[5px] p-3 flex items-center justify-center border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] cursor-pointer bg-success text-[24px];
+    }
+
+    .btn-counter-add:hover{
+        @apply transition-all duration-300 scale-90 shadow-[3px_2px_0_#04002D];
+    }
+
+    .event-counter-text{
+        font-family: var(--font-archivo-bold);
+        @apply w-fit h-fit text-[24px] text-[#04002D];
+    }
+
+    .btn-counter-sub{
+        font-family: var(--font-archivo-bold);
+        @apply w-[60px] h-[60px] rounded-[5px] p-3 flex items-center justify-center border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] cursor-pointer bg-error text-[24px];
+    }
+
+    .btn-counter-sub:hover{
+        @apply transition-all duration-300 scale-90 shadow-[3px_2px_0_#04002D];
+    }
+
+    .btn-buy-now{
+        font-family: var(--font-archivo-bold);
+        @apply w-full h-fit p-7 flex items-center  border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] cursor-pointer bg-primary text-[22px] rounded-[10px] text-neutral;
+    }
+
+    .btn-buy-now:hover{
+        @apply ease-in-out duration-300 scale-90 shadow-[3px_2px_0_#04002D];
+    }
+
+    .btn-add-cart{
+        font-family: var(--font-archivo-bold);
+        @apply w-full h-fit p-7 flex items-center  border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] cursor-pointer bg-secondary text-[22px] rounded-[10px];
+    }
+
+    .btn-add-cart:hover{
+        @apply ease-in-out duration-300 scale-90 shadow-[3px_2px_0_#04002D];
+    }
+
+
+}
