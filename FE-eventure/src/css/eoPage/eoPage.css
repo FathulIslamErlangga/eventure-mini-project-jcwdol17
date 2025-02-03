@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .eo-page{
+        @apply w-full h-fit flex flex-col items-center px-5 py-32 relative;
+    }
+
+    .eo-page-title{
+        @apply w-full h-fit flex justify-between items-center;
+    }
+
+    .eo-page-title-text{
+        font-family: var(--font-archivo-bold);
+        @apply w-fit h-fit p-3 bg-info text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-[22px] md:text-[24px] lg:text-[36px] rounded-[5px] rotate-[-5deg];
+    }
+
+    .eo-page-title-pic{
+        animation: rotateAnimate 15s linear infinite;
+        transform-origin: center center
+    }
+
+    .eo-page-content{
+        @apply w-full h-full flex flex-col justify-between items-center;
+    }
+
+    .eo-page-content-1{
+        @apply w-full h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 lg:gap-4;
+    }
+
+    .eo-page-pagination{
+        @apply w-full h-fit flex justify-center items-center gap-4;
+    }
+}

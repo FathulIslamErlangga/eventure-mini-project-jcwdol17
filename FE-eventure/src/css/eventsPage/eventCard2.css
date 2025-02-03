@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .event-card2 {
+    @apply w-full h-fit relative border-[4px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-[5px] overflow-hidden;
+  }
+
+  .event-card2-pic {
+    @apply w-full h-full absolute z-10;
+  }
+
+  .event-card2-pic img {
+    @apply w-full h-full object-cover;
+  }
+
+  .event-card2-cov {
+    @apply w-full h-full bg-[#04002d4d] relative z-20 p-5 flex flex-col justify-between;
+  }
+
+  .event-card2-cov-up {
+    @apply w-full h-fit flex justify-between items-center;
+  }
+
+  .event-card2-ctg {
+    font-family: var(--font-archivo-bold);
+    @apply w-fit h-fit p-2 bg-secondary text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-[14px] rounded-[5px];
+  }
+
+  .event-card2-date {
+    font-family: var(--font-archivo-bold);
+    @apply w-[100px] h-[100px] p-3 bg-info text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-[14px] rounded-full flex justify-center items-center text-center;
+  }
+
+  .event-card2-cov-mid {
+    @apply w-full h-fit flex mt-32;
+  }
+
+  .event-card2-title {
+    font-family: var(--font-archivo-bold);
+    @apply w-fit h-fit bg-neutral p-3 text-[22px] md:text-[36px] lg:text-[36px] text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-center rounded-[5px];
+  }
+
+  .event-card2-cov-down {
+    @apply w-full h-fit flex justify-between items-end mt-3 gap-3;
+  }
+
+  .event-card2-cov-down-1 {
+    @apply w-full h-fit flex flex-col gap-2;
+  }
+
+  .event-card2-price {
+    font-family: var(--font-archivo-bold);
+    @apply w-fit h-fit bg-success p-3 text-[12px] text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-center rounded-[5px];
+  }
+
+  .event-card2-cov-down-2 {
+    @apply w-full h-full flex gap-2 items-end justify-end;
+  }
+
+  .event-card2-btn {
+    @apply w-fit h-fit p-3 flex justify-center items-center border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] cursor-pointer;
+  }
+
+  .event-card2-btn img {
+    @apply w-full h-full object-cover;
+  }
+
+  .event-card2-btn:hover {
+    @apply ease-in-out duration-300 scale-90 shadow-[3px_2px_0_#04002D];
+  }
+
+  .cart-btn {
+    @apply bg-secondary;
+  }
+
+  .buy-btn {
+    @apply bg-primary;
+  }
+}

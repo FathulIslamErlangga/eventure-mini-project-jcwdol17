@@ -6,13 +6,22 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: "#9723C9",
+          secondary: "#E3DFF2",
+          accent: "#A388EE",
+          neutral: "#FDFDFC",
+          "base-100": "#FDFDFC",
+          info: "#87CEEB",
+          success: "#90EE90",
+          warning: "#FDFD96",
+          error: "#FF7A5C",
+        },
       },
-    },
+    ],
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 } satisfies Config;
