@@ -1,13 +1,19 @@
 "use client";
-import { loginUser, registerUser } from "@/services/auth.services";
+import {
+  getUser,
+  loginUser,
+  logoutUser,
+  registerUser,
+} from "@/services/auth.services";
 import {
   LoginData,
   RegisterData,
+  responseApi,
   UserResponse,
 } from "@/utils/interfaces/authInterface";
-import { setCookie } from "cookies-next";
+import { deleteCookie, getCookie, setCookie } from "cookies-next";
 import { useSearchParams } from "next/navigation";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { verifyEmail } from "../../services/auth.services";
 
 interface AuthProps {
@@ -16,6 +22,7 @@ interface AuthProps {
   register: (data: RegisterData) => Promise<void>;
   verificationEmail: (token: string) => Promise<void>;
   login: (data: LoginData) => Promise<void>;
+  logout: () => void;
 }
 
 const AuthContext = createContext<AuthProps | undefined>(undefined);
@@ -26,26 +33,33 @@ export const AuthContexts = ({ children }: { children: React.ReactNode }) => {
   const searchParams = useSearchParams();
   const referral = searchParams.get("code") as string | undefined; // Dapatkan 'code' dari searchParams
 
+  useEffect(() => {
+    const token = getCookie("jwt");
+    console.log("Token dari cookies:", token);
+    if (token) {
+      getUsers(token as string);
+    }
+  }, []);
+
   const register = async (data: RegisterData) => {
     try {
       if (referral) {
         data.code = referral;
       }
-
       const response = await registerUser(data);
-      if (response?.message) {
-        setMessage(response.message);
-      }
+
       setUser(response);
       setCookie("jwt", response?.token, {
-        httpOnly: true,
         secure:
           process.env.NEXT_PUBLIC_NODE_ENV === "development" ? true : false,
         expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
+        path: "/",
       });
-    } catch (error) {
-      if (error instanceof Error) {
-        setMessage(error.message);
+
+      setMessage(response?.message);
+    } catch (error: any) {
+      if (error.response && error.response.data) {
+        setMessage(error.response.data.message);
       }
     }
   };
@@ -57,25 +71,54 @@ export const AuthContexts = ({ children }: { children: React.ReactNode }) => {
   const login = async (data: LoginData) => {
     try {
       const response = await loginUser(data);
-      
+      if (response.status === "error") {
+        setMessage(response.message); // Jika error, tampilkan pesan error
+      }
       setUser(response);
       setCookie("jwt", response?.token, {
-        httpOnly: true,
         secure:
           process.env.NEXT_PUBLIC_NODE_ENV === "development" ? true : false,
         expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
+        path: "/",
       });
+      console.log(response);
       setMessage(response?.message);
-    } catch (error) {
-      if (error instanceof Error) {
-        setMessage(error.message);
+    } catch (error: any) {
+      if (error.response && error.response.data) {
+        setMessage(error.response.data.message); // Menampilkan pesan error ke UI
+      }
+    }
+  };
+
+  const getUsers = async (token: string) => {
+    try {
+      console.log("getUser token", token);
+      const getData = await getUser(token as string);
+      console.log("data dari cookies:", getData);
+      setUser(getData);
+    } catch (error: any) {
+      if (error.response && error.response.data) {
+        setMessage(error.response.data.message);
+        setUser(undefined);
+      }
+    }
+  };
+
+  const logout = async () => {
+    try {
+      await logoutUser();
+      deleteCookie("jwt");
+      setUser(undefined);
+    } catch (error: any) {
+      if (error.response && error.response.data) {
+        setMessage(error.response.data.message);
       }
     }
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, message, register, verificationEmail, login }}
+      value={{ user, message, register, verificationEmail, login, logout }}
     >
       {children}
     </AuthContext.Provider>

@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import "dotenv/config";
 import prisma from "../utils/prismaClient";
 import { Request } from "express";
+import { appError } from "../utils/responses";
 
 export class authService {
   async registerUser(req: Request) {
@@ -28,7 +29,10 @@ export class authService {
       where: { email },
     });
     if (existingUser) {
-      throw new Error("Email is already in use. Please use a different email.");
+      throw new appError(
+        "Email is already in use. Please use a different email.",
+        403
+      );
     }
 
     let referrer = null;
@@ -36,7 +40,7 @@ export class authService {
       referrer = await prisma.user.findUnique({
         where: { code: referralCode },
       });
-      if (!referrer) throw new Error("Invalid referral code");
+      if (!referrer) throw new appError("Invalid referral code", 403);
     }
 
     const newUser = await prisma.user.create({

@@ -1,3 +1,8 @@
+export interface AxiosErrorResponse {
+  status: string;
+  message: string;
+}
+
 export interface IUsers {
   id: string;
   email: string;
