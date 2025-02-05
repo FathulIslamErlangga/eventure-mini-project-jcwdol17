@@ -25,8 +25,8 @@ export const createSendToken = (
   const isDev = process.env.NODE_ENV === "development" ? true : false;
   const cookieOpstions = {
     expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
-    httpOnly: true,
     secure: isDev,
+    path: "/",
   };
 
   res.setHeader("Authorization", `Bearer ${token}`);

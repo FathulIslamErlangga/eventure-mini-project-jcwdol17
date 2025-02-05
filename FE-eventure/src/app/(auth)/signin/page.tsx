@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation"; // Gunakan next/navigation un
 import React, { useEffect, useState } from "react";
 import "@/css/authPage/signIn.css";
 import Link from "next/link";
+import { useRouter } from "next/navigation"; // Gunakan next/navigation untuk query params
 
 const SignUp = () => {
   const { login, message } = useAuth();
@@ -13,6 +14,7 @@ const SignUp = () => {
     email: "",
     password: "",
   });
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,8 +22,8 @@ const SignUp = () => {
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-
     await login(formData);
+    setTimeout(() => router.push("/profile"), 1000);
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -36,7 +38,7 @@ const SignUp = () => {
       {message && (
         <div
           className={`text-center mt-4 p-2 rounded ${
-            message.includes("error")
+            message.toLowerCase().includes("error")
               ? "bg-green-200 text-green-800"
               : "bg-red-200 text-red-800"
           }`}

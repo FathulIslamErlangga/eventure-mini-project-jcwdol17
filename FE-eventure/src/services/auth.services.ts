@@ -4,8 +4,7 @@ import {
   RegisterData,
   UserResponse,
 } from "@/utils/interfaces/authInterface";
-import { IUsers } from "@/utils/interfaces/interfaces";
-import { getCookie } from "cookies-next";
+import { CookieValueTypes, getCookie } from "cookies-next";
 
 export const registerUser = async (data: RegisterData) => {
   try {
@@ -21,6 +20,7 @@ export const registerUser = async (data: RegisterData) => {
     if (error instanceof Error) {
       console.error(error.message);
     }
+    throw error;
   }
 };
 
@@ -31,24 +31,32 @@ export const verifyEmail = async (token: string) => {
 export const loginUser = async (data: LoginData) => {
   try {
     const response = await api.post<UserResponse>("/auth/v2", data);
+    console.log(response.status);
     return response.data;
   } catch (error) {
     if (error instanceof Error) {
-      console.error(error.message);
+      console.error(error.stack);
     }
+    throw error;
   }
 };
 
-export const getUser = async () => {
+export const getUser = async (token: CookieValueTypes) => {
   try {
-    const token = getCookie("jwt");
     const response = await api.get<UserResponse>("/auth/v3", {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-    }
+    throw error;
+  }
+};
+
+export const logoutUser = async () => {
+  try {
+    const response = await api.get("/auth/v4");
+    return response.data;
+  } catch (error) {
+    throw error;
   }
 };

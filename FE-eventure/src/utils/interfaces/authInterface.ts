@@ -1,5 +1,9 @@
 import { IUsers } from "./interfaces";
 
+export interface responseApi {
+  status: string;
+  message: string;
+}
 export interface RegisterData {
   name: string;
   email: string;
@@ -13,7 +17,8 @@ export interface LoginData {
 }
 
 export interface UserResponse {
+  status?: string;
   message: string;
   data: IUsers;
-  token: string;
+  token?: string;
 }
