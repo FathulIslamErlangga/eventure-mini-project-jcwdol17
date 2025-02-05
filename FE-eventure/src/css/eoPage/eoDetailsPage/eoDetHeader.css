@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    .eo-det-header{
+        @apply w-full h-fit flex flex-col md:flex-col lg:flex-row p-5 justify-between items-center border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-[5px] bg-neutral;
+    }   
+
+    .eo-det-header-iden{
+        @apply w-fit h-fit flex flex-col md:flex-col lg:flex-row gap-5 items-center;
+    }
+
+    .eo-det-header-pic{
+        @apply w-[120px] h-[120px] md:w-[80px] md:h-[80px] lg:w-[100px] lg:h-[100px] rounded-full border-[5px] border-[#04002D]  overflow-hidden;
+    }
+
+    .eo-det-header-pic img{
+        @apply w-full h-full object-cover rounded-full;
+    }
+
+    .eo-det-header-text{
+        font-family: var(--font-archivo-bold);
+        @apply w-fit h-fit text-[22px] md:text-[24px] lg:text-[28px] text-[#04002D];
+    }
+
+    .eo-header-det-rating{
+        @apply w-fit h-fit flex flex-row gap-2;
+    }
+
+    .eo-header-det-rating img{
+        @apply w-[30px] h-[30px];
+    }
+
+}

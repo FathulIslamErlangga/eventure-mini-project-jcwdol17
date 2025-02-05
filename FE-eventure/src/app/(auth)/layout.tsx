@@ -5,6 +5,7 @@ import "../globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { AuthContexts } from "@/components/contexts/AuthContexts";
+import { Logo } from "@/components/authPage/logo";
 
 const archivoBold = Archivo({
   src: "../../../public/assets/fonts/Archivo/static/Archivo-Bold.ttf",
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body
         className={`${archivoBold.variable} ${archivoRegular.variable} antialiased`}
       >
+        <Logo/>
         <AuthContexts>{children}</AuthContexts>
       </body>
     </html>

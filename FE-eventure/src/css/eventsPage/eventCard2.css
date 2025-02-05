@@ -43,7 +43,7 @@
 
   .event-card2-title {
     font-family: var(--font-archivo-bold);
-    @apply w-fit h-fit bg-neutral p-3 text-[22px] md:text-[36px] lg:text-[36px] text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-center rounded-[5px];
+    @apply w-fit h-fit bg-neutral p-3 text-[16px] md:text-[16px] lg:text-[18px] text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-center rounded-[5px];
   }
 
   .event-card2-cov-down {

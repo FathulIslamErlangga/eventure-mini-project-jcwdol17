@@ -2,6 +2,9 @@
 import { useAuth } from "@/components/contexts/AuthContexts";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import '@/css/authPage/verifyEmail.css';
 
 const page = () => {
   const { verificationEmail } = useAuth();
@@ -20,11 +23,32 @@ const page = () => {
         setStatus("Email verify failed");
       }
     } else {
-      setStatus("user is not found, please register first");
+      setStatus("User is not found, please register first");
     }
   }, [token]);
 
-  return <h1 className="text-center pt-40">{status}</h1>;
+  return (
+    <div className="verify-email-page">
+      <div className="verify-email-container">
+        <div className="verify-email-pic">
+          <Image
+            src="/assets/images/icons/circle-info-solid.svg"
+            alt="info"
+            width={80}
+            height={80}
+          />
+        </div>
+      <div className="verify-email-info">
+        <div className="verify-email-info-title">
+          <h1>Info</h1>
+        </div>
+        <div className="verify-email-info-text">
+          <span>{status}</span>
+        </div>
+      </div>
+      </div>
+    </div>
+  );
 };
 
 export default page;

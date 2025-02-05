@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    .eo-det-events{
+        @apply w-full h-fit flex flex-col gap-4 mt-20;
+    }
+
+    .eo-det-events-title{
+        @apply w-full h-fit flex justify-between;
+    }
+
+    .eo-det-events-title-text{
+        font-family: var(--font-archivo-bold);
+        @apply w-fit h-fit p-6 bg-[#FFDB58] text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-[22px] md:text-[24px] lg:text-[36px] rounded-[5px] rotate-[-5deg];
+    }
+
+    @keyframes rotateAnimate4{
+        from{
+            transform: rotate(360deg);
+        }
+        to{
+            transform: rotate(0deg);
+        }
+    }
+
+    .eo-det-events-title-pic{
+        animation: rotateAnimate4 10s linear infinite;
+        transform-origin: center center;
+        @apply w-[80px] h-[80px] md:w-[120px] md:h-[120px] lg:w-[150px] lg:h-[150px];
+    }
+
+    .eo-det-events-content{
+        @apply w-full h-fit flex flex-col gap-4 mt-5;   
+    }
+
+    .eo-det-events-content-1{
+        @apply w-full h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3 lg:gap-4;
+    }
+
+    .eo-det-events-pagination{
+        @apply w-full h-fit flex justify-center items-center gap-4;
+    }
+
+
+}

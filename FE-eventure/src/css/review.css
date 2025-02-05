@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .review {
+    @apply w-full h-fit flex flex-col gap-4 p-3 mt-3;
+  }
+
+  .review-title {
+    @apply w-full h-fit flex flex-row justify-between items-center;
+  }
+
+  @keyframes rotateAnimate3 {
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
+
+  .review-title-pic {
+    @apply w-fit h-fit rounded-full bg-[#8cde22] flex border-[5px] border-[#04002D] border-dotted p-3 justify-center items-center;
+    animation: rotateAnimate3 15s linear infinite;
+    transform-origin: center center;
+  }
+
+  .review-title-text {
+    font-family: var(--font-archivo-bold);
+    @apply w-fit h-fit p-4 text-[#04002D] text-[28px] rounded-[5px] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] bg-[#FF4911] rotate-[-5deg];
+  }
+
+
+  .review-content{
+    @apply w-full h-fit flex flex-col gap-2 mt-5; 
+  }
+
+  .review-card{
+    @apply w-full h-fit flex flex-col gap-2 p-5 border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-[5px] bg-neutral;
+  }
+
+  .review-card-iden{
+    @apply w-full h-fit flex flex-row gap-2;
+  }
+
+  .review-card-pic{
+    @apply w-[60px] h-[60px] rounded-full border-[3px] border-[#04002D] overflow-hidden;
+  }
+
+  .review-card-pic img{
+    @apply w-full h-full object-cover;
+  }
+
+  .review-card-text{
+    font-family: var(--font-archivo-bold);
+    @apply w-full h-fit flex flex-col gap-2 text-[#04002D] text-[20px];
+  }
+
+  .review-card-rating{
+    @apply w-full h-fit flex flex-row gap-1;
+  }
+
+  .review-card-comment{
+    font-family: var(--font-archivo-regular);
+    @apply w-full h-fit text-[#04002D] text-[18px];
+  }
+}

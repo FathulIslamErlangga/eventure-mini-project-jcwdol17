@@ -16,11 +16,11 @@ export function UpComingEvents() {
         </div> */}
       </div>
       <div className="ue-content">
-        <EventCard2/>
+        <EventCard/>
       </div>
       <div className="ue-content-2">
-        <EventCard2/>
-        <EventCard2/>
+        <EventCard/>
+        <EventCard/>
       </div>
     </div>
   );
