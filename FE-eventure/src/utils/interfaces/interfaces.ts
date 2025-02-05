@@ -1,8 +1,3 @@
-export interface AxiosErrorResponse {
-  status: string;
-  message: string;
-}
-
 export interface IUsers {
   id: string;
   email: string;
@@ -25,7 +20,7 @@ export interface IUsers {
   updatedAt?: Date;
 }
 
-enum Role {
+export enum Role {
   Organizer = "ORGANIZER",
   Customer = "CUSTOMER",
 }

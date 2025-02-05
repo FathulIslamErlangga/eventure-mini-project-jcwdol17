@@ -1,8 +1,8 @@
 import { IUsers } from "./interfaces";
 
-export interface responseApi {
-  status: string;
-  message: string;
+export interface IChangePassword {
+  newPassword: string;
+  confirmPassword: string;
 }
 export interface RegisterData {
   name: string;

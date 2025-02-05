@@ -13,10 +13,12 @@ export const appSuccsess = (
   statusCode: number,
   message: string,
   res: Response,
-  data?: any
+  data?: any,
+  token?: string
 ) => {
   res.status(statusCode).json({
     message,
     data,
+    token,
   });
 };

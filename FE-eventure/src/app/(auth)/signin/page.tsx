@@ -1,25 +1,43 @@
 "use client";
+import ModalForm from "@/components/auth/forgotPassword/modalFormEmail";
 import { useAuth } from "@/components/contexts/AuthContexts";
 import { LoginData } from "@/utils/interfaces/authInterface";
 import { useRouter } from "next/navigation"; // Gunakan next/navigation untuk query params
 import React, { useState } from "react";
 
-const SignUp = () => {
-  const { login, message } = useAuth();
+const SignIn = () => {
+  const {
+    login,
+    message,
+    onClickModal: onClickModal,
+    isOpen,
+    forgot,
+  } = useAuth();
   const [formData, setFormData] = useState<LoginData>({
     email: "",
     password: "",
   });
+  const [email, setEmail] = useState("");
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const value = e.target.value;
+    setFormData({ ...formData, [e.target.name]: value });
+  };
+  const handleChangeForgot = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEmail(value);
   };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     await login(formData);
     setTimeout(() => router.push("/profile"), 1000);
+  };
+  const handleSendMailForgot = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    await forgot(email);
   };
 
   return (
@@ -53,8 +71,18 @@ const SignUp = () => {
         />
         <button type="submit">Register</button>
       </form>
+      <button className="border-none" onClick={onClickModal}>
+        Forgot Password
+      </button>
+      <ModalForm
+        isOpen={isOpen}
+        handleChange={handleChangeForgot}
+        handleSendMailForgot={handleSendMailForgot}
+        message={message}
+        email={email}
+      />
     </div>
   );
 };
 
-export default SignUp;
+export default SignIn;

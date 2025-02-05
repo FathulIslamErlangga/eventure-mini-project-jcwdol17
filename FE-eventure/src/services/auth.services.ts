@@ -4,7 +4,7 @@ import {
   RegisterData,
   UserResponse,
 } from "@/utils/interfaces/authInterface";
-import { CookieValueTypes, getCookie } from "cookies-next";
+import { CookieValueTypes } from "cookies-next";
 
 export const registerUser = async (data: RegisterData) => {
   try {
@@ -22,10 +22,6 @@ export const registerUser = async (data: RegisterData) => {
     }
     throw error;
   }
-};
-
-export const verifyEmail = async (token: string) => {
-  return api.get(`/verify-email?token=${token}`);
 };
 
 export const loginUser = async (data: LoginData) => {

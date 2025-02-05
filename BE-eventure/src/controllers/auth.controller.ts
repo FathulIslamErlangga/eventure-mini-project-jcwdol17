@@ -105,8 +105,15 @@ export class Auth {
     }
     const resetToken = signToken(user.id);
     sendVerificationForgotPassword(user.email, resetToken);
+    console.log("token:", resetToken);
 
-    appSuccsess(200, "Reset password email has been sent.", res);
+    appSuccsess(
+      200,
+      "Reset password email has been sent.",
+      res,
+      undefined,
+      resetToken
+    );
   });
 
   // logout
