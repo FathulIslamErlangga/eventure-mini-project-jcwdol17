@@ -49,10 +49,10 @@ export function Navbar() {
                 </div>
               </div>
             </Link>
-            <Link href="/">
+            <Link href="/eo">
               <div className="list-menu-dt">
                 <div className="list-menu-text">
-                  <span>Carts</span>
+                  <span>Event Organizer</span>
                 </div>
               </div>
             </Link>
@@ -111,13 +111,23 @@ export function Navbar() {
 
       <div className="enavbar">
         <div className="enavbarContent">
-          <div className="menubar-icon" onClick={toggleMenu}>
-            <Image
-              src="/assets/images/icons/menu.svg"
-              alt="menu-icon"
-              width={30}
-              height={30}
-            />
+          <div className="flex gap-2">
+            <div className="menubar-icon" onClick={toggleMenu}>
+              <Image
+                src="/assets/images/icons/menu.svg"
+                alt="menu-icon"
+                width={30}
+                height={30}
+              />
+            </div>
+            <div className="cart-icon bg-neutral">
+              <Image
+                src="/assets/images/icons/cart.svg"
+                alt="cart-icon"
+                width={30}
+                height={30}
+              />
+            </div>
           </div>
           <div className="logo">
             <Image
@@ -149,19 +159,10 @@ export function Navbar() {
                   height={35}
                 />
               </div>
-              <span className="badge badge-md badge-primary indicator-item">8</span>
+              <span className="badge badge-md badge-primary indicator-item">
+                8
+              </span>
             </div>
-            {/* <div className="cart-icon">
-            <div className="rec"></div>
-            <div className="icon-img">
-              <Image
-                src="/assets/images/icons/cart.svg"
-                alt="cart-icon"
-                width={40}
-                height={40}
-              />
-            </div>
-          </div> */}
           </div>
         </div>
         <div className={`searchContent ${isSearchOpen ? "active" : ""}`}>

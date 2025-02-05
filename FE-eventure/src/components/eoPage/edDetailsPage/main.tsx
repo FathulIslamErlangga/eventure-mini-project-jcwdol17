@@ -8,7 +8,6 @@ export function EoDetailsPage() {
   return (
     <div className="eo-details-page">
       <EoDetHeader />
-      <EoDetContent/>
       <EoDetEvents/>
       <Review/>
     </div>
