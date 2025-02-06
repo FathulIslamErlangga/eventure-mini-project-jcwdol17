@@ -1,6 +1,7 @@
 import Image from "next/image";
 import '@/css/eoPage/eoPage.css';
 import '@/css/homePage/categoriesStyle.css';    
+import { EoCard } from "./eoCard";
 
 
 export function EOPage() {
@@ -18,7 +19,14 @@ export function EOPage() {
         </div>
       </div>
       <div className="eo-page-content">
-        <div className="eo-page-content-1"></div>
+        <div className="eo-page-content-1">
+          <EoCard/>
+          <EoCard/>
+          <EoCard/>
+          <EoCard/>
+          <EoCard/>
+          <EoCard/>
+        </div>
         <div className="eo-page-pagination">
           <div className="join">
             <button className="join-item btn">1</button>

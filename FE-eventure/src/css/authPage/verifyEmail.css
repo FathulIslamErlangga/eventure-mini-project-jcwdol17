@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    .verify-email-page{
+        @apply w-full h-full flex flex-col items-center justify-center gap-4 py-32 px-10;
+    }
+    
+    .verify-email-container{
+        @apply w-fit h-fit flex items-center gap-5 p-6 bg-neutral border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-md;
+    }
+
+    .verify-email-pic{
+        @apply w-fit h-fit p-4 border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-md bg-info;
+    }
+
+    .verify-email-info{
+        @apply w-fit h-fit flex flex-col items-center justify-start gap-1;
+    }
+
+    .verify-email-info-title{
+        font-family: var(--font-archivo-bold);
+        @apply w-full h-fit text-[32px] md:text-[32px] lg:text-[36px] text-[#04002D];
+    }
+
+    .verify-email-info-text{
+        font-family: var(--font-archivo-regular);
+        @apply w-fit h-fit text-[16px] md:text-[18px] lg:text-[22px] text-[#04002D];
+    }
+}

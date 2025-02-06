@@ -6,14 +6,19 @@ import {
   registerUser,
 } from "@/services/auth.services";
 import {
+  IChangePassword,
   LoginData,
   RegisterData,
   UserResponse,
 } from "@/utils/interfaces/authInterface";
+import {
+  verifyEmail,
+  forgotPassword,
+  changesPassword,
+} from "../../services/mail.services";
 import { deleteCookie, getCookie, setCookie } from "cookies-next";
 import { useSearchParams } from "next/navigation";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { verifyEmail, forgotPassword } from "../../services/mail.services";
 import { handleModalForgot } from "@/utils/useState";
 
 interface AuthProps {
@@ -28,6 +33,7 @@ interface AuthProps {
   login: (data: LoginData) => Promise<void>;
   logout: () => void;
   forgot: (email: string) => Promise<void>;
+  changePassword: (data: IChangePassword) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthProps | undefined>(undefined);
@@ -142,6 +148,17 @@ export const AuthContexts = ({ children }: { children: React.ReactNode }) => {
       }
     }
   };
+
+  const changePassword = async (data: IChangePassword) => {
+    try {
+      const response = await changesPassword(data);
+      setMessage(response.message);
+    } catch (error: any) {
+      if (error.response && error.response.data) {
+        setMessage(error.response.data.message);
+      }
+    }
+  };
   const { isOpen, onClickModal } = handleModalForgot();
   return (
     <AuthContext.Provider
@@ -157,6 +174,7 @@ export const AuthContexts = ({ children }: { children: React.ReactNode }) => {
         login,
         logout,
         forgot,
+        changePassword,
       }}
     >
       {children}

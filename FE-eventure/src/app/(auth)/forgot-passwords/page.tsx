@@ -1,49 +1,39 @@
 "use client";
 import { useAuth } from "@/components/contexts/AuthContexts";
-import { RegisterData } from "@/utils/interfaces/authInterface";
-import { useSearchParams } from "next/navigation"; // Gunakan next/navigation untuk query params
-import React, { useEffect, useState } from "react";
-import "@/css/authPage/signUp.css";
-import Link from "next/link";
+import { IChangePassword } from "@/utils/interfaces/authInterface";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import "@/css/authPage/changePassword.css";
 
-const SignUp = () => {
-  const { register, message } = useAuth();
-  const [formData, setFormData] = useState<RegisterData>({
-    name: "",
-    email: "",
-    password: "",
-    code: "",
+const page = () => {
+  const { message, changePassword } = useAuth();
+  const [formChange, setFormChange] = useState<IChangePassword>({
+    newPassword: "",
+    confirmPassword: "",
   });
-
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    const referral = searchParams.get("code") || ""; // Ambil parameter 'code' dari searchParams
-    setFormData((prev) => ({ ...prev, code: referral }));
-  }, [searchParams]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    await register(formData);
-  };
-
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const router = useRouter();
 
   const togglePasswordVisibility = () => {
-    setShowPassword((prevState) => !prevState);
+    setShowPassword((prev) => !prev);
+  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setFormChange({ ...formChange, [e.target.name]: value });
+  };
+
+  const handleChangePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await changePassword(formChange);
+    setTimeout(() => router.push("/signin"), 1500);
   };
 
   return (
-    <div>
+    <>
       {message && (
         <div
           className={`text-center mt-4 p-2 rounded ${
-            message.includes("berhasil")
+            message.toLowerCase().includes("error")
               ? "bg-green-200 text-green-800"
               : "bg-red-200 text-red-800"
           }`}
@@ -51,50 +41,13 @@ const SignUp = () => {
           {message}
         </div>
       )}
-      <div className="signup-page">
-        <div className="signup-page-container">
-          <div className="signup-title">
-            <h1>Sign Up</h1>
+      <div className="signin-page">
+        <div className="signin-page-container">
+          <div className="signin-title">
+            <h2>Change your password</h2>
           </div>
-          <form onSubmit={handleRegister} className="eventure-form">
-            <label className="input input-bordered border-[3px] border-[#04002D] flex items-center gap-2 p-7">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                className="h-4 w-4 opacity-70"
-              >
-                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
-              </svg>
-              <input
-                className="grow"
-                type="text"
-                name="name"
-                placeholder="Name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-            </label>
-            <label className="input input-bordered border-[3px] border-[#04002D] flex items-center gap-2 p-7">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                className="h-4 w-4 opacity-70"
-              >
-                <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
-                <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
-              </svg>
-              <input
-                className="grow"
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </label>
-            <label className="input input-bordered border-[#04002D] border-[3px] flex items-center gap-2 py-7 pl-7 pr-2">
+          <form onSubmit={handleChangePassword} className="eventure-form">
+            <label className="input input-bordered border-[3px] border-[#04002D] flex items-center gap-2 py-7 pl-7 pr-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
@@ -110,9 +63,9 @@ const SignUp = () => {
               <input
                 className="grow"
                 type="password"
-                name="password"
-                placeholder="Password"
-                value={formData.password}
+                name="newPassword"
+                placeholder="Input New Password"
+                value={formChange.newPassword}
                 onChange={handleChange}
               />
               <button
@@ -158,10 +111,10 @@ const SignUp = () => {
               </svg>
               <input
                 className="grow"
-                type="password"
-                name="password"
+                type={showPassword ? "text" : "password"}
+                name="confirmPassword"
                 placeholder="Confirm Password"
-                value={formData.password}
+                defaultValue={formChange.confirmPassword}
                 onChange={handleChange}
               />
               <button
@@ -193,18 +146,13 @@ const SignUp = () => {
               </button>
             </label>
             <button className="eventure-button" type="submit">
-              Sign Up
+              Submit Password
             </button>
           </form>
-          <div className="signup-ask">
-            <span>
-              Have an account? <Link href="/signin">Sign In</Link>
-            </span>
-          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default SignUp;
+export default page;
