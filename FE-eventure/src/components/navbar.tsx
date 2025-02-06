@@ -35,28 +35,28 @@ export function Navbar() {
         </div>
         <div className="list-menu-content">
           <div className="list-menu-up">
-            <Link href="/">
+            <Link href="/" onClick={toggleMenu}>
               <div className="list-menu-dt">
                 <div className="list-menu-text">
                   <span>Home</span>
                 </div>
               </div>
             </Link>
-            <Link href="/events">
+            <Link href="/events" onClick={toggleMenu}>
               <div className="list-menu-dt">
                 <div className="list-menu-text">
                   <span>Events</span>
                 </div>
               </div>
             </Link>
-            <Link href="/">
+            <Link href="/eo" onClick={toggleMenu}>
               <div className="list-menu-dt">
                 <div className="list-menu-text">
-                  <span>Carts</span>
+                  <span>Event Organizer</span>
                 </div>
               </div>
             </Link>
-            <Link href="/">
+            <Link href="/" onClick={toggleMenu}>
               <div className="list-menu-dt">
                 <div className="list-menu-text">
                   <span>About</span>
@@ -66,14 +66,14 @@ export function Navbar() {
           </div>
           <div className="list-menu-down">
             <div className="list-menu-join hidden">
-              <Link href="/">
+              <Link href="/" onClick={toggleMenu}>
                 <div className="list-menu-dt">
                   <div className="list-menu-text">
                     <span>Login</span>
                   </div>
                 </div>
               </Link>
-              <Link href="/">
+              <Link href="/" onClick={toggleMenu}>
                 <div className="list-menu-dt">
                   <div className="list-menu-text">
                     <span>Register</span>
@@ -82,14 +82,14 @@ export function Navbar() {
               </Link>
             </div>
             <div className="list-menu-join">
-              <Link href="/">
+              <Link href="/" onClick={toggleMenu}>
                 <div className="list-menu-profile">
                   <div className="list-menu-icon">
                     <Image
                       src="/assets/images/icons/userProfile.png"
                       alt="profile-icon"
-                      width={40}
-                      height={40}
+                      width={50}
+                      height={50}
                     />
                   </div>
                   <div className="list-menu-text">
@@ -97,7 +97,7 @@ export function Navbar() {
                   </div>
                 </div>
               </Link>
-              <Link href="/">
+              <Link href="/" onClick={toggleMenu}>
                 <div className="list-menu-dt bg-error">
                   <div className="list-menu-text">
                     <span>Logout</span>
@@ -111,22 +111,34 @@ export function Navbar() {
 
       <div className="enavbar">
         <div className="enavbarContent">
-          <div className="menubar-icon" onClick={toggleMenu}>
-            <Image
-              src="/assets/images/icons/menu.svg"
-              alt="menu-icon"
-              width={30}
-              height={30}
-            />
+          <div className="flex gap-2">
+            <div className="menubar-icon" onClick={toggleMenu}>
+              <Image
+                src="/assets/images/icons/menu.svg"
+                alt="menu-icon"
+                width={50}
+                height={50}
+              />
+            </div>
+            <div className="cart-icon bg-neutral">
+              <Image
+                src="/assets/images/icons/cart.svg"
+                alt="cart-icon"
+                width={50}
+                height={50}
+              />
+            </div>
           </div>
-          <div className="logo">
-            <Image
-              src="/assets/images/icons/mainIcon.svg"
-              alt="logo-icon"
-              width={55}
-              height={55}
-            />
-          </div>
+          <Link href="/">
+            <div className="logo">
+              <Image
+                src="/assets/images/icons/mainIcon.svg"
+                alt="logo-icon"
+                width={55}
+                height={55}
+              />
+            </div>
+          </Link>
           <div className="mainbar">
             <div className="search-icon" onClick={toggleSearch}>
               <Image
@@ -136,8 +148,8 @@ export function Navbar() {
                     : "/assets/images/icons/search.svg"
                 }
                 alt={isSearchOpen ? "close-icon" : "search-icon"}
-                width={35}
-                height={35}
+                width={50}
+                height={50}
               />
             </div>
             <div className="indicator">
@@ -145,23 +157,14 @@ export function Navbar() {
                 <Image
                   src="/assets/images/icons/notification.svg"
                   alt="bell-icon"
-                  width={35}
-                  height={35}
+                  width={50}
+                  height={50}
                 />
               </div>
-              <span className="badge badge-md badge-primary indicator-item">8</span>
+              <span className="badge badge-md badge-primary indicator-item">
+                8
+              </span>
             </div>
-            {/* <div className="cart-icon">
-            <div className="rec"></div>
-            <div className="icon-img">
-              <Image
-                src="/assets/images/icons/cart.svg"
-                alt="cart-icon"
-                width={40}
-                height={40}
-              />
-            </div>
-          </div> */}
           </div>
         </div>
         <div className={`searchContent ${isSearchOpen ? "active" : ""}`}>

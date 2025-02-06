@@ -48,7 +48,7 @@
 
   .list-menu-dt:hover,
   .list-menu-profile:hover {
-    @apply ease-in-out duration-300 shadow-[3px_2px_0_#04002D] scale-95 ml-4;
+    @apply ease-in-out duration-300 shadow-[3px_2px_0_#04002D] scale-95 ml-2;
   }
 
   .list-menu-join {
@@ -76,7 +76,7 @@
   .logo,
   .notifications-icon,
   .cart-icon {
-    @apply flex items-center justify-center border-[2.5px] border-[#04002D] shadow-[6px_4px_0_#04002D];
+    @apply flex items-center justify-center border-[2.5px] border-[#04002D] shadow-[3px_2px_0_#04002D];
   }
 
   .logo {
