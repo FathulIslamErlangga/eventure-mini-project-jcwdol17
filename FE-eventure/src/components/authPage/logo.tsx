@@ -8,8 +8,8 @@ export function Logo() {
         <Image
           src="/assets/images/icons/mainIcon.svg"
           alt="eventure-logo"
-          width={60}
-          height={60}
+          width={40}
+          height={40}
         />
       </div>
     </div>
