@@ -1,14 +1,19 @@
 import { NextFunction, Request, Response } from "express";
 import { Schema } from "joi";
+import { ValidationRequest } from "../utils/interfaceCustom";
 
 export const validateRequest =
   (schema: Schema) =>
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const { error } = schema.validate(req.body, { abortEarly: false });
+      // Merge `req.body` with `req.files`
+      const requestData = {
+        ...req.body,
+      };
+
+      const { error } = schema.validate(requestData, { abortEarly: false });
 
       if (error) {
-        // Ambil semua pesan error dari hasil validasi Joi
         const errors = error.details.map((detail) =>
           detail.message.replace(/\"/g, "")
         );
@@ -18,7 +23,6 @@ export const validateRequest =
           message: "Validation error",
           errors,
         });
-        return;
       }
 
       next();
