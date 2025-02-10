@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .notif-card{
+    @apply w-full h-fit flex flex-col gap-1 border-[#04002D] border-[5px] shadow-[6px_4px_0_#04002D] p-3 rounded-[5px];
+  }
+  
+  .notif-card-date{
+    font-family: var(--font-archivo-bold);
+    @apply w-fit h-fit p-3 bg-info text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-[14px] rounded-[5px];
+  }
+
+  .notif-card-title{
+    font-family: var(--font-archivo-bold);
+    @apply w-fit h-fit text-[#04002D] text-[24px] md:text-[24px] lg:text-[28px];
+  }
+
+  .notif-card-message{
+    font-family: var(--font-archivo-regular);
+    @apply w-fit h-fit text-[#04002D] text-[18px] md:text-[18px] lg:text-[20px];
+  }
+}

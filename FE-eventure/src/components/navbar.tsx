@@ -16,6 +16,11 @@ export function Navbar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleMenuClick = (path: string) => {
+    window.location.href = path;
+    setIsMenuOpen(false);
+  };
+
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
   };
@@ -35,75 +40,75 @@ export function Navbar() {
         </div>
         <div className="list-menu-content">
           <div className="list-menu-up">
-            <Link href="/" onClick={toggleMenu}>
-              <div className="list-menu-dt">
-                <div className="list-menu-text">
-                  <span>Home</span>
-                </div>
+            <div className="list-menu-dt" onClick={() => handleMenuClick("/")}>
+              <div className="list-menu-text">
+                <span>Home</span>
               </div>
-            </Link>
-            <Link href="/events" onClick={toggleMenu}>
-              <div className="list-menu-dt">
-                <div className="list-menu-text">
-                  <span>Events</span>
-                </div>
+            </div>
+            <div
+              className="list-menu-dt"
+              onClick={() => handleMenuClick("/events")}
+            >
+              <div className="list-menu-text">
+                <span>Events</span>
               </div>
-            </Link>
-            <Link href="/eo" onClick={toggleMenu}>
-              <div className="list-menu-dt">
-                <div className="list-menu-text">
-                  <span>Event Organizer</span>
-                </div>
+            </div>
+
+            <div
+              className="list-menu-dt"
+              onClick={() => handleMenuClick("/eo")}
+            >
+              <div className="list-menu-text">
+                <span>Event Organizer</span>
               </div>
-            </Link>
-            <Link href="/" onClick={toggleMenu}>
-              <div className="list-menu-dt">
-                <div className="list-menu-text">
-                  <span>About</span>
-                </div>
+            </div>
+
+            <div className="list-menu-dt">
+              <div className="list-menu-text">
+                <span>About</span>
               </div>
-            </Link>
+            </div>
           </div>
           <div className="list-menu-down">
-            <div className="list-menu-join hidden">
-              <Link href="/" onClick={toggleMenu}>
-                <div className="list-menu-dt">
-                  <div className="list-menu-text">
-                    <span>Login</span>
-                  </div>
-                </div>
-              </Link>
-              <Link href="/" onClick={toggleMenu}>
-                <div className="list-menu-dt">
-                  <div className="list-menu-text">
-                    <span>Register</span>
-                  </div>
-                </div>
-              </Link>
-            </div>
             <div className="list-menu-join">
-              <Link href="/" onClick={toggleMenu}>
-                <div className="list-menu-profile">
-                  <div className="list-menu-icon">
-                    <Image
-                      src="/assets/images/icons/userProfile.png"
-                      alt="profile-icon"
-                      width={50}
-                      height={50}
-                    />
-                  </div>
-                  <div className="list-menu-text">
-                    <span>Profile</span>
-                  </div>
+              <div
+                className="list-menu-dt"
+                onClick={() => handleMenuClick("/signin")}
+              >
+                <div className="list-menu-text">
+                  <span>Login</span>
                 </div>
-              </Link>
-              <Link href="/" onClick={toggleMenu}>
-                <div className="list-menu-dt bg-error">
-                  <div className="list-menu-text">
-                    <span>Logout</span>
-                  </div>
+              </div>
+
+              <div
+                className="list-menu-dt"
+                onClick={() => handleMenuClick("/signup")}
+              >
+                <div className="list-menu-text">
+                  <span>Register</span>
                 </div>
-              </Link>
+              </div>
+            </div>
+            <div className="list-menu-join hidden">
+              <div className="list-menu-profile">
+                <div className="list-menu-icon">
+                  <Image
+                    src="/assets/images/icons/userProfile.png"
+                    alt="profile-icon"
+                    width={50}
+                    height={50}
+                  />
+                </div>
+                <div className="list-menu-text">
+                  <span>Profile</span>
+                </div>
+              </div>
+
+              <div className="list-menu-dt bg-error">
+                <div className="list-menu-text">
+                  <span>Logout</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -120,14 +125,16 @@ export function Navbar() {
                 height={50}
               />
             </div>
-            <div className="cart-icon bg-neutral">
-              <Image
-                src="/assets/images/icons/cart.svg"
-                alt="cart-icon"
-                width={50}
-                height={50}
-              />
-            </div>
+            <Link href="/cart">
+              <div className="cart-icon bg-neutral">
+                <Image
+                  src="/assets/images/icons/cart.svg"
+                  alt="cart-icon"
+                  width={50}
+                  height={50}
+                />
+              </div>
+            </Link>
           </div>
           <Link href="/">
             <div className="logo">
@@ -152,19 +159,21 @@ export function Navbar() {
                 height={50}
               />
             </div>
-            <div className="indicator">
-              <div className="notifications-icon">
-                <Image
-                  src="/assets/images/icons/notification.svg"
-                  alt="bell-icon"
-                  width={50}
-                  height={50}
-                />
+            <Link href="/notifications">
+              <div className="indicator">
+                <div className="notifications-icon">
+                  <Image
+                    src="/assets/images/icons/notification.svg"
+                    alt="bell-icon"
+                    width={50}
+                    height={50}
+                  />
+                </div>
+                <span className="badge badge-md badge-primary indicator-item">
+                  8
+                </span>
               </div>
-              <span className="badge badge-md badge-primary indicator-item">
-                8
-              </span>
-            </div>
+            </Link>
           </div>
         </div>
         <div className={`searchContent ${isSearchOpen ? "active" : ""}`}>

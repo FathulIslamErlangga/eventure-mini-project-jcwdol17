@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .cart-page {
+    @apply w-full h-full flex flex-col gap-4 pt-32 px-3 pb-20;
+  }
+
+  .cart-page-title {
+    @apply w-full h-fit flex flex-row justify-between items-center;
+  }
+
+  .cart-page-title-text {
+    font-family: var(--font-archivo-bold);
+    @apply w-fit h-fit p-3 bg-[#FFFF00] text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-[22px] md:text-[24px] lg:text-[36px] rounded-[5px] rotate-[5deg];
+  }
+
+  @keyframes popUp {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .cart-page-title-pic {
+    animation: popUp 5s infinite;
+    @apply w-fit h-fit;
+  }
+
+  .cart-page-content {
+    @apply w-full h-full flex flex-col gap-4;
+  }
+
+}

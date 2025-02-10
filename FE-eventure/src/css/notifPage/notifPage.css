@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .notif-page {
+    @apply w-full h-full flex flex-col gap-4 pt-32 px-3 pb-20;
+  }
+
+  .notif-page-title {
+    @apply w-full h-fit flex flex-row justify-between items-center;
+  }
+
+  .notif-page-title-text {
+    font-family: var(--font-archivo-bold);
+    @apply w-fit h-fit p-3 bg-[#F4D738] text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-[22px] md:text-[24px] lg:text-[36px] rounded-[5px] rotate-[-5deg];
+  }
+
+  @keyframes leftright {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    50% {
+      transform: rotate(10deg);
+    }
+
+    75% {
+      transform: rotate(-10deg);
+    }
+
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  .notif-page-title-pic {
+    animation: leftright 5s linear infinite;
+    transform-origin: center center;
+    @apply w-fit h-fit;
+  }
+
+  .notif-page-content {
+    @apply w-full h-fit flex flex-col gap-5 mt-5;
+  }
+}
