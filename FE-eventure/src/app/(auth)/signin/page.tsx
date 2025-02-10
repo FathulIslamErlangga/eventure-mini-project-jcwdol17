@@ -140,18 +140,21 @@ const SignIn = () => {
               Sign In
             </button>
           </form>
-          <div className="signin-ask">
-            <span>
-              Don't have an account? <Link href="/signup">Sign Up</Link>
-            </span>
+          <div className="w-full h-fit flex justify-between mt-5">
+            <div className="signin-ask">
+              <span>
+                Don't have an account? <Link href="/signup">Sign Up</Link>
+              </span>
+            </div>
+            <button className="border-none" onClick={onClickModal}>
+              Forgot Password
+            </button>
           </div>
         </div>
       </div>
-      <button className="border-none" onClick={onClickModal}>
-        Forgot Password
-      </button>
       <ModalForm
         isOpen={isOpen}
+        onClose={onClickModal}
         handleChange={handleChangeForgot}
         handleSendMailForgot={handleSendMailForgot}
         message={message}

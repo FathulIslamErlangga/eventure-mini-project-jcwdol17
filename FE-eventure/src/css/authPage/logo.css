@@ -4,10 +4,10 @@
 
 @layer components {
   .logo-content {
-    @apply w-full h-fit flex items-center justify-center p-4 mb-7;
+    @apply w-full h-fit flex items-center justify-center p-4 absolute z-10;
   }
 
   .eventure-logo {
-    @apply w-fit h-fit p-2 border-[2.5px] border-[#04002D] rounded-md shadow-[6px_4px_0_#04002D] bg-neutral flex items-center justify-center;
+    @apply w-fit h-fit p-1 border-[2.5px] border-[#04002D] rounded-md shadow-[6px_4px_0_#04002D] bg-neutral flex items-center justify-center z-10;
   }
 }

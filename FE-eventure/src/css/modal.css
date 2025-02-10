@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .emodal {
+    @apply bg-[#fdfdfce7] relative h-screen w-full flex items-center justify-center z-20;
+  }
+
+  .forgot-password-title {
+    font-family: var(--font-archivo-bold);
+    @apply w-fit h-fit text-[32px] md:text-[32px] lg:text-[36px] text-[#04002D];
+  }
+
+  .eventure-form {
+    @apply flex flex-col gap-4 mt-6 w-full;
+  }
+
+  .eventure-form input {
+    font-family: var(--font-archivo-regular);
+  }
+
+  .eventure-button {
+    font-family: var(--font-archivo-bold);
+    @apply w-full h-fit bg-primary text-neutral border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-[22px] md:text-[24px] lg:text-[28px] rounded-[5px] p-2 flex items-center justify-center cursor-pointer;
+  }
+
+  .eventure-button:hover {
+    @apply shadow-[3px_2px_0_#04002D] scale-95;
+  }
+
+  .emodal-content {
+    @apply w-fit md:w-fit lg:w-full lg:max-w-[525px] h-fit border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] p-8 rounded-[5px] flex flex-col items-center justify-center bg-neutral;
+   
+  }
+
+  .emodal-close {
+    @apply w-full h-fit flex items-center justify-end;
+  }
+
+  .emodal-btn-close {
+    @apply w-fit h-fit flex items-center justify-center p-2 bg-error border-[#04002D] rounded-[5px] cursor-pointer border-[5px] shadow-[3px_2px_0_#04002D];
+  }
+
+  .emodal-btn-close:hover {
+    @apply shadow-[1px_1px_0_#04002D] scale-95;
+  }
+}

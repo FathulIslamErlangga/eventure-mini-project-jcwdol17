@@ -4,16 +4,16 @@
 
 @layer base{
     .signin-page{
-        @apply w-full h-screen flex flex-col justify-center items-center;
+        @apply w-full h-screen flex flex-col justify-center items-center absolute z-10;
     }
 
     .signin-page-container{
-        @apply w-fit md:w-fit lg:w-full lg:max-w-[525px] h-fit border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] p-8 rounded-[5px] flex flex-col items-center justify-center;
+        @apply w-fit md:w-fit lg:w-full lg:max-w-[525px] h-fit border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] p-5 rounded-[5px] flex flex-col items-center justify-center;
     }
 
     .signin-title{
         font-family: var(--font-archivo-bold);
-        @apply w-fit h-fit text-[32px] md:text-[32px] lg:text-[64px] text-[#04002D];
+        @apply w-fit h-fit text-[32px] md:text-[32px] lg:text-[40px] text-[#04002D];
     }
 
     .eventure-form{
@@ -35,7 +35,7 @@
 
     .signin-ask{
         font-family: var(--font-archivo-regular);
-        @apply w-full h-fit flex flex-row items-center justify-center text-[#04002D] mt-5
+        @apply w-fit h-fit flex flex-row items-center text-[#04002D]
     }
 
     .signin-ask a{

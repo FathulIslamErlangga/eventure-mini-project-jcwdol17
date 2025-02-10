@@ -44,7 +44,7 @@ const page = () => {
       <div className="signin-page">
         <div className="signin-page-container">
           <div className="signin-title">
-            <h2>Change your password</h2>
+            <h2>Change Password</h2>
           </div>
           <form onSubmit={handleChangePassword} className="eventure-form">
             <label className="input input-bordered border-[3px] border-[#04002D] flex items-center gap-2 py-7 pl-7 pr-2">
@@ -146,7 +146,7 @@ const page = () => {
               </button>
             </label>
             <button className="eventure-button" type="submit">
-              Submit Password
+              Submit
             </button>
           </form>
         </div>
