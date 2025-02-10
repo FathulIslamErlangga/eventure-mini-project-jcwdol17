@@ -1,4 +1,5 @@
 import { Response } from "express";
+import { Meta } from "./interfaceCustom";
 
 export class appError extends Error {
   public statusCode: number;
@@ -14,11 +15,13 @@ export const appSuccsess = (
   message: string,
   res: Response,
   data?: any,
-  token?: string
+  token?: string,
+  meta?: Meta
 ) => {
   res.status(statusCode).json({
     message,
     data,
     token,
+    meta,
   });
 };

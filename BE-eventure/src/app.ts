@@ -6,6 +6,7 @@ import profileRouter from "./routes/profile.route";
 import { mailRoute } from "./routes/mail.route";
 import { errorMiddleware, pagetNotFound } from "./middlewares/errorMiddleware";
 import Cors from "./middlewares/cors.middleware";
+import eventRoute from "./routes/events.route";
 
 export class App {
   private app: Application;
@@ -24,7 +25,13 @@ export class App {
   }
 
   routes() {
-    this.app.use("/api", authRouter(), profileRouter(), mailRoute());
+    this.app.use(
+      "/api",
+      authRouter(),
+      profileRouter(),
+      mailRoute(),
+      eventRoute()
+    );
   }
 
   errorHandle() {
