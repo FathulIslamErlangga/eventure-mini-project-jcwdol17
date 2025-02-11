@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .profile-header {
+    @apply w-full h-fit flex flex-col gap-4 p-4 shadow-[6px_4px_0_#04002D] rounded-[5px] bg-neutral mt-10 border-[5px] border-[#04002D] items-center justify-center md:justify-center lg:justify-start;
+  }
+
+  .profile-header-pic {
+    @apply w-fit h-fit flex flex-col p-2 border-[2.5px] border-[#04002D] shadow-[6px_4px_0_#04002D] relative;
+  }
+
+  .profile-header-user-pic {
+    @apply w-fit h-fit flex relative;
+  }
+
+  .profile-header-user-edit {
+    @apply w-full h-fit flex justify-end items-center absolute bottom-0 right-0;
+  }
+
+  .profile-header-user-edit button {
+    @apply w-fit h-fit p-2 border-[2.5px] border-[#04002D] rounded-full bg-secondary;
+  }
+
+  .profile-header-user-edit button:hover {
+    @apply ease-in-out duration-300 bg-primary;
+  }
+
+  .profile-header-biodata {
+    @apply w-full h-fit flex flex-col gap-4;
+  }
+
+  .profile-biodata-title {
+    font-family: var(--font-archivo-bold);
+    @apply w-full h-fit text-[22px] md:text-[24px] lg:text-[28px] text-[#04002D] rounded-sm border-[5px] border-[#04002D] p-4 shadow-[6px_4px_0_#04002D] bg-secondary;
+  }
+
+  .profile-biodata-content {
+    @apply w-full h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4;
+  }
+
+  .profile-header-btn{
+    @apply gap-4 w-full h-fit flex justify-between items-center;
+  }
+
+  .e-btn{
+    font-family: var(--font-archivo-bold);
+    @apply text-[16px] p-4 w-fit h-fit flex justify-center items-center border-[3px] border-[#04002D] rounded-sm shadow-[6px_4px_0_#04002D];
+  }
+
+  .e-btn:hover{
+    @apply ease-in-out duration-300 shadow-[3px_2px_0_#04002D];
+  }
+}

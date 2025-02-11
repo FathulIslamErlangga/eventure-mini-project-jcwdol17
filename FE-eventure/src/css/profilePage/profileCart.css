@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .profile-cart {
+    @apply w-full h-fit flex flex-col gap-5;
+  }
+
+  .profile-cart-title {
+    @apply w-full h-fit flex flex-row justify-between items-center;
+  }
+
+  .profile-cart-title-text {
+    font-family: var(--font-archivo-bold);
+    @apply w-fit h-fit flex flex-col text-[#04002D] text-[18px] md:text-[20px] lg:text-[24px] bg-warning rounded-md p-4 shadow-[6px_4px_0_#04002D];
+  }
+
+  .e-btn {
+    @apply w-fit h-fit flex items-center justify-center text-[16px]  tracking-normal p-4 cursor-pointer border-[3px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-[5px];
+  }
+
+  .e-btn:hover {
+    @apply ease-in-out duration-300 shadow-[3px_2px_0_#04002D];
+  }
+  
+  .profile-cart-content {
+    @apply w-full h-fit flex flex-col gap-5;
+  }
+}
