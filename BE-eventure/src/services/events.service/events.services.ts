@@ -1,6 +1,7 @@
 import { Request } from "express";
 import {
   ICreateEvents,
+  IUpdateEvents,
   Meta,
   ValidationRequest,
 } from "../../utils/interfaceCustom";
@@ -118,5 +119,66 @@ export class EventsServices {
     return { dataMeta, listEvents };
   }
 
-  async getEventBySlug() {}
+  async getEventBySlug(req: Request) {
+    const { slug } = req.params;
+
+    return await this.component.getBySlug(slug);
+  }
+
+  async updatedEvent(req: Request, updated: IUpdateEvents) {
+    const { slug } = req.params;
+    const Request = req as ValidationRequest;
+    const userRole = Request.userData.role;
+    const files = Request.files || {};
+    const coverImage = files.cover?.[0] || null;
+    const thumbnailImage = files.thumbnail?.[0] || null;
+
+    return await prisma.$transaction(async (tsx) => {
+      const event = await prisma.event.findUnique({
+        where: { slug },
+        include: {
+          address: true,
+          category: true,
+          gallery: true,
+        },
+      });
+
+      if (!event) {
+        throw new appError("Data event not found", 404);
+      }
+      if (userRole !== "ORGANIZER") {
+        throw new appError(
+          "You do not have permission to update this event",
+          403
+        );
+      }
+
+      if (coverImage || thumbnailImage) {
+        await this.component.imageComponentUpdate(tsx, Request, event);
+      }
+
+      if (
+        updated.address &&
+        (updated.address.address || updated.address.city)
+      ) {
+        await tsx.address.update({
+          where: { id: event.addressId },
+          data: {
+            address: updated.address.address,
+            city: updated.address.city,
+          },
+        });
+      }
+      const newSlug = updated.name
+        ? slugify(updated.name, { lower: true, strict: true })
+        : event.slug;
+
+      return await this.component.updatedComopnent(
+        tsx,
+        updated,
+        newSlug,
+        event
+      );
+    });
+  }
 }

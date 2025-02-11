@@ -32,6 +32,19 @@ export interface ICreateEvents {
   price: number;
   availableSeats: number;
 }
+export interface IUpdateEvents {
+  name: string;
+  description: string;
+  categoryId: string;
+  address: {
+    address: string;
+    city: string;
+  };
+  startDate: Date;
+  endDate: Date;
+  price: number;
+  availableSeats: number;
+}
 
 export interface IGalleries {
   imageUrl: string;

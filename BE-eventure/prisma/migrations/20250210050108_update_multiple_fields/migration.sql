@@ -167,6 +167,7 @@ CREATE TABLE "Transaction" (
     "status" "TransactionStatus" NOT NULL,
     "ticketQuantity" INTEGER NOT NULL,
     "totalPrice" INTEGER NOT NULL,
+    "voucherId" VARCHAR(250),
     "paymentProof" VARCHAR(250),
     "paymentMethod" "PaymentMethod" NOT NULL,
     "expiresAt" TIMESTAMP(3) NOT NULL,
@@ -306,6 +307,9 @@ ALTER TABLE "Transaction" ADD CONSTRAINT "Transaction_customerId_fkey" FOREIGN K
 
 -- AddForeignKey
 ALTER TABLE "Transaction" ADD CONSTRAINT "Transaction_eventId_fkey" FOREIGN KEY ("eventId") REFERENCES "Event"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Transaction" ADD CONSTRAINT "Transaction_voucherId_fkey" FOREIGN KEY ("voucherId") REFERENCES "Voucher"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "StatusLog" ADD CONSTRAINT "StatusLog_transactionId_fkey" FOREIGN KEY ("transactionId") REFERENCES "Transaction"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

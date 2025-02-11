@@ -185,6 +185,8 @@ model Transaction {
   status        TransactionStatus
   ticketQuantity Int
   totalPrice    Int
+  voucherId String? @db.VarChar(250)
+  voucher Voucher? @relation(fields: [voucherId], references: [id])
   paymentProof  String?       @db.VarChar(250)
   paymentMethod PaymentMethod
   statusLogs    StatusLog[]
@@ -227,6 +229,7 @@ model Voucher {
   endDate      DateTime
   eventId      String?     @db.VarChar(250)
   event        Event?     @relation(fields: [eventId], references: [id])
+  transactions Transaction[]
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   userId String? @unique @db.VarChar(250)
