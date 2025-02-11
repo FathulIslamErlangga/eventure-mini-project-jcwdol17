@@ -7,6 +7,8 @@ import { mailRoute } from "./routes/mail.route";
 import { errorMiddleware, pagetNotFound } from "./middlewares/errorMiddleware";
 import Cors from "./middlewares/cors.middleware";
 import eventRoute from "./routes/events.route";
+import reviewRoute from "./routes/reviews.route";
+import categoryRoute from "./routes/category.route";
 
 export class App {
   private app: Application;
@@ -30,7 +32,9 @@ export class App {
       authRouter(),
       profileRouter(),
       mailRoute(),
-      eventRoute()
+      eventRoute(),
+      reviewRoute(),
+      categoryRoute()
     );
   }
 

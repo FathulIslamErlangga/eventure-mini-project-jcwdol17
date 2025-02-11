@@ -65,3 +65,8 @@ export interface Meta {
   hasNextPage: boolean;
   hasPrevPage: boolean;
 }
+
+export interface ICreateReviews {
+  comment: string;
+  rating: number;
+}
