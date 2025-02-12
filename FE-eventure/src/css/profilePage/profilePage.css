@@ -4,6 +4,6 @@
 
 @layer base{
     .profile-page{
-        @apply w-full h-full flex flex-col gap-4 pt-32 px-3 pb-20;
+        @apply w-full h-full flex flex-col gap-4 pt-32 px-3 pb-20 relative z-10;
     }
 }

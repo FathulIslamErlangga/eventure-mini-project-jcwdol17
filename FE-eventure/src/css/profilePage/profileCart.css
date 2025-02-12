@@ -4,7 +4,7 @@
 
 @layer base {
   .profile-cart {
-    @apply w-full h-fit flex flex-col gap-5;
+    @apply w-full h-fit flex flex-col gap-5 relative;
   }
 
   .profile-cart-title {

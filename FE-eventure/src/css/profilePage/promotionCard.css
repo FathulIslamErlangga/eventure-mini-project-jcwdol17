@@ -22,7 +22,7 @@
 
   .promotion-card-info-date{
     font-family: var(--font-archivo-bold);
-    @apply w-fit h-fit text-[#04002D] text-[14px] md:text-[16px] lg:text-[18px] p-3 border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D];
+    @apply flex gap-2 w-fit h-fit text-[#04002D] text-[14px] md:text-[16px] lg:text-[18px] p-3 border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] items-center;
   }
 
   .promotion-card-action{

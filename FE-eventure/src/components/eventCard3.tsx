@@ -2,7 +2,11 @@ import Image from "next/image";
 import "@/css/eventsPage/eventCard2.css";
 import Link from "next/link";
 
-export function EventCard3() {
+interface EventCard3Props {
+  onEdit?: () => void;
+}
+
+export function EventCard3({ onEdit }: EventCard3Props) {
   return (
     <>
       <Link href="/events/id">
@@ -28,7 +32,13 @@ export function EventCard3() {
                 <div className="event-card2-price">Rp 1.000.000</div>
               </div>
               <div className="event-card2-cov-down-2">
-                <div className="event-card2-btn edit-btn">
+                <div
+                  className="event-card2-btn edit-btn"
+                  onClick={(e) => {
+                    e.preventDefault(); // Prevent link navigation
+                    onEdit && onEdit();
+                  }}
+                >
                   <Image
                     src="/assets/images/icons/edit.svg"
                     alt="edit"
