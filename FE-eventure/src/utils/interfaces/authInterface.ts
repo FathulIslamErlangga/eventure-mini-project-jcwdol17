@@ -22,3 +22,18 @@ export interface UserResponse {
   data: IUsers;
   token?: string;
 }
+
+export interface AuthProps {
+  user: UserResponse | undefined;
+  message: string | undefined;
+  loading: boolean;
+  isAuth: boolean;
+  isOpen: boolean;
+  onClickModal: () => void;
+  register: (data: RegisterData) => Promise<void>;
+  verificationEmail: (token: string) => Promise<void>;
+  login: (data: LoginData) => Promise<void>;
+  logout: () => void;
+  forgot: (email: string) => Promise<void>;
+  changePassword: (data: IChangePassword) => Promise<void>;
+}
