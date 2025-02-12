@@ -13,7 +13,7 @@ export function ProfileHeader() {
   return (
     <div className="profile-header">
       <div className="profile-biodata-title">
-        <span>Profile</span>
+        <span>Biodata</span>
       </div>
       <div className="w-full h-fit flex flex-col md:flex-col lg:flex-row gap-6">
         <div className="profile-header-pic">

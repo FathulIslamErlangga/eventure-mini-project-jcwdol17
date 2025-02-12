@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .team-card {
+    @apply w-fit h-fit flex flex-col gap-3 rounded-[5px] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] bg-neutral p-3;
+  }
+
+  .team-card:hover {
+    @apply scale-95 transition-all duration-300;
+  }
+  .team-card-pic {
+    @apply w-full h-[200px];
+  }
+
+  .team-card-pic img {
+    @apply w-full h-full object-cover;
+  }
+
+  .team-identity {
+    font-family: var(--font-archivo-bold);
+    @apply w-fit h-fit flex flex-row gap-2 items-center text-[#04002D] text-[18px];
+  }
+}

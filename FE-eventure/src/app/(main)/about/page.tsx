@@ -1,7 +1,9 @@
-export default function AboutPage(){
-    return(
-        <div>
+import { About } from "@/components/aboutUs/main";
 
-        </div>
-    )
+export default function AboutPage() {
+  return (
+    <>
+      <About />
+    </>
+  );
 }
