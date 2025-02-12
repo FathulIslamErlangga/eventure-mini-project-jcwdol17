@@ -63,7 +63,10 @@ export function Navbar() {
               </div>
             </div>
 
-            <div className="list-menu-dt">
+            <div
+              className="list-menu-dt"
+              onClick={() => handleMenuClick("/about")}
+            >
               <div className="list-menu-text">
                 <span>About</span>
               </div>
@@ -90,7 +93,10 @@ export function Navbar() {
               </div>
             </div>
             <div className="list-menu-join">
-              <div className="list-menu-profile" onClick={() => handleMenuClick("/eprofile")}>
+              <div
+                className="list-menu-profile"
+                onClick={() => handleMenuClick("/eprofile")}
+              >
                 <div className="list-menu-icon">
                   <Image
                     src="/assets/images/icons/userProfile.png"

@@ -27,7 +27,7 @@
 
   .about-page-content-1-desc {
     font-family: var(--font-archivo);
-    @apply w-full h-fit text-lg md:text-xl lg:text-2xl text-[#04002D] p-4 ;
+    @apply w-full h-fit text-lg md:text-xl lg:text-2xl text-[#04002D] p-4 text-justify;
   }
 
   .about-page-content-2 {
