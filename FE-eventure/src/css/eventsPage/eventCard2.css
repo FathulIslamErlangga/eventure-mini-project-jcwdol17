@@ -82,4 +82,16 @@
   .buy-btn {
     @apply bg-primary;
   }
+
+  .edit-btn{
+    @apply bg-warning;
+  }
+
+  .del-btn{
+    @apply bg-error;
+  }
+
+  .del-btn img{
+    @apply w-[20px] h-[20px] object-cover;
+  }
 }
