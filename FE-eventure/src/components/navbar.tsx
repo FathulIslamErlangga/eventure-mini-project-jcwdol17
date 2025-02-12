@@ -70,7 +70,7 @@ export function Navbar() {
             </div>
           </div>
           <div className="list-menu-down">
-            <div className="list-menu-join">
+            <div className="list-menu-join hidden">
               <div
                 className="list-menu-dt"
                 onClick={() => handleMenuClick("/signin")}
@@ -89,8 +89,8 @@ export function Navbar() {
                 </div>
               </div>
             </div>
-            <div className="list-menu-join hidden">
-              <div className="list-menu-profile">
+            <div className="list-menu-join">
+              <div className="list-menu-profile" onClick={() => handleMenuClick("/eprofile")}>
                 <div className="list-menu-icon">
                   <Image
                     src="/assets/images/icons/userProfile.png"
