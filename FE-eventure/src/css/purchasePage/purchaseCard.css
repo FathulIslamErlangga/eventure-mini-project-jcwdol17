@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .purchase-card {
+        @apply w-full h-fit flex justify-between border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-md bg-neutral items-center px-3;
+      }
+    
+      .purchase-card-pic {
+        @apply w-fit h-fit border-[3px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-md bg-neutral;
+      }
+    
+      .purchase-card-info {
+        @apply w-fit h-fit flex flex-col gap-2 p-4;
+      }
+    
+      .purchase-card-info-title {
+        font-family: var(--font-archivo-bold);
+        @apply w-fit h-fit text-2xl text-[#04002D];
+      }
+    
+      .purchase-card-info-ctg{
+        font-family: var(--font-archivo-bold);
+        @apply w-fit h-fit text-[16px] text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-md bg-secondary;
+      }
+    
+      .list-divided{
+        @apply w-full h-fit flex flex-row gap-2 items-center;
+      }
+    
+      .purchase-card-info-date{
+        font-family: var(--font-archivo-bold);
+        @apply p-2 w-fit h-fit text-[16px] text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-md bg-info;
+      }
+    
+      .purchase-card-info-ctg{
+        font-family: var(--font-archivo-bold);
+        @apply p-2 w-fit h-fit text-[16px] text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-md bg-warning;
+      }
+    
+      .purchase-card-info-price{
+        font-family: var(--font-archivo-bold);
+        @apply p-2 w-fit h-fit text-[16px] text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-md bg-success;
+      }
+    
+      .purchase-card-info-qty{
+        font-family: var(--font-archivo-bold);
+        @apply p-2 w-fit h-fit text-[16px] text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-md bg-neutral;
+      }
+    
+      .purchase-card-status{
+        font-family: var(--font-archivo-bold);
+        @apply p-3 w-fit h-fit text-lg text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-md bg-neutral ;
+      }
+    
+      .purchase-card-action{
+        @apply flex flex-col gap-2 p-4;
+      }
+    
+      .e-btn{
+        font-family: var(--font-archivo-bold);
+        @apply p-2 w-full h-fit text-lg text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-md;
+      }
+    
+      .e-btn:hover{
+        @apply ease-in-out duration-300 shadow-[3px_2px_0_#04002D];
+      }
+}
