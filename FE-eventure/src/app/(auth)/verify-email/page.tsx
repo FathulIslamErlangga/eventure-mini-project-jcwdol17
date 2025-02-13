@@ -4,10 +4,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import '@/css/authPage/verifyEmail.css';
+import "@/css/authPage/verifyEmail.css";
 
 const page = () => {
-  const { verificationEmail } = useAuth();
+  const { auth } = useAuth();
+  const { verificationEmail } = auth;
   const [status, setStatus] = useState("");
   const useQueryToken = useSearchParams();
   const router = useRouter();
@@ -38,14 +39,14 @@ const page = () => {
             height={80}
           />
         </div>
-      <div className="verify-email-info">
-        <div className="verify-email-info-title">
-          <h1>Info</h1>
+        <div className="verify-email-info">
+          <div className="verify-email-info-title">
+            <h1>Info</h1>
+          </div>
+          <div className="verify-email-info-text">
+            <span>{status}</span>
+          </div>
         </div>
-        <div className="verify-email-info-text">
-          <span>{status}</span>
-        </div>
-      </div>
       </div>
     </div>
   );

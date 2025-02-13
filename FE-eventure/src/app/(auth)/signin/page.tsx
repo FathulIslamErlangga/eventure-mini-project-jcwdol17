@@ -1,7 +1,7 @@
 "use client";
 import ModalForm from "@/components/auth/forgotPassword/modalFormEmail";
 import { useAuth } from "@/components/contexts/AuthContexts";
-import { LoginData } from "@/utils/interfaces/authInterface";
+import { LoginData } from "@/utils/interfaces/customInsterface";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Image from "next/image";
@@ -9,13 +9,7 @@ import "@/css/authPage/signIn.css";
 import Link from "next/link";
 
 const SignIn = () => {
-  const {
-    login,
-    message,
-    onClickModal: onClickModal,
-    isOpen,
-    forgot,
-  } = useAuth();
+  const { auth } = useAuth();
   const [formData, setFormData] = useState<LoginData>({
     email: "",
     password: "",
@@ -34,13 +28,13 @@ const SignIn = () => {
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    await login(formData);
+    await auth.login(formData);
     setTimeout(() => router.push("/profile"), 1000);
   };
   const handleSendMailForgot = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    await forgot(email);
+    await auth.forgot(email);
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -51,15 +45,15 @@ const SignIn = () => {
 
   return (
     <>
-      {message && (
+      {auth.message && (
         <div
           className={`text-center mt-4 p-2 rounded ${
-            message.toLowerCase().includes("error")
+            auth.message.toLowerCase().includes("error")
               ? "bg-green-200 text-green-800"
               : "bg-red-200 text-red-800"
           }`}
         >
-          {message}
+          {auth.message}
         </div>
       )}
       <div className="signin-page">
@@ -146,18 +140,18 @@ const SignIn = () => {
                 Don't have an account? <Link href="/signup">Sign Up</Link>
               </span>
             </div>
-            <button className="border-none" onClick={onClickModal}>
+            <button className="border-none" onClick={auth.onClickModal}>
               Forgot Password
             </button>
           </div>
         </div>
       </div>
       <ModalForm
-        isOpen={isOpen}
-        onClose={onClickModal}
+        isOpen={auth.isOpen}
+        onClose={auth.onClickModal}
         handleChange={handleChangeForgot}
         handleSendMailForgot={handleSendMailForgot}
-        message={message}
+        message={auth.message}
         email={email}
       />
     </>

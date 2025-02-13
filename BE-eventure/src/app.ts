@@ -9,6 +9,7 @@ import Cors from "./middlewares/cors.middleware";
 import eventRoute from "./routes/events.route";
 import reviewRoute from "./routes/reviews.route";
 import categoryRoute from "./routes/category.route";
+import path from "path";
 
 export class App {
   private app: Application;
@@ -35,6 +36,10 @@ export class App {
       eventRoute(),
       reviewRoute(),
       categoryRoute()
+    );
+    this.app.use(
+      "/public/uploads",
+      express.static(path.join(__dirname, "../public/uploads"))
     );
   }
 

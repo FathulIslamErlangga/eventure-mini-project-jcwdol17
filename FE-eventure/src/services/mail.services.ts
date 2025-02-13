@@ -2,7 +2,7 @@ import api from "@/utils/api/axios";
 import {
   IChangePassword,
   UserResponse,
-} from "@/utils/interfaces/authInterface";
+} from "@/utils/interfaces/customInsterface";
 import { getCookie } from "cookies-next";
 
 export const verifyEmail = async (token: string) => {

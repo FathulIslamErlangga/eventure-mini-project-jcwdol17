@@ -1,10 +1,9 @@
 import {
-  AuthProps,
   UserResponse,
   IChangePassword,
   LoginData,
   RegisterData,
-} from "@/utils/interfaces/authInterface";
+} from "@/utils/interfaces/customInsterface";
 import { handleModalForgot } from "@/utils/useState";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -20,12 +19,12 @@ import {
   forgotPassword,
   verifyEmail,
 } from "@/services/mail.services";
+import { AuthProps } from "@/utils/interfaces/contextsInterface";
 
 const authHooks = (): AuthProps => {
   const [user, setUser] = useState<UserResponse>();
   const [message, setMessage] = useState<string | undefined>("");
   const [loading, setLoading] = useState<boolean>(true);
-  const [isAuth, setAuth] = useState<boolean>(false);
   const searchParams = useSearchParams();
   const referral = searchParams.get("code") as string | undefined;
   useEffect(() => {
@@ -91,7 +90,6 @@ const authHooks = (): AuthProps => {
       const getData = await getUser(token as string);
       console.log("data dari cookies:", getData);
       setUser(getData);
-      setAuth(true);
       setLoading(true);
     } catch (error: any) {
       if (error.response && error.response.data) {
@@ -146,7 +144,7 @@ const authHooks = (): AuthProps => {
     user,
     message,
     loading,
-    isAuth,
+    isAuth: !!user,
     isOpen,
     onClickModal,
     register,

@@ -54,6 +54,22 @@ export class profileServices {
           name: name || profile?.name,
           phone: phone || profile?.phone,
         },
+        include: {
+          address: {
+            select: {
+              id: true,
+              address: true,
+              city: true,
+            },
+          },
+          imageProfile: {
+            select: {
+              id: true,
+              imageUrl: true,
+              imageType: true,
+            },
+          },
+        },
       });
 
       if (updateProfile) {
