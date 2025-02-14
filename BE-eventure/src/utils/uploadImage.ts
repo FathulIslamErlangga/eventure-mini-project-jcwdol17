@@ -14,10 +14,7 @@ const storage = new CloudinaryStorage({
   cloudinary,
   params: async (req: Request, file: Express.Multer.File) => ({
     resource_type: "image",
-    public_id: `${file.fieldname}-${Date.now()}-${path.extname(
-      file.originalname
-    )}`,
-    format: "png",
+    public_id: `${file.fieldname}-${Date.now()}`,
   }),
 });
 const fileFilter = (

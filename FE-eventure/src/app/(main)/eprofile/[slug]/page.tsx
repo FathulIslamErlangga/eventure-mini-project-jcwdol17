@@ -5,7 +5,6 @@ export default function EProfile() {
   return (
     <div>
       <ProfilePage />
-    
     </div>
   );
 }

@@ -1,18 +1,19 @@
 "use client";
 import { useAuth } from "@/components/contexts/AuthContexts";
-import { IChangePassword } from "@/utils/interfaces/authInterface";
+import { IChangePassword } from "@/utils/interfaces/customInsterface";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import "@/css/authPage/changePassword.css";
 
 const page = () => {
-  const { message, changePassword } = useAuth();
+  const { auth } = useAuth();
   const [formChange, setFormChange] = useState<IChangePassword>({
     newPassword: "",
     confirmPassword: "",
   });
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const router = useRouter();
+  const { changePassword, message } = auth;
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);

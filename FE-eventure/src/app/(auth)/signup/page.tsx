@@ -1,13 +1,14 @@
 "use client";
 import { useAuth } from "@/components/contexts/AuthContexts";
-import { RegisterData } from "@/utils/interfaces/authInterface";
+import { RegisterData } from "@/utils/interfaces/customInsterface";
 import { useSearchParams } from "next/navigation"; // Gunakan next/navigation untuk query params
 import React, { useEffect, useState } from "react";
 import "@/css/authPage/signUp.css";
 import Link from "next/link";
 
 const SignUp = () => {
-  const { register, message } = useAuth();
+  const { auth } = useAuth();
+  const { register, message } = auth;
   const [formData, setFormData] = useState<RegisterData>({
     name: "",
     email: "",

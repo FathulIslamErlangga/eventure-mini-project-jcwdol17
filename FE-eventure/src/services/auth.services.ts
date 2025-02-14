@@ -3,7 +3,7 @@ import {
   LoginData,
   RegisterData,
   UserResponse,
-} from "@/utils/interfaces/authInterface";
+} from "@/utils/interfaces/customInsterface";
 import { CookieValueTypes } from "cookies-next";
 
 export const registerUser = async (data: RegisterData) => {
