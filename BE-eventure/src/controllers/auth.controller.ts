@@ -70,6 +70,7 @@ export class Auth {
     const getUser = {
       id: user.id,
       email: user.email,
+      slug: user.slug,
       code: user.code,
       role: user.role,
       profile: {

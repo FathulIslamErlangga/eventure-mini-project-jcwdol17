@@ -9,7 +9,6 @@ import {
 
 export interface AuthProps {
   user: UserResponse | undefined;
-  // profile: IProfileResponse | undefined;
   message: string | undefined;
   loading: boolean;
   isAuth: boolean;
@@ -21,13 +20,12 @@ export interface AuthProps {
   logout: () => void;
   forgot: (email: string) => Promise<void>;
   changePassword: (data: IChangePassword) => Promise<void>;
-  // updateProfiles: (data:IUpdatedProfile) => Promise<void>
 }
 
 export interface profilesProps {
   profiles: IProfileResponse | undefined;
   message: string | undefined;
-  profile: (data: IUpdatedProfile, slug: string) => Promise<void>;
+  profile: (data: FormData, slug: string) => Promise<void>;
 }
 
 export interface AllProps {

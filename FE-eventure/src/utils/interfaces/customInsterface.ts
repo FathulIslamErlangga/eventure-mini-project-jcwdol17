@@ -1,4 +1,4 @@
-import { IProfiles, IUsers } from "./interfaces";
+import { IGallery, IProfiles, IUsers } from "./interfaces";
 
 export interface IChangePassword {
   newPassword: string;
@@ -23,6 +23,10 @@ export interface UserResponse {
   token?: string;
 }
 
+export interface Galleries {
+  imageUrl: string;
+  imageType: string;
+}
 export interface IUpdatedProfile {
   name: string;
   address: string;

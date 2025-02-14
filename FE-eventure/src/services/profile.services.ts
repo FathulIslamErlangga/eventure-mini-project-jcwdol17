@@ -4,8 +4,9 @@ import {
   IUpdatedProfile,
 } from "@/utils/interfaces/customInsterface";
 
-export const updatedProfile = async (data: IUpdatedProfile, slug: string) => {
+export const updatedProfile = async (data: FormData, slug: string) => {
   try {
+    // console.log("File dalam FormData:", data.get("file"));
     const response = await api.patch<IProfileResponse>(
       `/profiles/v2/${slug}`,
       data,

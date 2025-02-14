@@ -3,22 +3,37 @@ import Image from "next/image";
 import "@/css/profilePage/profileHeader.css";
 import { useAuth } from "@/components/contexts/AuthContexts";
 import { IUpdatedProfile } from "@/utils/interfaces/customInsterface";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useParams } from "next/navigation";
 
 export function ProfileHeader() {
   const { profilesUser, auth } = useAuth();
   const { message, profile } = profilesUser;
   const [isUpdated, setUpdated] = useState<boolean>(false);
-  const [slug, setSlug] = useState("");
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
   const [formUpdated, setFormUpdated] = useState<IUpdatedProfile>({
-    name: auth.user?.data.profile?.name || "",
-    address: auth.user?.data.profile?.address?.address || "",
-    city: auth.user?.data.profile?.address?.city || "",
-    phone: auth.user?.data.profile?.phone || "",
+    name: "",
+    address: "",
+    city: "",
+    phone: "",
     imageProfile: "",
   });
+  const { slug } = useParams();
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (auth.user?.data?.profile) {
+      setFormUpdated({
+        name: auth.user.data.profile.name ?? "",
+        address: auth.user.data.profile.address?.address ?? "",
+        city: auth.user.data.profile.address?.city ?? "",
+        phone: auth.user.data.profile.phone ?? "",
+        imageProfile: "",
+      });
+    }
+  }, [auth.user]);
 
   const handleButtonClick = () => {
     fileInputRef.current?.click(); // Trigger the file input click
@@ -26,10 +41,13 @@ export function ProfileHeader() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files?.[0];
-    const file = e.target.files;
-    if (file && files) {
+    if (files) {
       const imageUrl = URL.createObjectURL(files);
-      setFormUpdated({ ...formUpdated, imageProfile: imageUrl });
+      setSelectedFile(files);
+      setFormUpdated({
+        ...formUpdated,
+        imageProfile: imageUrl,
+      });
     }
   };
   const handleChangeUpdated = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,24 +60,41 @@ export function ProfileHeader() {
   const handleUpdatedProfile = async (e: React.FormEvent) => {
     setUpdated(false);
     e.preventDefault();
-    setSlug(auth.user?.data.slug as string);
-    await profile(formUpdated, slug);
-    console.log("slug", auth.user?.data.slug);
+    const formData = new FormData();
+    formData.append("name", formUpdated.name);
+    formData.append("address", formUpdated.address);
+    formData.append("city", formUpdated.city);
+    formData.append("phone", formUpdated.phone);
+    if (fileInputRef.current?.files?.[0]) {
+      formData.append("imageProfile", fileInputRef.current.files[0]);
+    }
+    for (const pair of formData.entries()) {
+      console.log(pair[0], pair[1]); // Harus muncul: imageProfile File { ... }
+    }
+
+    await profile(formData, slug as string);
+    console.log(formUpdated);
   };
   return (
     <div className="profile-header">
       <div className="profile-biodata-title">
-        <span>Profile</span>
+        <span>Biodata</span>
       </div>
       <div className="w-full h-fit flex flex-col md:flex-col lg:flex-row gap-6">
         <div className="profile-header-pic">
           <div className="profile-header-user-pic">
-            <Image
-              src="/assets/images/icons/userProfile.png"
-              alt="user-profile"
-              width={100}
-              height={100}
-            />
+            {auth.user?.data.profile?.imageProfile.map((image) => (
+              <Image
+                src={`${
+                  formUpdated.imageProfile.length > 0
+                    ? formUpdated.imageProfile
+                    : image.imageUrl
+                }`}
+                alt="user-profile"
+                width={100}
+                height={100}
+              />
+            ))}
             <div className="profile-header-user-edit">
               <input
                 type="file"

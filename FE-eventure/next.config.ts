@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-   images: {
+  images: {
     remotePatterns: [
       {
         protocol: "http",
@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
         pathname: "/public/uploads/**",
       },
     ],
+    domains: ["res.cloudinary.com"],
   },
 };
 

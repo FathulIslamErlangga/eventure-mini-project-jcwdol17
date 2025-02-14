@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .pointlog-card{
+        @apply w-full h-fit flex flex-row justify-between items-start gap-3 rounded-[5px] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] bg-neutral p-3;
+    }
+
+    .pointlog-card-det{
+        @apply w-fit h-fit flex flex-col gap-2;
+    }
+
+    .pointlog-card-amount{
+        font-family: var(--font-archivo-bold);
+        @apply w-fit h-fit text-[#04002D] text-[18px] md:text-[20px] lg:text-[24px] leading-[22px] md:leading-[24px] lg:leading-[28px] bg-success p-3 rounded-[5px] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D];
+    }
+
+    .pointlog-card-desc{
+        font-family: var(--font-archivo-regular);
+        @apply w-fit h-fit text-[#04002D] text-[18px] md:text-[20px] lg:text-[20px] ;
+    }
+
+    .pointlog-card-status{
+        font-family: var(--font-archivo-bold);
+        @apply w-fit h-fit text-[#04002D] text-[18px] md:text-[20px] lg:text-[20px] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] bg-neutral p-3 rounded-[5px];
+    }
+}

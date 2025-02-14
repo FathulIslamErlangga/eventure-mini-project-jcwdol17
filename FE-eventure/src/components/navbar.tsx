@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 import { useState } from "react";
+import { useAuth } from "./contexts/AuthContexts";
 
 export function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -11,6 +12,9 @@ export function Navbar() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const { auth } = useAuth();
+  console.log("Auth User:", auth.user);
+  const users = auth.user?.data.slug;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -63,14 +67,17 @@ export function Navbar() {
               </div>
             </div>
 
-            <div className="list-menu-dt">
+            <div
+              className="list-menu-dt"
+              onClick={() => handleMenuClick("/about")}
+            >
               <div className="list-menu-text">
                 <span>About</span>
               </div>
             </div>
           </div>
           <div className="list-menu-down">
-            <div className="list-menu-join">
+            <div className="list-menu-join hidden">
               <div
                 className="list-menu-dt"
                 onClick={() => handleMenuClick("/signin")}
@@ -89,8 +96,12 @@ export function Navbar() {
                 </div>
               </div>
             </div>
-            <div className="list-menu-join hidden">
-              <div className="list-menu-profile">
+
+            <div className="list-menu-join">
+              <div
+                className="list-menu-profile"
+                onClick={() => handleMenuClick(`/eprofile/${users}`)}
+              >
                 <div className="list-menu-icon">
                   <Image
                     src="/assets/images/icons/userProfile.png"
