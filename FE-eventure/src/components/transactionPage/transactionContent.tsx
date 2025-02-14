@@ -134,6 +134,9 @@ export function TransactionContent() {
             <span className="summary-item-total">Total</span>
             <span>Rp. 90.000</span>
           </div>
+          <div className="transaction-btn-co">
+            <span>Checkout</span>
+          </div>
         </div>
       </div>
     </div>
