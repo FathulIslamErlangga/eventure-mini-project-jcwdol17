@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .transaction-title{
+        @apply w-full h-fit flex flex-row justify-between items-center;
+    }
+
+    .transaction-title-text{
+        font-family: var(--font-archivo-bold);
+        @apply w-fit h-fit flex flex-col text-[#04002D] text-[18px] md:text-[20px] lg:text-[24px] bg-warning rounded-md p-4 shadow-[6px_4px_0_#04002D];
+    }
+
+    @keyframes rotateAnimate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+    }
+
+    .transaction-title-pic{
+        animation: rotateAnimate 5s infinite;
+        @apply w-fit h-fit;
+    }
+
+
+}

@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  .transaction-card{
+    @apply w-full h-fit flex flex-row justify-between items-center;
+  }
+
+}

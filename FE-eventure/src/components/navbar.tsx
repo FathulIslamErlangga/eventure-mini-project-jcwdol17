@@ -62,7 +62,14 @@ export function Navbar() {
                 <span>Event Organizer</span>
               </div>
             </div>
-
+            <div
+              className="list-menu-dt"
+              onClick={() => handleMenuClick("/purchase")}
+            >
+              <div className="list-menu-text">
+                <span>Purchase</span>
+              </div>
+            </div>
             <div
               className="list-menu-dt"
               onClick={() => handleMenuClick("/about")}
