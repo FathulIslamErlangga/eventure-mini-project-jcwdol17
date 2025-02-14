@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    .admin-btn{
+        @apply w-full h-fit p-4 border-[5px] border-[#04002D] shadow-[6px_4px_0_#03002D] bg-error text-[20px] text-[#04002D] font-bold cursor-pointer;
+    }
+
+    .admin-btn:hover{
+        @apply ease-in-out duration-300 shadow-[3px_2px_0_#03002D];
+    }
+
+}
