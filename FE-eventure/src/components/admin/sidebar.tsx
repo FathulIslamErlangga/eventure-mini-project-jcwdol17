@@ -19,7 +19,7 @@ export function Sidebar() {
           />
         </label>
       </div>
-      <div className="drawer-side">
+      <div className="drawer-side z-[99]">
         <label
           htmlFor="my-drawer"
           aria-label="close sidebar"
@@ -64,11 +64,22 @@ export function Sidebar() {
                 <div className="w-full h-fit flex flex-row gap-2 items-center">
                   <Image
                     src="/assets/images/icons/transaction.svg"
-                    alt="transactionicon"
+                    alt="transaction-icon"
                     width={30}
                     height={30}
                   />
                   <a>Transactions</a>
+                </div>
+              </li>
+              <li>
+                <div className="w-full h-fit flex flex-row gap-2 items-center">
+                  <Image
+                    src="/assets/images/icons/transaction.svg"
+                    alt="attandance-icon"
+                    width={30}
+                    height={30}
+                  />
+                  <a>Attandance</a>
                 </div>
               </li>
             </div>

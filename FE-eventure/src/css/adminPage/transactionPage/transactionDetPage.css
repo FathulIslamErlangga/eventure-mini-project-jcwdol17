@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    .transaction-detail-page{
+        @apply w-full h-full flex flex-col gap-4 p-3;
+    }
+
+    .transaction-detail-title{
+        font-family: var(--font-archivo-bold);
+        @apply w-full h-fit flex border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] items-center bg-neutral rounded-md p-4 text-[24px];
+    }
+
+    .transaction-detail-content{
+        @apply w-full h-fit flex justify-center items-center;
+    }
+
+    .eventure-form{
+        @apply w-full h-fit flex flex-col gap-4 border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-[5px] bg-neutral p-4;
+    }
+
+    .eventure-button{
+        font-family: var(--font-archivo-bold);
+        @apply w-full h-fit flex flex-row justify-center items-center bg-primary border-[5px] border-[#04002D] rounded-md p-2 shadow-[6px_4px_0_#04002D] text-[18px];
+    }
+
+    .eventure-button:hover{
+        @apply ease-in-out duration-300 shadow-[3px_2px_0_#04002D];
+    }
+}
