@@ -6,6 +6,7 @@ import {
   ValidationRequest,
 } from "../../utils/interfaceCustom";
 import prisma from "../../utils/prismaClient";
+import { appError } from "../../utils/responses";
 
 export class ComponentEvent {
   async createComponent(
@@ -17,6 +18,13 @@ export class ComponentEvent {
     newAddress: any
   ) {
     const files = req.files;
+    const coverImage = files.cover?.[0];
+    const thumbnailImage = files.thumbnail?.[0];
+
+    if (!coverImage || !thumbnailImage) {
+      throw new appError("Cover and thumbnail images are required", 400);
+    }
+
     return await tsx.event.create({
       data: {
         name: create.name,
@@ -29,11 +37,11 @@ export class ComponentEvent {
         gallery: {
           create: [
             {
-              imageUrl: getFilePath(files.cover?.[0].path, req),
+              imageUrl: coverImage.path,
               imageType: "cover",
             },
             {
-              imageUrl: getFilePath(files.thumbnail?.[0].path, req),
+              imageUrl: thumbnailImage.path,
               imageType: "thumbnail",
             },
           ],

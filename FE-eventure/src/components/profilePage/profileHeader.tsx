@@ -1,90 +1,41 @@
 "use client";
 import Image from "next/image";
 import "@/css/profilePage/profileHeader.css";
-import { useAuth } from "@/components/contexts/AuthContexts";
-import { IUpdatedProfile } from "@/utils/interfaces/customInsterface";
-import { useEffect, useRef, useState } from "react";
-import { useParams } from "next/navigation";
+
+import { useProfiles } from "@/hooks/useProfiles.hooks";
+import ModalChangePassword from "../modal/modalChangePassword";
 
 export function ProfileHeader() {
-  const { profilesUser, auth } = useAuth();
-  const { message, profile } = profilesUser;
-  const [isUpdated, setUpdated] = useState<boolean>(false);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
-  const [formUpdated, setFormUpdated] = useState<IUpdatedProfile>({
-    name: "",
-    address: "",
-    city: "",
-    phone: "",
-    imageProfile: "",
-  });
-  const { slug } = useParams();
-
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    if (auth.user?.data?.profile) {
-      setFormUpdated({
-        name: auth.user.data.profile.name ?? "",
-        address: auth.user.data.profile.address?.address ?? "",
-        city: auth.user.data.profile.address?.city ?? "",
-        phone: auth.user.data.profile.phone ?? "",
-        imageProfile: "",
-      });
-    }
-  }, [auth.user]);
-
-  const handleButtonClick = () => {
-    fileInputRef.current?.click(); // Trigger the file input click
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files?.[0];
-    if (files) {
-      const imageUrl = URL.createObjectURL(files);
-      setSelectedFile(files);
-      setFormUpdated({
-        ...formUpdated,
-        imageProfile: imageUrl,
-      });
-    }
-  };
-  const handleChangeUpdated = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setFormUpdated({ ...formUpdated, [e.target.name]: value });
-  };
-  const handleUpdated = () => {
-    setUpdated(true);
-  };
-  const handleUpdatedProfile = async (e: React.FormEvent) => {
-    setUpdated(false);
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("name", formUpdated.name);
-    formData.append("address", formUpdated.address);
-    formData.append("city", formUpdated.city);
-    formData.append("phone", formUpdated.phone);
-    if (fileInputRef.current?.files?.[0]) {
-      formData.append("imageProfile", fileInputRef.current.files[0]);
-    }
-    for (const pair of formData.entries()) {
-      console.log(pair[0], pair[1]); // Harus muncul: imageProfile File { ... }
-    }
-
-    await profile(formData, slug as string);
-    console.log(formUpdated);
-  };
+  const {
+    auth,
+    isUpdated,
+    formUpdated,
+    message,
+    fileInputRef,
+    passwordChange,
+    isOpen,
+    showPassword,
+    handleFileChange,
+    handleButtonClick,
+    handleChangeUpdated,
+    handleUpdated,
+    handleUpdatedProfile,
+    change,
+    handleModal,
+    togglePasswordVisibility,
+  } = useProfiles();
   return (
     <div className="profile-header">
       <div className="profile-biodata-title">
         <span>Biodata</span>
       </div>
+
       <div className="w-full h-fit flex flex-col md:flex-col lg:flex-row gap-6">
         <div className="profile-header-pic">
           <div className="profile-header-user-pic">
             {auth.user?.data.profile?.imageProfile.map((image) => (
               <Image
+                key={image.id}
                 src={`${
                   formUpdated.imageProfile.length > 0
                     ? formUpdated.imageProfile
@@ -131,7 +82,7 @@ export function ProfileHeader() {
                 className="grow"
                 placeholder="Name"
                 name="name"
-                value={formUpdated.name}
+                value={formUpdated.name ?? ""}
                 onChange={handleChangeUpdated}
                 disabled={!isUpdated}
               />
@@ -150,7 +101,7 @@ export function ProfileHeader() {
                 type="text"
                 className="grow"
                 placeholder="Email"
-                value={auth.user?.data.email}
+                value={auth.user?.data.email ?? ""}
                 disabled
               />
             </label>
@@ -171,7 +122,7 @@ export function ProfileHeader() {
                 className="grow"
                 placeholder="Phone"
                 name="phone"
-                value={formUpdated.phone}
+                value={formUpdated.phone ?? ""}
                 onChange={handleChangeUpdated}
                 disabled={!isUpdated}
               />
@@ -193,7 +144,7 @@ export function ProfileHeader() {
                 className="grow"
                 placeholder="City"
                 name="city"
-                value={formUpdated.city}
+                value={formUpdated.city ?? ""}
                 onChange={handleChangeUpdated}
                 disabled={!isUpdated}
               />
@@ -215,7 +166,7 @@ export function ProfileHeader() {
                 className="grow"
                 placeholder="Address"
                 name="address"
-                value={formUpdated.address}
+                value={formUpdated.address ?? ""}
                 onChange={handleChangeUpdated}
                 disabled={!isUpdated}
               />
@@ -224,7 +175,10 @@ export function ProfileHeader() {
         </div>
       </div>
       <div className="profile-header-btn">
-        <button className="e-btn bg-warning text-[#04002D]">
+        <button
+          className="e-btn bg-warning text-[#04002D]"
+          onClick={handleModal}
+        >
           Change Password
         </button>
         {isUpdated ? (
@@ -243,6 +197,16 @@ export function ProfileHeader() {
           </button>
         )}
       </div>
+      <ModalChangePassword
+        isOpen={isOpen}
+        showPassword={showPassword}
+        onClose={handleModal}
+        togglePasswordVisibility={togglePasswordVisibility}
+        message={message}
+        handleChange={handleChangeUpdated}
+        handleSaveChange={change}
+        passwordChange={passwordChange}
+      />
     </div>
   );
 }

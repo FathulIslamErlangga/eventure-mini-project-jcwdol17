@@ -122,7 +122,7 @@ export function Navbar() {
                 </div>
               </div>
 
-              <div className="list-menu-dt bg-error">
+              <div className="list-menu-dt bg-error" onClick={auth.logout}>
                 <div className="list-menu-text">
                   <span>Logout</span>
                 </div>

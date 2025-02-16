@@ -1,4 +1,4 @@
-import { IGallery, IProfiles, IUsers } from "./interfaces";
+import { ICategory, IEvents, IGallery, IProfiles, IUsers } from "./interfaces";
 
 export interface IChangePassword {
   newPassword: string;
@@ -39,4 +39,31 @@ export interface IUpdatedProfile {
 export interface IProfileResponse {
   message: string;
   data: IProfiles;
+}
+
+export interface IUpdatedPassword {
+  newPassword: string;
+  oldPassword: string;
+}
+
+export interface createEvents {
+  name: string;
+  description: string;
+  price: string;
+  availableSeats: string;
+  cover: string;
+  thumbnail: string;
+  address: string;
+  city: string;
+
+  categoryId: string;
+}
+
+export interface eventsResponse {
+  message: string;
+  data: IEvents;
+}
+export interface categoriesResponse {
+  message: string;
+  data: ICategory[];
 }

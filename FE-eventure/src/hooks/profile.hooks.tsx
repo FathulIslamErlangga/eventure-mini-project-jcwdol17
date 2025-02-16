@@ -1,7 +1,8 @@
-import { updatedProfile } from "@/services/profile.services";
+import { updatedProfile, updatePassword } from "@/services/profile.services";
 import { profilesProps } from "@/utils/interfaces/contextsInterface";
 import {
   IProfileResponse,
+  IUpdatedPassword,
   IUpdatedProfile,
 } from "@/utils/interfaces/customInsterface";
 
@@ -23,6 +24,20 @@ const profileHooks = (): profilesProps => {
       }
     }
   };
+
+  const changePassword = async (data: IUpdatedPassword, slug: string) => {
+    try {
+      const response = await updatePassword(data, slug);
+      console.log("updated Profile:", response);
+      setProfiles(response);
+      setMessage(response.message);
+    } catch (error: any) {
+      if (error.response && error.response.data) {
+        setMessage(error.response.message);
+      }
+    }
+  };
+
   // useEffect(() => {
   //   if (profiles) {
   //     console.log("Updated State:", profiles);
@@ -32,6 +47,7 @@ const profileHooks = (): profilesProps => {
     profiles,
     message,
     profile,
+    changePassword,
   };
 };
 

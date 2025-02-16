@@ -2,7 +2,7 @@ import { Response, Request } from "express";
 import asyncHandler from "../middlewares/asyncHandler";
 import { ICreateEvents, IUpdateEvents } from "../utils/interfaceCustom";
 import { EventsServices } from "../services/events.service/events.services";
-import { appSuccsess } from "../utils/responses";
+import { appError, appSuccsess } from "../utils/responses";
 
 export class Events {
   private events = new EventsServices();
@@ -10,7 +10,8 @@ export class Events {
     const create: ICreateEvents = req.body;
 
     const events = await this.events.createEventServices(req, create);
-
+    console.log(events);
+    if (!events) throw new appError("Failed to create event", 500);
     appSuccsess(201, "add new events succsessfully", res, events);
   });
 
