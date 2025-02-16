@@ -5,7 +5,7 @@ export function Sidebar() {
   return (
     <div className="drawer">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content p-5">
+      <div className="drawer-content p-5 flex justify-between">
         {/* Page content here */}
         <label
           htmlFor="my-drawer"
@@ -18,6 +18,17 @@ export function Sidebar() {
             height={20}
           />
         </label>
+        <div className="indicator">
+          <div className="notifications-icon">
+            <Image
+              src="/assets/images/icons/notification.svg"
+              alt="bell-icon"
+              width={50}
+              height={50}
+            />
+          </div>
+          <span className="badge badge-md badge-primary indicator-item">8</span>
+        </div>
       </div>
       <div className="drawer-side z-[99]">
         <label
