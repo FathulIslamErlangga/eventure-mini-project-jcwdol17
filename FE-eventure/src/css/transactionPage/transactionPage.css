@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    .transaction-page{
+        @apply w-full h-full flex flex-col gap-4 pt-32 px-3 pb-20;
+    }
+}

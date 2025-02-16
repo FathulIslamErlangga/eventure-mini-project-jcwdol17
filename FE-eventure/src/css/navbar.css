@@ -48,7 +48,7 @@
 
   .list-menu-dt:hover,
   .list-menu-profile:hover {
-    @apply ease-in-out duration-300 shadow-[3px_2px_0_#04002D] scale-95 ml-2;
+    @apply ease-in-out duration-300 shadow-[3px_2px_0_#04002D] scale-105 ml-1;
   }
 
   .list-menu-join {
