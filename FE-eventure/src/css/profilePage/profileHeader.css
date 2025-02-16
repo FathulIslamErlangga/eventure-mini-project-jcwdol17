@@ -40,16 +40,16 @@
     @apply w-full h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4;
   }
 
-  .profile-header-btn{
+  .profile-header-btn {
     @apply gap-4 w-full h-fit flex justify-between items-center;
   }
 
-  .e-btn{
+  .e-btn {
     font-family: var(--font-archivo-bold);
     @apply text-[16px] p-4 w-fit h-fit flex justify-center items-center border-[3px] border-[#04002D] rounded-sm shadow-[6px_4px_0_#04002D];
   }
 
-  .e-btn:hover{
+  .e-btn:hover {
     @apply ease-in-out duration-300 shadow-[3px_2px_0_#04002D];
   }
 }

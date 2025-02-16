@@ -17,24 +17,27 @@ export class EventsServices {
     const Request = req as ValidationRequest;
     const userId = Request.userData.id;
     const userRole = Request.userData.role;
-    const files = Request.files;
-    const slug = slugify(create.name, { lower: true, strict: true });
-    const coverImage = files.cover?.[0];
-    const thumbnailImage = files.thumbnail?.[0];
 
-    if (!coverImage || !thumbnailImage) {
-      throw new appError("Cover and thumbnail images are required", 400);
-    }
+    const slug = slugify(create.name, { lower: true, strict: true });
 
     if (userRole !== "ORGANIZER") {
       throw new appError("you do not have permission to create an event", 403);
     }
 
-    return prisma.$transaction(async (tsx) => {
+    let formattedAddress = create.address;
+    if (typeof formattedAddress === "string") {
+      try {
+        formattedAddress = JSON.parse(formattedAddress);
+      } catch (error) {
+        throw new appError("Invalid address format", 400);
+      }
+    }
+
+    return await prisma.$transaction(async (tsx) => {
       const newAddress = await tsx.address.create({
         data: {
-          address: create.address.address.toLowerCase(),
-          city: create.address.city.toLowerCase(),
+          address: formattedAddress.address.toLowerCase(),
+          city: formattedAddress.city.toLowerCase(),
         },
       });
 

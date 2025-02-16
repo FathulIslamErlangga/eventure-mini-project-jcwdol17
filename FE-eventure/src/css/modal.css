@@ -9,7 +9,7 @@
 
   .emodal2,
   .emodal3 {
-    @apply fixed top-0 left-0 right-0 bottom-0 bg-[#fdfdfce7] flex items-center justify-center z-50 overflow-y-auto ;
+    @apply fixed top-0 left-0 right-0 bottom-0 bg-[#fdfdfce7] flex items-center justify-center z-50 overflow-y-auto;
   }
 
   .emodal2-content {
@@ -17,13 +17,12 @@
   }
 
   .emodal2 {
-    @apply pt-[100vh] md:pt-[70vh] lg:pt-[70vh];
+    @apply pt-[200vh] md:pt-[70vh] lg:pt-[70vh];
   }
 
   .emodal3 {
     @apply pt-[35vh];
   }
-
 
   .forgot-password-title,
   .emodal-title {
@@ -32,13 +31,18 @@
   }
 
   .eventure-form {
-    @apply flex flex-col gap-4 mt-6 w-full;
+    @apply flex flex-col gap-4 mt-6 w-full relative;
   }
 
   .eventure-form input {
     font-family: var(--font-archivo-regular);
   }
-
+  .btn-show-hide-pwd {
+    @apply w-fit h-fit p-2 rounded-sm bg-secondary border-[3px] border-[#04002D] shadow-[3px_2px_0_#04002D] absolute right-4;
+  }
+  .btn-show-hide-pwd:hover {
+    @apply shadow-[1px_1px_0_#04002D] scale-95;
+  }
   .eventure-button {
     font-family: var(--font-archivo-bold);
     @apply w-full h-fit bg-primary text-neutral border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-[22px] md:text-[24px] lg:text-[28px] rounded-[5px] p-2 flex items-center justify-center cursor-pointer;

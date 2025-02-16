@@ -1,7 +1,10 @@
 import {
+  categoriesResponse,
+  createEvents,
+  eventsResponse,
   IChangePassword,
   IProfileResponse,
-  IUpdatedProfile,
+  IUpdatedPassword,
   LoginData,
   RegisterData,
   UserResponse,
@@ -26,9 +29,21 @@ export interface profilesProps {
   profiles: IProfileResponse | undefined;
   message: string | undefined;
   profile: (data: FormData, slug: string) => Promise<void>;
+  changePassword: (data: IUpdatedPassword, slug: string) => Promise<void>;
 }
 
+export interface eventsProps {
+  event: eventsResponse | undefined;
+  message: string | undefined;
+  eventsCreated: (create: FormData) => Promise<void>;
+}
+export interface categoriesProps {
+  category: categoriesResponse | undefined;
+  message: string | undefined;
+}
 export interface AllProps {
   auth: AuthProps;
   profilesUser: profilesProps;
+  events: eventsProps;
+  categories: categoriesProps;
 }

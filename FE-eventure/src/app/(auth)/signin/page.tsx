@@ -4,7 +4,6 @@ import { useAuth } from "@/components/contexts/AuthContexts";
 import { LoginData } from "@/utils/interfaces/customInsterface";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import Image from "next/image";
 import "@/css/authPage/signIn.css";
 import Link from "next/link";
 
@@ -29,7 +28,7 @@ const SignIn = () => {
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     await auth.login(formData);
-    setTimeout(() => router.push("/profile"), 1000);
+    setTimeout(() => router.push(`/eprofile/${auth.user?.data.slug}`), 1000);
   };
   const handleSendMailForgot = async (e: React.FormEvent) => {
     e.preventDefault();
