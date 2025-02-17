@@ -1,9 +1,24 @@
+'use client';
 import Image from "next/image";
 import '@/css/eventsPage/eventsPage.css';
 import '@/css/homePage/categoriesStyle.css';
 import { EventCard2 } from "../eventCard2";
+import eventsHooks from "@/hooks/events.hooks";
+import { IEvents } from "@/utils/interfaces/interfaces";
+import useEvent from '@/hooks/useEvent.hooks';
 
 export function EventsPage() {
+  const {events} = useEvent();
+
+  
+  const {getevent, loading, error} = events
+
+  const responses = getevent?.data.map(e => {
+    console.log(e.name)
+  }) 
+
+  console.log(responses)
+
   return (
     <div className="events-page">
       <div className="events-title">

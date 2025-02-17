@@ -76,6 +76,7 @@ const useEvent = () => {
     formEvent,
     startDate,
     endDate,
+    events,
     categories,
     fileInputRef,
     setStartDate,

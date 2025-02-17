@@ -2,6 +2,7 @@ import {
   categoriesResponse,
   createEvents,
   eventsResponse,
+  getEvent,
   IChangePassword,
   IProfileResponse,
   IUpdatedPassword,
@@ -34,7 +35,10 @@ export interface profilesProps {
 
 export interface eventsProps {
   event: eventsResponse | undefined;
+  getevent : getEvent | undefined;
   message: string | undefined;
+  loading: boolean;
+  error: string | null;
   eventsCreated: (create: FormData) => Promise<void>;
 }
 export interface categoriesProps {
