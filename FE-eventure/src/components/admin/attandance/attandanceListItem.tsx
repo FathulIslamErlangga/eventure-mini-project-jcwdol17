@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function AttandanceListItem(){
     return(
         <>
@@ -29,7 +31,11 @@ export function AttandanceListItem(){
           <td>23/01/2025</td>
           <td>On Going</td>
           <th>
-            <button className="btn btn-ghost btn-xs">details</button>
+            <button className="btn btn-ghost btn-xs">
+              <Link href='/admin/attandance/1'>
+               Details
+              </Link>
+            </button>
           </th>
         </tr>
       </>

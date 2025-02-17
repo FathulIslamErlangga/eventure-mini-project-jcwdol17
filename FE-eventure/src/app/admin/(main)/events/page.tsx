@@ -1,5 +1,6 @@
 import { EventListData } from "@/components/admin/events/eventListData";
-import '@/css/adminPage/eventsPage/eventsPage.css';
+import "@/css/adminPage/eventsPage/eventsPage.css";
+import Link from "next/link";
 
 export default function AdminEvent() {
   return (
@@ -9,11 +10,13 @@ export default function AdminEvent() {
           <span>Events</span>
         </div>
         <div className="admin-events-title-button">
-          <button className="btn btn-primary">Add Event</button>
+          <button className="btn btn-primary">
+            <Link href="/admin/events/new-event">Add Event</Link>
+          </button>
         </div>
       </div>
       <div className="admin-events-content">
-        <EventListData/>
+        <EventListData />
       </div>
     </div>
   );

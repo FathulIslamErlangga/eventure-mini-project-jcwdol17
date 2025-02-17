@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export function EventListDataItem() {
   return (
@@ -24,9 +25,7 @@ export function EventListDataItem() {
             </div>
           </div>
         </td>
-        <td>
-         23/01/2025
-        </td>
+        <td>23/01/2025</td>
         <td>23/01/2025</td>
         <td>Rp. 1.000.000</td>
         <td>On Going</td>
@@ -35,14 +34,26 @@ export function EventListDataItem() {
             className="btn btn-warning
              p-2"
           >
-            <Image src='/assets/images/icons/edit.svg' alt='edit' width={20} height={10}/>
-            Edit
+            <Link href="/admin/events/1" className="flex gap-3 items-center">
+              <Image
+                src="/assets/images/icons/edit.svg"
+                alt="edit"
+                width={20}
+                height={10}
+              />
+              Edit
+            </Link>
           </button>
           <button
             className="btn btn-error
              p-2"
           >
-            <Image src='/assets/images/icons/delete.svg' alt='delete' width={20} height={10}/>
+            <Image
+              src="/assets/images/icons/delete.svg"
+              alt="delete"
+              width={20}
+              height={10}
+            />
             Delete
           </button>
         </th>

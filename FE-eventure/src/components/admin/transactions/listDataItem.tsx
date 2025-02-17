@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function ListDataItem() {
   return (
     <>
@@ -31,7 +33,9 @@ export function ListDataItem() {
         <td>2</td>
         <td>$20</td>
         <th>
-          <button className="btn btn-ghost btn-xs">details</button>
+          <button className="btn btn-ghost btn-xs">
+            <Link href="/admin/transactions/1">Details</Link>
+          </button>
         </th>
       </tr>
     </>
