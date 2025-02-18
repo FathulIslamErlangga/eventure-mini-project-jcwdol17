@@ -4,6 +4,7 @@ import { ValidationRequest } from "../utils/interfaceCustom";
 import { Request } from "express";
 import { appError } from "../utils/responses";
 import { getFilePath } from "../utils/filePath";
+import redis from "../utils/redisClient";
 
 export class profileServices {
   async profileUpdate(req: Request) {
@@ -12,6 +13,7 @@ export class profileServices {
       const Request = req as ValidationRequest;
       const file = Request.file;
       const { name, phone, address, city } = req.body;
+      const cacheKey = `user:${Request.userData.id}`;
 
       return prisma.$transaction(async (tsx) => {
         const user = await tsx.user.findUnique({
@@ -28,6 +30,7 @@ export class profileServices {
         if (!user) {
           throw new appError("User not found", 404);
         }
+        await redis.del(cacheKey);
 
         const profile = user?.profile;
 
@@ -107,7 +110,7 @@ export class profileServices {
             });
           }
         }
-
+        await redis.setex(cacheKey, 3600, JSON.stringify(updateProfile));
         return updateProfile;
       });
     } catch (error: any) {

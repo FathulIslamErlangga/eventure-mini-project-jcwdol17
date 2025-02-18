@@ -10,6 +10,7 @@ import eventRoute from "./routes/events.route";
 import reviewRoute from "./routes/reviews.route";
 import categoryRoute from "./routes/category.route";
 import path from "path";
+import { startCronJobs } from "./utils/cron";
 
 export class App {
   private app: Application;
@@ -52,5 +53,6 @@ export class App {
     this.app.listen(PORT, () => {
       console.log(`Eventure app listening at  http://localhost:${PORT}`);
     });
+    startCronJobs;
   }
 }

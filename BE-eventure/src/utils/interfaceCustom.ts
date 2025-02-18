@@ -70,3 +70,10 @@ export interface ICreateReviews {
   comment: string;
   rating: number;
 }
+
+export interface INotification {
+  title: string;
+  message: string;
+  userId: string;
+  createdAt: Date;
+}

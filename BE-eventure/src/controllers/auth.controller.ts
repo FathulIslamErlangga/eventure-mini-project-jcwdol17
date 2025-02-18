@@ -11,16 +11,25 @@ import {
 import { authService } from "../services/authRegister.services";
 import { appError, appSuccsess } from "../utils/responses";
 import { ValidationRequest } from "../utils/interfaceCustom";
+import redis from "../utils/redisClient";
+import { cacheMiddleware } from "../middlewares/cacheMiddleware";
+import { userLogger } from "../utils/logger";
 
 const authServices = new authService();
 export class Auth {
   registerUser = asyncHandler(async (req: Request, res: Response) => {
     const newUser = await authServices.registerUser(req);
     if (!newUser || !newUser.email) {
+      userLogger.warn(
+        `Failed to register user or email not defined, ${newUser.email}`
+      );
       throw new appError("Failed to register user or email not defined.", 400);
     }
     const token = signToken(newUser.id);
     await sendVerificationEmail(newUser.email, token);
+    userLogger.info(
+      `User registered, Please verify your email., ${newUser.email}`
+    );
     createSendToken(
       newUser,
       "User registered, Please verify your email.",
@@ -35,14 +44,19 @@ export class Auth {
     const user = await prisma.user.findUnique({ where: { email } });
 
     if (!user) {
+      userLogger.warn(`User not found. ,${email}`);
       throw new appError("User not found.", 404);
     }
 
     if (user.isEmailVerified === false) {
+      userLogger.warn(
+        `Please verify your email before logging in. ,${user.email}`
+      );
       throw new appError("Please verify your email before logging in.  ", 403);
     }
     const comparePassword = await bcrypt.compare(password, user.password);
     if (user && comparePassword) {
+      userLogger.info(`User login succsessfully ,${user.email}`);
       return createSendToken(user, "User login successfully.", res, 201);
     }
     throw new appError("invalid login. Email or password is incorrect.", 401);
@@ -52,43 +66,49 @@ export class Auth {
   getUser = asyncHandler(async (req: Request, res: Response) => {
     const Request = req as ValidationRequest;
     const userId = Request.userData.id;
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      include: {
-        profile: {
-          include: {
-            imageProfile: true,
-            address: true,
+    const cachedKey = `user:${userId}`;
+    cacheMiddleware(cachedKey, 3600)(req, res, async () => {
+      const user = await prisma.user.findUnique({
+        where: { id: userId },
+        include: {
+          profile: {
+            include: {
+              imageProfile: true,
+              address: true,
+            },
           },
         },
-      },
-    });
+      });
 
-    if (!user) {
-      throw new appError("user not found", 404);
-    }
-    const getUser = {
-      id: user.id,
-      email: user.email,
-      slug: user.slug,
-      code: user.code,
-      role: user.role,
-      profile: {
-        name: user.profile?.name,
-        phone: user.profile?.phone,
-        imageProfile: user.profile?.imageProfile.map((image) => ({
-          id: image.id,
-          imageUrl: image.imageUrl,
-          imageType: image.imageType,
-        })),
-        address: {
-          id: user.profile?.address?.id,
-          address: user.profile?.address?.address,
-          city: user.profile?.address?.city,
+      if (!user) {
+        userLogger.warn(`User not found , ${Request.userData.email}`);
+        throw new appError("user not found", 404);
+      }
+      const getUser = {
+        id: user.id,
+        email: user.email,
+        slug: user.slug,
+        code: user.code,
+        role: user.role,
+        profile: {
+          name: user.profile?.name,
+          phone: user.profile?.phone,
+          imageProfile: user.profile?.imageProfile.map((image) => ({
+            id: image.id,
+            imageUrl: image.imageUrl,
+            imageType: image.imageType,
+          })),
+          address: {
+            id: user.profile?.address?.id,
+            address: user.profile?.address?.address,
+            city: user.profile?.address?.city,
+          },
         },
-      },
-    };
-    appSuccsess(201, "Get data user succsessfully", res, getUser);
+      };
+      await redis.setex(cachedKey, 3600, JSON.stringify(getUser));
+      userLogger.info(`Get data user succsessfully, ${getUser.profile.name}`);
+      appSuccsess(201, "Get data user succsessfully", res, getUser);
+    });
   });
 
   // forgot password
@@ -99,15 +119,20 @@ export class Auth {
       where: { email },
     });
     if (email !== user?.email) {
+      userLogger.warn(`Email do not match, ${user?.email}`);
       throw new appError("email do not match", 401);
     }
     if (!user) {
+      userLogger.warn(
+        `forgot password failed because user not found, ${email}`
+      );
       throw new appError("User not found", 404);
     }
     const resetToken = signToken(user.id);
     sendVerificationForgotPassword(user.email, resetToken);
-    console.log("token:", resetToken);
+    userLogger.info(` reset token succsess, ${resetToken}`);
 
+    userLogger.info(` reset password email has been sent, ${user.email}`);
     appSuccsess(
       200,
       "Reset password email has been sent.",
@@ -127,6 +152,7 @@ export class Auth {
       expires: new Date(0),
     });
 
+    userLogger.info("User logout succsessfully");
     appSuccsess(201, "User logout Succsessfully", res);
   });
 }
