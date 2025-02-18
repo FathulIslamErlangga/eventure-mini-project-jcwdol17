@@ -11,6 +11,7 @@ import reviewRoute from "./routes/reviews.route";
 import categoryRoute from "./routes/category.route";
 import path from "path";
 import { startCronJobs } from "./utils/cron";
+import addressRoute from "./routes/address.route";
 
 export class App {
   private app: Application;
@@ -36,7 +37,8 @@ export class App {
       mailRoute(),
       eventRoute(),
       reviewRoute(),
-      categoryRoute()
+      categoryRoute(),
+      addressRoute()
     );
     this.app.use(
       "/public/uploads",

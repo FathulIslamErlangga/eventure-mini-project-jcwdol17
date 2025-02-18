@@ -225,3 +225,53 @@ Please make sure your database server is running at `aws-0-ap-southeast-1.pooler
 2025-02-18T12:58:02.991Z [INFO]: No expired points found.
 2025-02-18T13:01:00.282Z [INFO]: Running cron job: Deleting expired referral points...
 2025-02-18T13:01:12.110Z [INFO]: Batch 1 poin referral expired diproses.
+2025-02-18T13:18:00.480Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:18:03.763Z [INFO]: No expired points found.
+2025-02-18T13:19:00.556Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:19:06.602Z [INFO]: No expired points found.
+2025-02-18T13:21:00.536Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:21:09.778Z [INFO]: No expired points found.
+2025-02-18T13:22:00.098Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:22:03.696Z [INFO]: No expired points found.
+2025-02-18T13:23:00.819Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:23:06.782Z [INFO]: No expired points found.
+2025-02-18T13:24:00.410Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:24:02.337Z [INFO]: No expired points found.
+2025-02-18T13:25:00.331Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:25:05.160Z [INFO]: No expired points found.
+2025-02-18T13:26:00.545Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:26:06.386Z [INFO]: No expired points found.
+2025-02-18T13:27:00.599Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:27:05.098Z [INFO]: No expired points found.
+2025-02-18T13:28:00.992Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:28:05.665Z [INFO]: No expired points found.
+2025-02-18T13:29:00.888Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:29:14.552Z [INFO]: No expired points found.
+2025-02-18T13:30:00.533Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:30:16.342Z [INFO]: No expired points found.
+2025-02-18T13:31:00.133Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:31:20.062Z [ERROR]: Error in cronjob: PrismaClientKnownRequestError: 
+Invalid `prisma.pointLog.findMany()` invocation in
+C:\Users\User\Documents\latihan\mini-project\be-eventure\src\cronJob\expiredReferralPoint.ts:43:50
+
+  40   });
+  41 }
+  42 
+→ 43 const expiredPoint = await prisma.pointLog.findMany(
+Can't reach database server at `aws-0-ap-southeast-1.pooler.supabase.com:6543`
+
+Please make sure your database server is running at `aws-0-ap-southeast-1.pooler.supabase.com:6543`.
+2025-02-18T13:32:00.399Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:32:08.554Z [ERROR]: Error in cronjob: PrismaClientKnownRequestError: 
+Invalid `prisma.pointLog.findMany()` invocation in
+C:\Users\User\Documents\latihan\mini-project\be-eventure\src\cronJob\expiredReferralPoint.ts:17:50
+
+  14 const warningThreshold = new Date();
+  15 warningThreshold.setDate(now.getDate() + 3);
+  16 
+→ 17 const warningPoint = await prisma.pointLog.findMany(
+Can't reach database server at `aws-0-ap-southeast-1.pooler.supabase.com:6543`
+
+Please make sure your database server is running at `aws-0-ap-southeast-1.pooler.supabase.com:6543`.
+2025-02-18T13:33:00.367Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:33:02.767Z [INFO]: No expired points found.
