@@ -1,6 +1,5 @@
 import api from "@/utils/api/axios";
-import { eventsResponse } from "@/utils/interfaces/customInsterface";
-import { getEvent } from "../utils/interfaces/customInsterface";
+import { eventsResponse, getEvent } from "@/utils/interfaces/customInsterface";
 
 export const createEvents = async (create: FormData) => {
   try {
@@ -16,9 +15,9 @@ export const createEvents = async (create: FormData) => {
   }
 };
 
-export const getEvents = async () => {
+export const getEvents = async (page: number = 1) => {
   try {
-    const response = await api.get<getEvent>("/events/v2");
+    const response = await api.get<getEvent>(`/events/v2?page=${page}`);
     console.log("response get:", response.data);
     return response.data;
   } catch (error) {

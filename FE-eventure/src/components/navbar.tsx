@@ -13,7 +13,7 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { auth } = useAuth();
-  console.log("Auth User:", auth.user);
+  console.log("Auth User:", auth.user?.data.slug);
   const users = auth.user?.data.slug;
 
   const toggleMenu = () => {
@@ -83,51 +83,58 @@ export function Navbar() {
               </div>
             </div>
           </div>
+
           <div className="list-menu-down">
-            <div className="list-menu-join hidden">
-              <div
-                className="list-menu-dt"
-                onClick={() => handleMenuClick("/signin")}
-              >
-                <div className="list-menu-text">
-                  <span>Login</span>
-                </div>
-              </div>
+            {auth.user ? (
+              <>
+                <div className="list-menu-join">
+                  <div
+                    className="list-menu-profile"
+                    onClick={() => handleMenuClick(`/eprofile/${users}`)}
+                  >
+                    <div className="list-menu-icon">
+                      <Image
+                        src="/assets/images/icons/userProfile.png"
+                        alt="profile-icon"
+                        width={50}
+                        height={50}
+                      />
+                    </div>
+                    <div className="list-menu-text">
+                      <span>Profile</span>
+                    </div>
+                  </div>
 
-              <div
-                className="list-menu-dt"
-                onClick={() => handleMenuClick("/signup")}
-              >
-                <div className="list-menu-text">
-                  <span>Register</span>
+                  <div className="list-menu-dt bg-error" onClick={auth.logout}>
+                    <div className="list-menu-text">
+                      <span>Logout</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </>
+            ) : (
+              <>
+                <div className="list-menu-join">
+                  <div
+                    className="list-menu-dt"
+                    onClick={() => handleMenuClick("/signin")}
+                  >
+                    <div className="list-menu-text">
+                      <span>Login</span>
+                    </div>
+                  </div>
 
-            <div className="list-menu-join">
-              <div
-                className="list-menu-profile"
-                onClick={() => handleMenuClick(`/eprofile/${users}`)}
-              >
-                <div className="list-menu-icon">
-                  <Image
-                    src="/assets/images/icons/userProfile.png"
-                    alt="profile-icon"
-                    width={50}
-                    height={50}
-                  />
+                  <div
+                    className="list-menu-dt"
+                    onClick={() => handleMenuClick("/signup")}
+                  >
+                    <div className="list-menu-text">
+                      <span>Register</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="list-menu-text">
-                  <span>Profile</span>
-                </div>
-              </div>
-
-              <div className="list-menu-dt bg-error" onClick={auth.logout}>
-                <div className="list-menu-text">
-                  <span>Logout</span>
-                </div>
-              </div>
-            </div>
+              </>
+            )}
           </div>
         </div>
       </div>

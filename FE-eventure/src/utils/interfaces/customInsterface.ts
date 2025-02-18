@@ -46,6 +46,21 @@ export interface IUpdatedPassword {
   oldPassword: string;
 }
 
+// Get Event Interface
+export interface Meta {
+  currentPage: number;
+  totalPages: number;
+  totalItems: number;
+  perPage: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+}
+export interface getEvent {
+  message: string;
+  data: IEvents[];
+  meta: Meta;
+}
+
 export interface createEvents {
   name: string;
   description: string;

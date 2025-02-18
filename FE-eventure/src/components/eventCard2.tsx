@@ -1,31 +1,45 @@
 import Image from "next/image";
 import "@/css/eventsPage/eventCard2.css";
 import Link from "next/link";
+import useEvent from "@/hooks/useEvent.hooks";
+import { IEvents } from "@/utils/interfaces/interfaces";
 
-export function EventCard2() {
+export function EventCard2(props: IEvents & { category?: { name: string } }) {
   return (
     <>
-      <Link href="/events/id">
+      <Link href={`/events/${props.slug}`}>
         <div className="event-card2">
           <div className="event-card2-pic">
             <Image
-              src="/assets/images/contents/events/Sample 1.jpg"
-              alt="sample-1"
+              src={
+                props.gallery?.[0]?.imageUrl ||
+                "/assets/images/contents/events/Sample 1.jpg"
+              }
+              alt={props.name}
               width={150}
               height={300}
             />
           </div>
           <div className="event-card2-cov">
             <div className="event-card2-cov-up">
-              <div className="event-card2-ctg">Music & Concert</div>
-              <div className="event-card2-date">23 Jan 25</div>
+              <div className="event-card2-ctg">{props.category?.name || 'Uncategorized'}</div>
+              <div className="event-card2-date">
+                {new Date(props.startDate).toLocaleDateString("en-US", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "2-digit",
+                })}
+              </div>
             </div>
             <div className="event-card2-cov-mid">
-              <div className="event-card2-title">Concert Event</div>
+              <div className="event-card2-title">{props.name}</div>
             </div>
             <div className="event-card2-cov-down">
               <div className="event-card2-cov-down-1">
-                <div className="event-card2-price">Rp 1.000.000</div>
+                <div className="event-card2-price">
+                  {" "}
+                  Rp {props.price.toLocaleString()}
+                </div>
               </div>
               <div className="event-card2-cov-down-2">
                 <div className="event-card2-btn cart-btn">

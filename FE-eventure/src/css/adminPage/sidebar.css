@@ -11,4 +11,34 @@
         @apply ease-in-out duration-300 shadow-[3px_2px_0_#03002D];
     }
 
+  .notifications-icon{
+    @apply flex items-center justify-center border-[2.5px] border-[#04002D] shadow-[3px_2px_0_#04002D];
+  }
+
+  .notifications-icon{
+    @apply w-[40px] h-[40px] p-2;
+  }
+
+  .notifications-icon{
+    @apply bg-neutral;
+  }
+
+
+
+  .indicator {
+    @apply relative;
+  }
+
+  .indicator:hover {
+    @apply ease-in-out duration-300 scale-90;
+  }
+
+  .indicator:hover .notifications-icon {
+    @apply shadow-[3px_2px_0_#04002D];
+  }
+
+  .notifications-icon:hover {
+    @apply transform-none;
+  }
+
 }

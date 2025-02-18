@@ -1,6 +1,4 @@
-import Link from "next/link";
-
-export function ListDataItem() {
+export function AttandanceDetListItem() {
   return (
     <>
       <tr>
@@ -20,22 +18,18 @@ export function ListDataItem() {
               </div>
             </div>
             <div>
-              <div className="font-bold">Hart Hagerty</div>
+              <div className="font-bold">Blackpink Comeback</div>
               <div className="text-sm opacity-50">United States</div>
             </div>
           </div>
         </td>
         <td>
-          Blackpink Comeback
-          <br />
-          <span className="badge badge-ghost badge-sm">Music & Concert</span>
+          <label>
+            <input type="checkbox" className="checkbox" />
+          </label>
         </td>
-        <td>2</td>
-        <td>$20</td>
         <th>
-          <button className="btn btn-ghost btn-xs">
-            <Link href="/admin/transactions/1">Details</Link>
-          </button>
+          <button className="btn btn-primary">Save</button>
         </th>
       </tr>
     </>
