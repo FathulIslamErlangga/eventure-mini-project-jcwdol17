@@ -7,6 +7,7 @@ interface EventCard3Props {
 }
 
 export function EventCard3({ onEdit }: EventCard3Props) {
+  
   return (
     <>
       <Link href="/events/id">

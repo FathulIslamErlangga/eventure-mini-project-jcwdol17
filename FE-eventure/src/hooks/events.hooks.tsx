@@ -23,11 +23,11 @@ const eventsHooks = (): eventsProps => {
     }
   };
 
-  const getEventData = async () => {
+  const getEventData = async (page: number = 1) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await getEvents();
+      const response = await getEvents(page);
       console.log("response get:", response);
       setEvents(response);
       setMessage(response.message);
@@ -42,7 +42,7 @@ const eventsHooks = (): eventsProps => {
   };
 
   useEffect(() => {
-    getEventData();
+    getEventData(1);
   }, []);
 
   return {
@@ -52,6 +52,7 @@ const eventsHooks = (): eventsProps => {
     loading,
     error,
     eventsCreated,
+    getEventData
   };
 };
 
