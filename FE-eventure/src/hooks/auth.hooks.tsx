@@ -33,7 +33,7 @@ const authHooks = (): AuthProps => {
     if (token) {
       getUsers(token as string);
     }
-  }, []);
+  }, [getCookie("jwt")]);
 
   const register = async (data: RegisterData) => {
     try {

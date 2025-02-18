@@ -12,7 +12,6 @@ import { authService } from "../services/authRegister.services";
 import { appError, appSuccsess } from "../utils/responses";
 import { ValidationRequest } from "../utils/interfaceCustom";
 import redis from "../utils/redisClient";
-import { cacheMiddleware } from "../middlewares/cacheMiddleware";
 import { userLogger } from "../utils/logger";
 
 const authServices = new authService();
@@ -66,49 +65,60 @@ export class Auth {
   getUser = asyncHandler(async (req: Request, res: Response) => {
     const Request = req as ValidationRequest;
     const userId = Request.userData.id;
-    const cachedKey = `user:${userId}`;
-    cacheMiddleware(cachedKey, 3600)(req, res, async () => {
-      const user = await prisma.user.findUnique({
-        where: { id: userId },
-        include: {
-          profile: {
-            include: {
-              imageProfile: true,
-              address: true,
-            },
-          },
-        },
-      });
 
-      if (!user) {
-        userLogger.warn(`User not found , ${Request.userData.email}`);
-        throw new appError("user not found", 404);
-      }
-      const getUser = {
-        id: user.id,
-        email: user.email,
-        slug: user.slug,
-        code: user.code,
-        role: user.role,
+    const cachedUser = await redis.get(`user:${userId}`);
+
+    if (cachedUser) {
+      userLogger.info(
+        `Fetched user data from cache, ${Request.userData.email}`
+      );
+      return appSuccsess(
+        200,
+        "Get data user successfully",
+        res,
+        JSON.parse(cachedUser)
+      );
+    }
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      include: {
         profile: {
-          name: user.profile?.name,
-          phone: user.profile?.phone,
-          imageProfile: user.profile?.imageProfile.map((image) => ({
-            id: image.id,
-            imageUrl: image.imageUrl,
-            imageType: image.imageType,
-          })),
-          address: {
-            id: user.profile?.address?.id,
-            address: user.profile?.address?.address,
-            city: user.profile?.address?.city,
+          include: {
+            imageProfile: true,
+            address: true,
           },
         },
-      };
-      await redis.setex(cachedKey, 3600, JSON.stringify(getUser));
-      userLogger.info(`Get data user succsessfully, ${getUser.profile.name}`);
-      appSuccsess(201, "Get data user succsessfully", res, getUser);
+      },
     });
+
+    if (!user) {
+      userLogger.warn(`User not found , ${Request.userData.email}`);
+      throw new appError("user not found", 404);
+    }
+    const getUser = {
+      id: user.id,
+      email: user.email,
+      slug: user.slug,
+      code: user.code,
+      role: user.role,
+      profile: {
+        name: user.profile?.name,
+        phone: user.profile?.phone,
+        imageProfile: user.profile?.imageProfile.map((image) => ({
+          id: image.id,
+          imageUrl: image.imageUrl,
+          imageType: image.imageType,
+        })),
+        address: {
+          id: user.profile?.address?.id,
+          address: user.profile?.address?.address,
+          city: user.profile?.address?.city,
+        },
+      },
+    };
+    await redis.setex(`user:${userId}`, 3600, JSON.stringify(getUser));
+    userLogger.info(`Get data user succsessfully, ${getUser.profile.name}`);
+    appSuccsess(201, "Get data user succsessfully", res, getUser);
   });
 
   // forgot password
