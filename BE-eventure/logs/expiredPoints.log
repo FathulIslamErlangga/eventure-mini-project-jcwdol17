@@ -59,3 +59,169 @@ Please make sure your database server is running at `aws-0-ap-southeast-1.pooler
 2025-02-18T08:52:03.985Z [INFO]: Batch 1 poin referral expired diproses.
 2025-02-18T08:53:00.703Z [INFO]: Running cron job: Deleting expired referral points...
 2025-02-18T08:53:01.488Z [INFO]: No expired points found.
+2025-02-18T12:39:00.419Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:39:01.038Z [ERROR]: Error in cronjob: PrismaClientValidationError: 
+Invalid `prisma.pointLog.findMany()` invocation in
+C:\Users\User\Documents\latihan\mini-project\be-eventure\src\cronJob\expiredReferralPoint.ts:17:50
+
+  14 const warningThreshold = new Date();
+  15 warningThreshold.setDate(now.getDate() + 3);
+  16 
+→ 17 const warningPoint = await prisma.pointLog.findMany({
+       where: {
+         expirationDate: {
+           gte: new Date("2025-02-18T12:39:00.961Z"),
+           lte: new Date("2025-02-21T12:39:00.961Z")
+         },
+         type: "EARNED"
+       },
+       include: {
+         wallet: {
+           select: {
+           ~~~~~~
+             id: true,
+             points: true
+           },
+           include: {
+           ~~~~~~~
+             user: true
+           }
+         }
+       }
+     })
+
+Please either use `include` or `select`, but not both at the same time.
+2025-02-18T12:40:00.639Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:40:02.013Z [ERROR]: Error in cronjob: PrismaClientValidationError: 
+Invalid `prisma.pointLog.findMany()` invocation in
+C:\Users\User\Documents\latihan\mini-project\be-eventure\src\cronJob\expiredReferralPoint.ts:17:50
+
+  14 const warningThreshold = new Date();
+  15 warningThreshold.setDate(now.getDate() + 3);
+  16 
+→ 17 const warningPoint = await prisma.pointLog.findMany({
+       where: {
+         expirationDate: {
+           gte: new Date("2025-02-18T12:40:02.004Z"),
+           lte: new Date("2025-02-21T12:40:02.004Z")
+         },
+         type: "EARNED"
+       },
+       include: {
+         wallet: {
+           select: {
+           ~~~~~~
+             id: true,
+             points: true
+           },
+           include: {
+           ~~~~~~~
+             user: true
+           }
+         }
+       }
+     })
+
+Please either use `include` or `select`, but not both at the same time.
+2025-02-18T12:41:00.762Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:41:01.256Z [ERROR]: Error in cronjob: PrismaClientValidationError: 
+Invalid `prisma.pointLog.findMany()` invocation in
+C:\Users\User\Documents\latihan\mini-project\be-eventure\src\cronJob\expiredReferralPoint.ts:17:50
+
+  14 const warningThreshold = new Date();
+  15 warningThreshold.setDate(now.getDate() + 3);
+  16 
+→ 17 const warningPoint = await prisma.pointLog.findMany({
+       where: {
+         expirationDate: {
+           gte: new Date("2025-02-18T12:41:01.243Z"),
+           lte: new Date("2025-02-21T12:41:01.243Z")
+         },
+         type: "EARNED"
+       },
+       include: {
+         wallet: {
+           select: {
+           ~~~~~~
+             id: true,
+             points: true
+           },
+           include: {
+           ~~~~~~~
+             user: true
+           }
+         }
+       }
+     })
+
+Please either use `include` or `select`, but not both at the same time.
+2025-02-18T12:42:00.438Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:42:01.087Z [ERROR]: Error in cronjob: PrismaClientValidationError: 
+Invalid `prisma.pointLog.findMany()` invocation in
+C:\Users\User\Documents\latihan\mini-project\be-eventure\src\cronJob\expiredReferralPoint.ts:17:50
+
+  14 const warningThreshold = new Date();
+  15 warningThreshold.setDate(now.getDate() + 3);
+  16 
+→ 17 const warningPoint = await prisma.pointLog.findMany({
+       where: {
+         expirationDate: {
+           gte: new Date("2025-02-18T12:42:01.080Z"),
+           lte: new Date("2025-02-21T12:42:01.080Z")
+         },
+         type: "EARNED"
+       },
+       include: {
+         wallet: {
+           select: {
+           ~~~~~~
+             id: true,
+             points: true
+           },
+           include: {
+           ~~~~~~~
+             user: true
+           }
+         }
+       }
+     })
+
+Please either use `include` or `select`, but not both at the same time.
+2025-02-18T12:44:00.345Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:44:07.017Z [ERROR]: Error in cronjob: PrismaClientInitializationError: 
+Invalid `prisma.pointLog.findMany()` invocation in
+C:\Users\User\Documents\latihan\mini-project\be-eventure\src\cronJob\expiredReferralPoint.ts:17:50
+
+  14 const warningThreshold = new Date();
+  15 warningThreshold.setDate(now.getDate() + 3);
+  16 
+→ 17 const warningPoint = await prisma.pointLog.findMany(
+Can't reach database server at `aws-0-ap-southeast-1.pooler.supabase.com:6543`
+
+Please make sure your database server is running at `aws-0-ap-southeast-1.pooler.supabase.com:6543`.
+2025-02-18T12:45:00.399Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:45:08.342Z [INFO]: Batch 1 poin referral expired diproses.
+2025-02-18T12:46:00.045Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:46:00.993Z [INFO]: No expired points found.
+2025-02-18T12:47:00.312Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:47:01.331Z [INFO]: No expired points found.
+2025-02-18T12:48:00.939Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:48:02.001Z [INFO]: No expired points found.
+2025-02-18T12:49:00.124Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:49:01.692Z [INFO]: No expired points found.
+2025-02-18T12:50:00.195Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:50:02.921Z [INFO]: No expired points found.
+2025-02-18T12:51:00.079Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:51:02.246Z [INFO]: No expired points found.
+2025-02-18T12:52:00.859Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:52:04.480Z [INFO]: No expired points found.
+2025-02-18T12:53:00.814Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:53:01.689Z [INFO]: No expired points found.
+2025-02-18T12:55:00.442Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:55:02.593Z [INFO]: Batch 1 poin referral expired diproses.
+2025-02-18T12:57:00.278Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:57:01.956Z [INFO]: No expired points found.
+2025-02-18T12:58:00.949Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T12:58:02.991Z [INFO]: No expired points found.
+2025-02-18T13:01:00.282Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-18T13:01:12.110Z [INFO]: Batch 1 poin referral expired diproses.

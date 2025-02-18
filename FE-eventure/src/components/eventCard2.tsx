@@ -22,7 +22,9 @@ export function EventCard2(props: IEvents & { category?: { name: string } }) {
           </div>
           <div className="event-card2-cov">
             <div className="event-card2-cov-up">
-              <div className="event-card2-ctg">{props.category?.name || 'Uncategorized'}</div>
+              <div className="event-card2-ctg">
+                {props.category?.name || "Uncategorized"}
+              </div>
               <div className="event-card2-date">
                 {new Date(props.startDate).toLocaleDateString("en-US", {
                   day: "2-digit",
@@ -36,10 +38,7 @@ export function EventCard2(props: IEvents & { category?: { name: string } }) {
             </div>
             <div className="event-card2-cov-down">
               <div className="event-card2-cov-down-1">
-                <div className="event-card2-price">
-                  {" "}
-                  Rp {props.price.toLocaleString()}
-                </div>
+                <div className="event-card2-price"> Rp {props.price}</div>
               </div>
               <div className="event-card2-cov-down-2">
                 <div className="event-card2-btn cart-btn">

@@ -9,7 +9,6 @@ import Link from "next/link";
 
 const SignIn = () => {
   const { auth } = useAuth();
-  const getSlug = auth.user?.data.slug;
   const [formData, setFormData] = useState<LoginData>({
     email: "",
     password: "",
@@ -17,9 +16,6 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const router = useRouter();
 
-  // if (getSlug) {
-  //   throw new Error("test");
-  // }
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setFormData({ ...formData, [e.target.name]: value });
@@ -32,8 +28,7 @@ const SignIn = () => {
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     await auth.login(formData);
-
-    setTimeout(() => router.push(`/eprofile/${getSlug}`), 1000);
+    setTimeout(() => router.push(`/eprofile/${auth.user?.data.slug}`), 1000);
   };
   const handleSendMailForgot = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -3,7 +3,7 @@ import { INotification } from "../utils/interfaceCustom";
 import { notifLogger } from "../utils/logger";
 import prisma from "../utils/prismaClient";
 
-export class Nofication {
+export class Notification {
   createNotification = async (create: INotification) => {
     try {
       const created = await prisma.notification.create({
