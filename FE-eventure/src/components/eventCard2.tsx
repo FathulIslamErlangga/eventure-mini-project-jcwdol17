@@ -5,9 +5,6 @@ import useEvent from "@/hooks/useEvent.hooks";
 import { IEvents } from "@/utils/interfaces/interfaces";
 
 export function EventCard2(props: IEvents) {
- 
-
-
   return (
     <>
       <Link href={`/events/${props.slug}`}>

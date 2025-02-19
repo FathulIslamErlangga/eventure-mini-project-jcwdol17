@@ -6,6 +6,7 @@ import { EventCard } from "../eventCard";
 import useEvent from "@/hooks/useEvent.hooks";
 import React, { useState, useEffect, useMemo } from "react";
 import { IEvents } from "@/utils/interfaces/interfaces";
+import { EventCardSkeleton } from "../eventCard.skeleton";
 
 export function UpComingEvents() {
   const { events, categories } = useEvent();
@@ -52,32 +53,7 @@ export function UpComingEvents() {
     fetchEvents();
   }, [getEventData, getevent]);
 
-  if (isLoading) {
-    return (
-      <div className="upcoming-events">
-        <div className="ue-title">
-          <div className="ue-title-text">
-            <span>Upcoming Events</span>
-          </div>
-        </div>
-        <div className="ue-content">Loading events...</div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="upcoming-events">
-        <div className="ue-title">
-          <div className="ue-title-text">
-            <span>Upcoming Events</span>
-          </div>
-        </div>
-        <div className="ue-content">{error}</div>
-      </div>
-    );
-  }
-
+ 
   return (
     <div className="upcoming-events">
       <div className="ue-title">
@@ -87,7 +63,7 @@ export function UpComingEvents() {
       </div>
       <div className="ue-content">
         {isLoading ? (
-          <div className="loading-spinner"></div>
+          <EventCardSkeleton/>
         ) : error ? (
           <div className="error-message">{error}</div>
         ) : eventsWithCategories.length === 0 ? (
@@ -100,7 +76,7 @@ export function UpComingEvents() {
       </div>
       <div className="ue-content-2">
         {isLoading ? (
-          <div className="loading-spinner"></div>
+          <EventCardSkeleton/>
         ) : error ? (
           <div className="error-message">{error}</div>
         ) : eventsWithCategories.length === 0 ? (

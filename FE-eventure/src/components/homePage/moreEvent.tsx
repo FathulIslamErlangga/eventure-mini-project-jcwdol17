@@ -5,6 +5,7 @@ import { useMemo, useState, useEffect } from "react";
 import useEvent from "@/hooks/useEvent.hooks";
 import { IEvents } from "@/utils/interfaces/interfaces";
 import Link from 'next/link';
+import { EventCardSkeleton } from "../eventCard.skeleton";
 
 export function MoreEvent() {
   const { events, categories} = useEvent();
@@ -66,7 +67,11 @@ export function MoreEvent() {
       </div>
       <div className="moreEvent-content">
         {isLoading ? (
-          <div className="loading-spinner">Loading events...</div>
+          (<div className="moreEvent-skeleton-container">
+            {[...Array(4)].map((_, index) => (
+              <EventCardSkeleton key={index} />
+            ))}
+          </div>)
         ) : error ? (
           <div className="error-message">{error}</div>
         ) : eventsWithCategories.length === 0 ? (
