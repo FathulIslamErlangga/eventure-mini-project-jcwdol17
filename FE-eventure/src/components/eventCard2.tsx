@@ -4,7 +4,10 @@ import Link from "next/link";
 import useEvent from "@/hooks/useEvent.hooks";
 import { IEvents } from "@/utils/interfaces/interfaces";
 
-export function EventCard2(props: IEvents & { category?: { name: string } }) {
+export function EventCard2(props: IEvents) {
+ 
+
+
   return (
     <>
       <Link href={`/events/${props.slug}`}>
@@ -23,7 +26,7 @@ export function EventCard2(props: IEvents & { category?: { name: string } }) {
           <div className="event-card2-cov">
             <div className="event-card2-cov-up">
               <div className="event-card2-ctg">
-                {props.category?.name || "Uncategorized"}
+                {props.category && props.category.name}
               </div>
               <div className="event-card2-date">
                 {new Date(props.startDate).toLocaleDateString("en-US", {

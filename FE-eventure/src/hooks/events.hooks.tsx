@@ -1,7 +1,7 @@
 import { createEvents, getEvents, getEventsSlug } from "@/services/events.services";
 import { eventsProps } from "@/utils/interfaces/contextsInterface";
-import { eventsResponse, getEvent } from "@/utils/interfaces/customInsterface";
-import { useEffect, useState} from "react";
+import { eventsResponse, getEvent, Meta } from "@/utils/interfaces/customInsterface";
+import { useEffect, useState } from "react";
 
 const eventsHooks = (): eventsProps => {
   const [event, setEvent] = useState<eventsResponse>();
@@ -46,14 +46,28 @@ const eventsHooks = (): eventsProps => {
     getEventData(1);
   }, []);
 
-
-  const getEventBySlug = async (slug: string) => {
+  const getEventBySlug = async (slug: string): Promise<eventsResponse> => {
     setLoading(true);
     setError(null);
     try {
       const response = await getEventsSlug(slug);
       console.log("response get by slug:", response);
-      setEventBySlug(response);
+      
+      // Convert eventsResponse to getEvent
+      const getEventResponse: getEvent = {
+        message: response.message,
+        data: [response.data],  // Wrap single event in array
+        meta: {
+          currentPage: 1,
+          totalPages: 1,
+          totalItems: 1,
+          perPage: 1,
+          hasNextPage: false,
+          hasPrevPage: false
+        }
+      };
+      
+      setEventBySlug(getEventResponse);
       setMessage(response.message);
       return response;
     } catch (error: any) {

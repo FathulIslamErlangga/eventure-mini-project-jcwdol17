@@ -108,8 +108,11 @@ export interface IEvents {
   availableSeats: number;
   categoryId: ICategory;
   addressId: IAddress;
-  gallery: IGallery[];
+  address?: IAddress;
   organizerId: IUsers;
+  organizer?: IUsers;
+  category?: ICategory;
+  gallery: IGallery[];
   transactions: ITransactions[];
   reviews: IReviews[];
   vouchers: IVoucher[];

@@ -6,7 +6,7 @@ import { IEvents } from "@/utils/interfaces/interfaces";
 export function EDPHeader(props: IEvents) {
   return (
     <div className="ed-header">
-      <Link href={`/eo/`}>
+      <Link href={`/eo/${props.organizer && props.organizer.slug}`}>
         <div className="ed-header-eo">
           <div className="ed-header-eo-pic">
             <Image
@@ -18,7 +18,7 @@ export function EDPHeader(props: IEvents) {
           </div>
           <div className="ed-header-eo-iden">
             <div className="ed-header-eo-iden-name">
-              <span>{props.name}</span>
+              <span>{props.organizer?.profile?.name}</span>
             </div>
             <div className="ed-header-eo-iden-rating">
               <div className="ed-header-eo-iden-rating-num">

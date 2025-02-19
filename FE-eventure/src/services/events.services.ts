@@ -25,9 +25,9 @@ export const getEvents = async (page: number = 1) => {
   }
 };
 
-export const getEventsSlug = async (slug: string) => {
+export const getEventsSlug = async (slug: string): Promise<eventsResponse> => {
   try {
-    const response = await api.get<getEvent>(`/events/v3/${slug}`);
+    const response = await api.get<eventsResponse>(`/events/v3/${slug}`);
     console.log("response get:", response.data);
     return response.data;
   } catch (error) {

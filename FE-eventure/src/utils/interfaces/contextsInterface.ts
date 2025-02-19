@@ -1,4 +1,5 @@
 import {
+  addressResponse,
   categoriesResponse,
   createEvents,
   eventsResponse,
@@ -41,11 +42,16 @@ export interface eventsProps {
   error: string | null;
   eventsCreated: (create: FormData) => Promise<void>;
   getEventData: (page?: number) => Promise<void>;
-  getEventBySlug: (slug: string) => Promise<getEvent>;
+  getEventBySlug: (slug: string) => Promise<eventsResponse>;
 }
 
 export interface categoriesProps {
   category: categoriesResponse | undefined;
+  message: string | undefined;
+}
+
+export interface addressProps {
+  address: addressResponse | undefined;
   message: string | undefined;
 }
 

@@ -77,6 +77,7 @@ export interface createEvents {
 export interface eventsResponse {
   message: string;
   data: IEvents;
+  meta?: Meta;  
 }
 export interface categoriesResponse {
   message: string;

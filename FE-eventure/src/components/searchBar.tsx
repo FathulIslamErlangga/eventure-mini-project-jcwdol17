@@ -33,7 +33,6 @@ export function SearchBar({
   const { category } = categories;
   
   // Debug the first event's addressId structure
-  console.log('Test');
   console.log(getevent?.data);
   
   // Get unique cities from events data
@@ -42,9 +41,9 @@ export function SearchBar({
     
     const cities = getevent.data
       .map((event) => {
-        console.log("Event addressId structure:", event.addressId);
+        console.log("Event addressId structure:", event.address);
         // Access city from the first address in the array
-        return event.addressId?.city || null;
+        return event.address?.city || null;
       })
       .filter((city): city is string => Boolean(city));
     
@@ -101,6 +100,9 @@ export function SearchBar({
               onChange={(e) => setSelectedLocation(e.target.value)}
               className="dropdown-select"
             >
+               <option value='' selected>
+                  City
+                </option>
               {uniqueCities.map((city) => (
                 <option key={city} value={city}>
                   {city}
@@ -121,6 +123,9 @@ export function SearchBar({
               onChange={(e) => setSelectedCategory(e.target.value)}
               className="dropdown-select"
             >
+              <option value='' selected>
+                Category
+              </option>
               {categoryList.map((cat) => (
                 <option key={cat.id} value={cat.name}>
                   {cat.name}

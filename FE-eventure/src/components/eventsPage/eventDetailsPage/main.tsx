@@ -9,7 +9,7 @@ import { useParams } from "next/navigation";
 import { IEvents } from "@/utils/interfaces/interfaces";
 
 export function EventDetailsPage() {
-  const [event, setEvent] = useState<IEvents | undefined>();
+  const [event, setEvent] = useState<IEvents>();
   const { events } = useEvent();
   const { getEventBySlug, loading, error } = events;
 
@@ -19,25 +19,34 @@ export function EventDetailsPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log("Current Slug:", slug);
         const response = await getEventBySlug(slug);
         console.log("Event Data:", response.data);
-        setEvent(response.data?.[0]);
+
+        // Directly set the single event from response
+        if (response.data) {
+          console.log("Setting Event:", response.data);
+          setEvent(response.data);
+        } else {
+          console.error("No events found for slug:", slug);
+        }
       } catch (error) {
-        console.error("Error fetching event:", error);
+        console.error("Complete Error Object:", error);
+        console.error("Error fetching event for slug:", slug);
       }
     };
 
     fetchData();
-  }, [getEventBySlug, slug]);
+  }, [slug]);
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-  if (!event) return <div>Event not found</div>;
-
+  if (error) return <div>Error loading event</div>;
+  if (!event) return <div>No event found</div>;
+  
   return (
     <div className="event-details-page">
       <EDPHeader {...event} />
-      {/* <EventDetailsContent {...event} /> */}
+      <EventDetailsContent {...event} />
       <Review />
     </div>
   );

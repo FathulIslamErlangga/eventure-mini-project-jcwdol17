@@ -27,7 +27,12 @@ export function EventsPage() {
       );
       return {
         ...event,
-        category: eventCategory || { name: "Uncategorized" },
+        category: eventCategory || { 
+          name: "Uncategorized", 
+          id: "", 
+          slug: "",
+          events: []
+        },
       };
     });
   }, [getevent?.data, category?.data]);
@@ -45,24 +50,41 @@ export function EventsPage() {
   }, [getevent?.meta]);
 
   const filteredEvents = useMemo(() => {
-    if (!eventsWithCategories) return [];
+    if (!getevent?.data) return [];
 
-    return eventsWithCategories.filter((event) => {
-      const matchesSearch =
-        !searchQuery ||
-        event.name.toLowerCase().includes(searchQuery) ||
-        event.description.toLowerCase().includes(searchQuery);
+    return getevent.data
+      .map((event) => {
+        const eventCategory = category?.data.find(
+          (cat) => cat.id === (event.categoryId as unknown as string)
+        );
 
-      const matchesLocation =
-        !locationFilter || event.addressId?.city?.toLowerCase().includes(locationFilter);
+        return {
+          ...event,
+          category: eventCategory || { 
+            name: "Uncategorized", 
+            id: "", 
+            slug: "",
+            events: []
+          },
+        };
+      })
+      .filter((event) => {
+        const matchesSearch =
+          !searchQuery ||
+          event.name.toLowerCase().includes(searchQuery) ||
+          event.description.toLowerCase().includes(searchQuery);
 
-      const matchesCategory =
-        !categoryFilter ||
-        event.category.name.toLowerCase().includes(categoryFilter);
+        const matchesLocation =
+          !locationFilter ||
+          event.address?.city?.toLowerCase().includes(locationFilter);
 
-      return matchesSearch && matchesLocation && matchesCategory;
-    });
-  }, [eventsWithCategories, searchQuery, locationFilter, categoryFilter]);
+        const matchesCategory =
+          !categoryFilter ||
+          event.category.name.toLowerCase().includes(categoryFilter);
+
+        return matchesSearch && matchesLocation && matchesCategory;
+      });
+  }, [getevent?.data, searchQuery, locationFilter, categoryFilter]);
 
   return (
     <div className="events-page">
