@@ -95,7 +95,7 @@ const expiredReferralPoint = new Worker(
   { connection: redis }
 );
 export default expiredReferralPoint;
-cron.schedule("*/1 * * * *", async () => {
+cron.schedule("0 0 * * *", async () => {
   cronLogger.info("Running cron job: Deleting expired referral points...");
 
   await pointExpiredQueue.add("expired-points", {});
