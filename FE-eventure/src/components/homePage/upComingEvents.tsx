@@ -7,6 +7,7 @@ import useEvent from "@/hooks/useEvent.hooks";
 import React, { useState, useEffect, useMemo } from "react";
 import { IEvents } from "@/utils/interfaces/interfaces";
 import { EventCardSkeleton } from "../eventCard.skeleton";
+import { NoData } from "../noData";
 
 export function UpComingEvents() {
   const { events, categories } = useEvent();
@@ -53,7 +54,6 @@ export function UpComingEvents() {
     fetchEvents();
   }, [getEventData, getevent]);
 
- 
   return (
     <div className="upcoming-events">
       <div className="ue-title">
@@ -63,9 +63,11 @@ export function UpComingEvents() {
       </div>
       <div className="ue-content">
         {isLoading ? (
-          <EventCardSkeleton/>
+          <EventCardSkeleton />
         ) : error ? (
-          <div className="error-message">{error}</div>
+          <>
+            <NoData messages={error} />
+          </>
         ) : eventsWithCategories.length === 0 ? (
           <div className="no-events">No events available</div>
         ) : (
@@ -76,7 +78,7 @@ export function UpComingEvents() {
       </div>
       <div className="ue-content-2">
         {isLoading ? (
-          <EventCardSkeleton/>
+          <EventCardSkeleton />
         ) : error ? (
           <div className="error-message">{error}</div>
         ) : eventsWithCategories.length === 0 ? (

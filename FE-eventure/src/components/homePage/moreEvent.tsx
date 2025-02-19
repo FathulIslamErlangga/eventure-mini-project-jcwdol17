@@ -1,14 +1,15 @@
-'use client';
+"use client";
 import "@/css/homePage/moreEvent.css";
 import { EventCard2 } from "../eventCard2";
 import { useMemo, useState, useEffect } from "react";
 import useEvent from "@/hooks/useEvent.hooks";
 import { IEvents } from "@/utils/interfaces/interfaces";
-import Link from 'next/link';
+import Link from "next/link";
 import { EventCardSkeleton } from "../eventCard.skeleton";
+import { NoData } from "../noData";
 
 export function MoreEvent() {
-  const { events, categories} = useEvent();
+  const { events, categories } = useEvent();
   const { category } = categories;
   const { getevent, getEventData } = events;
   const [eventList, setEventList] = useState<IEvents[]>([]);
@@ -24,11 +25,11 @@ export function MoreEvent() {
       );
       return {
         ...event,
-        category: eventCategory || { 
-          name: "Uncategorized", 
-          id: "", 
+        category: eventCategory || {
+          name: "Uncategorized",
+          id: "",
           slug: "",
-          events: []
+          events: [],
         },
       };
     });
@@ -52,34 +53,35 @@ export function MoreEvent() {
     fetchEvents();
   }, [getEventData, getevent]);
 
-
   return (
-       <div className="moreEvent">
+    <div className="moreEvent">
       <div className="moreEvent-title">
         <div className="moreEvent-title-text">
           <span>More Event</span>
         </div>
-        <Link href='/events'>
-        <div className="moreEvent-title-btn">
-          <span>See More</span>
-        </div>
+        <Link href="/events">
+          <div className="moreEvent-title-btn">
+            <span>See More</span>
+          </div>
         </Link>
       </div>
       <div className="moreEvent-content">
         {isLoading ? (
-          (<div className="moreEvent-skeleton-container">
-            {[...Array(4)].map((_, index) => (
+          <div className="moreEvent-skeleton-container">
+            {[...Array(3)].map((_, index) => (
               <EventCardSkeleton key={index} />
             ))}
-          </div>)
+          </div>
         ) : error ? (
-          <div className="error-message">{error}</div>
+          <>
+            <NoData messages={error} />
+          </>
         ) : eventsWithCategories.length === 0 ? (
           <div className="no-events">No events available</div>
         ) : (
-          eventsWithCategories.slice(0, 4).map((event) => (
-            <EventCard2 key={event.id} {...event} />
-          ))
+          eventsWithCategories
+            .slice(0, 4)
+            .map((event) => <EventCard2 key={event.id} {...event} />)
         )}
       </div>
     </div>

@@ -107,7 +107,7 @@
     }
 
     .eventdate-content-2-2{
-        @apply w-full md:w-full lg:w-fit h-fit flex flex-col gap-5 p-3 border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-[10px];
+        @apply w-full h-fit flex flex-col gap-1 p-3 border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-[10px];
     }
 
     .eventdate-content-2-2-title{
@@ -117,7 +117,7 @@
 
     .eventdate-content-2-2-location{
         font-family: var(--font-archivo-bold);
-        @apply w-full md:w-full lg:w-fit h-fit text-[18px] text-[#04002D] p-3 flex flex-col gap-1;
+        @apply w-full h-fit text-[18px] text-[#04002D] p-3 flex flex-col gap-1;
     }
 
 

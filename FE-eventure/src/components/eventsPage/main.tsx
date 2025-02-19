@@ -6,6 +6,8 @@ import { EventCard2 } from "../eventCard2";
 import useEvent from "@/hooks/useEvent.hooks";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { EventCardSkeleton } from "../eventCard.skeleton";
+import { NoData } from "../noData";
 
 export function EventsPage() {
   const { events, categories } = useEvent();
@@ -27,11 +29,11 @@ export function EventsPage() {
       );
       return {
         ...event,
-        category: eventCategory || { 
-          name: "Uncategorized", 
-          id: "", 
+        category: eventCategory || {
+          name: "Uncategorized",
+          id: "",
           slug: "",
-          events: []
+          events: [],
         },
       };
     });
@@ -60,11 +62,11 @@ export function EventsPage() {
 
         return {
           ...event,
-          category: eventCategory || { 
-            name: "Uncategorized", 
-            id: "", 
+          category: eventCategory || {
+            name: "Uncategorized",
+            id: "",
             slug: "",
-            events: []
+            events: [],
           },
         };
       })
@@ -100,16 +102,22 @@ export function EventsPage() {
         </div>
       </div>
       <div className="events-content">
-        <div className="events-content-1">
+        <div className="w-full h-fit">
           {loading ? (
-            <p>Loading...</p>
+            <div className="w-full h-fit flex flex-col md:flex-row lg:flex-row gap-2">
+              <EventCardSkeleton />
+              <EventCardSkeleton />
+              <EventCardSkeleton />
+            </div>
           ) : filteredEvents.length > 0 ? (
-            filteredEvents.map((event) => (
-              <EventCard2 key={event.id} {...event} />
-            ))
+            <div className="events-content-1">
+              {filteredEvents.map((event) => (
+                <EventCard2 key={event.id} {...event} />
+              ))}
+            </div>
           ) : (
             <>
-              <p>Error: {error}</p>
+              <NoData messages={`${error}`} />
             </>
           )}
         </div>

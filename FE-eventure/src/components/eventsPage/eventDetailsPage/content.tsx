@@ -1,20 +1,29 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import "@/css/eventsPage/eventDetailsPage/eventContent.css";
 import "@/css/eventsPage/eventCard2.css";
 import "@/css/homePage/jumbotronStyle.css";
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import { IEvents } from "@/utils/interfaces/interfaces";
+import { useRouter } from "next/navigation";
 
 export function EventDetailsContent(props: IEvents) {
   const [count, setCount] = useState(0);
+  const router = useRouter();
+  
   const increment = () => {
     setCount(count + 1);
   };
 
   const decrement = () => {
     setCount(count > 0 ? count - 1 : 0); // Prevent negative count
+  };
+
+  const handleBuyNow = () => {
+    // Navigate to transaction page with query parameters
+    router.push(`/transaction/id`);
   };
 
 
@@ -61,15 +70,17 @@ export function EventDetailsContent(props: IEvents) {
               +
             </div>
           </div>
-          <div className="btn-buy-now">
-            <Image
-              src="/assets/images/icons/dollar.svg"
-              alt="buy"
-              width={30}
-              height={30}
-            />
-            <span>Buy Now</span>
-          </div>
+        
+            <div className="btn-buy-now" onClick={handleBuyNow}>
+              <Image
+                src="/assets/images/icons/dollar.svg"
+                alt="buy"
+                width={30}
+                height={30}
+              />
+              <span>Buy Now</span>
+            </div>
+          
           <div className="btn-add-cart">
             <Image
               src="/assets/images/icons/cart.svg"

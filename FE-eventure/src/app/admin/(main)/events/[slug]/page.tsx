@@ -73,13 +73,6 @@ export default function AdminEventDetailsPage() {
                   className="file-input file-input-bordered w-full border-[2.5px] border-[#04002D]"
                 />
               </label>
-              <select className="select select-bordered w-full border-[2.5px] border-[#04002D]">
-              <option disabled selected>
-                Select Status
-              </option>
-              <option>Han Solo</option>
-              <option>Greedo</option>
-            </select>
             </div>
           </div>
           <button className="eventure-button" type="submit">

@@ -1,9 +1,11 @@
-'use client';
+"use client";
 import "@/css/homePage/categoriesStyle.css";
 import { CategoryCard } from "./categoryCard";
 import useEvent from "@/hooks/useEvent.hooks";
 import { ICategory } from "@/utils/interfaces/interfaces";
 import React, { useState, useEffect } from "react";
+import { CategoryCardSkeleton } from "./categoryCard.skeleton";
+import { NoData } from "../noData";
 
 export function Categories() {
   const { categories } = useEvent();
@@ -25,32 +27,6 @@ export function Categories() {
     }
   }, [categories]);
 
-  if (isLoading) {
-    return (
-      <div className="categories">
-        <div className="categories-title">
-          <div className="ctg-title">
-            <span>Categories</span>
-          </div>
-        </div>
-        <div className="categories-content">Loading categories...</div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="categories">
-        <div className="categories-title">
-          <div className="ctg-title">
-            <span>Categories</span>
-          </div>
-        </div>
-        <div className="categories-content">{error}</div>
-      </div>
-    );
-  }
-
   return (
     <div className="categories">
       <div className="categories-title">
@@ -60,9 +36,23 @@ export function Categories() {
         <div className="ctg-image"></div>
       </div>
       <div className="categories-content">
-        {categoryList.map((category: ICategory) => (
-          <CategoryCard key={category.id} {...category} />
-        ))}
+        {isLoading ? (
+          <div className="moreCtg-skeleton-container">
+            {[...Array(5)].map((_, index) => (
+              <CategoryCardSkeleton key={index} />
+            ))}
+          </div>
+        ) : error ? (
+          <div className="error-message">{error}</div>
+        ) : categoryList.length === 0 ? (
+          <>
+            <NoData messages="No Categories" />
+          </>
+        ) : (
+          categoryList.map((category: ICategory) => (
+            <CategoryCard key={category.id} {...category} />
+          ))
+        )}
       </div>
     </div>
   );

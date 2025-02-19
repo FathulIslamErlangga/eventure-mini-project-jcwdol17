@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer components{
+    @keyframes rotateAnimate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .ctg-card-skl {
+        @apply w-fit h-fit flex flex-col gap-2 items-center justify-center scale-75 md:scale-90 lg:scale-100 animate-pulse;
+      }
+
+      .moreCtg-skeleton-container{
+        @apply w-full h-fit flex justify-between items-center;
+      }
+
+      .ctg-skl-pic{
+        @apply w-[180px] h-[180px] rounded-full bg-[#04002d79] flex justify-center items-center p-1;
+        animation: rotateAnimate 10s linear infinite;
+        transform-origin: center center;
+      }
+
+      .cd-skl-layer-1 {
+        @apply w-[150px] h-[150px] rounded-full bg-transparent border-[2px]  border-neutral flex justify-center items-center p-2;
+      }
+    
+      .cd-skl-layer-2 {
+        @apply w-[125px] h-[125px] rounded-full bg-transparent border-[2px]  border-neutral flex justify-center items-center p-2;
+      }
+    
+      .cd-skl-layer-3 {
+        @apply w-[110px] h-[110px] rounded-full bg-transparent border-[2px]  border-neutral flex justify-center items-center p-2;
+      }
+
+      .ctg-card-skl-title {
+        @apply w-[100px] h-[70px] border-[3px] border-[#04002d79] rounded-md p-3 shadow-[6px_4px_0_#04002D] bg-gray-400 animate-pulse;
+      }
+}
