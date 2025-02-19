@@ -17,7 +17,7 @@ export function Jumbotron() {
       try {
         await getEventData(1);
         if (getevent?.data) {
-          setFeaturedEvents(getevent.data.slice(0, 3));
+          setFeaturedEvents(getevent.data.slice(0, 4));
         }
       } catch (err) {
         console.error("Error fetching events:", err);

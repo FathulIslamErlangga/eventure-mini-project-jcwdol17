@@ -48,20 +48,24 @@ export function EventCard2(props: IEvents) {
               </div>
               <div className="event-card2-cov-down-2">
                 <div className="event-card2-btn cart-btn">
+                <Link href={`/events/${props.slug}`}>
                   <Image
                     src="/assets/images/icons/cart.svg"
                     alt="cart"
                     width={30}
                     height={30}
                   />
+                </Link> 
                 </div>
                 <div className="event-card2-btn buy-btn">
+                <Link href={`/events/${props.slug}`}>
                   <Image
                     src="/assets/images/icons/dollar.svg"
                     alt="buy"
                     width={30}
                     height={30}
                   />
+                </Link> 
                 </div>
               </div>
             </div>
