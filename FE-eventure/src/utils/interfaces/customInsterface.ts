@@ -1,4 +1,4 @@
-import { ICategory, IEvents, IGallery, IProfiles, IUsers } from "./interfaces";
+import { ICategory, IEvents, IGallery, IProfiles, IUsers, IAddress } from "./interfaces";
 
 export interface IChangePassword {
   newPassword: string;
@@ -82,8 +82,6 @@ export interface categoriesResponse {
   message: string;
   data: ICategory[];
 }
-
-// Get Event Interface
 export interface Meta {
   currentPage: number;
   totalPages: number;
@@ -96,4 +94,12 @@ export interface getEvent {
   message: string;
   data: IEvents[];
   meta: Meta;
+}
+export interface addressResponse{
+  message: string;
+  data: IAddress[];
+}
+export interface categoryResponse{
+  message: string;
+  data: ICategory[];
 }

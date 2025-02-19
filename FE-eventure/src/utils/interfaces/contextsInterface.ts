@@ -41,6 +41,7 @@ export interface eventsProps {
   error: string | null;
   eventsCreated: (create: FormData) => Promise<void>;
   getEventData: (page?: number) => Promise<void>;
+  getEventBySlug: (slug: string) => Promise<getEvent>;
 }
 
 export interface categoriesProps {

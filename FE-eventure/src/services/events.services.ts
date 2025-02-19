@@ -24,3 +24,13 @@ export const getEvents = async (page: number = 1) => {
     throw error;
   }
 };
+
+export const getEventsSlug = async (slug: string) => {
+  try {
+    const response = await api.get<getEvent>(`/events/v3/${slug}`);
+    console.log("response get:", response.data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

@@ -1,15 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import "@/css/eventsPage/eventDetailsPage/eventDetHeader.css";
+import { IEvents } from "@/utils/interfaces/interfaces";
 
-export function EDPHeader() {
+export function EDPHeader(props: IEvents) {
   return (
     <div className="ed-header">
-      <Link href="/eo/id">
+      <Link href={`/eo/`}>
         <div className="ed-header-eo">
           <div className="ed-header-eo-pic">
             <Image
-              src="/assets/images/contents/eo/Sample 1.jpg"
+              src={"/assets/images/contents/events/Sample 1.jpg"}
               alt="sample-1"
               width={300}
               height={300}
@@ -17,7 +18,7 @@ export function EDPHeader() {
           </div>
           <div className="ed-header-eo-iden">
             <div className="ed-header-eo-iden-name">
-              <span>Disuka EO</span>
+              <span>{props.name}</span>
             </div>
             <div className="ed-header-eo-iden-rating">
               <div className="ed-header-eo-iden-rating-num">
@@ -71,7 +72,16 @@ export function EDPHeader() {
           </div>
           <div className="ed-header-held-dt-text">
             <div className="ed-header-held-dt-text-1">Start Date</div>
-            <div className="ed-header-held-dt-text-2">25-01-2025</div>
+            <div className="ed-header-held-dt-text-2">
+              {new Date(props.startDate)
+                .toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })
+                .split("/")
+                .join("-")}
+            </div>
           </div>
         </div>
         <div className="ed-header-held-dt">
@@ -85,7 +95,16 @@ export function EDPHeader() {
           </div>
           <div className="ed-header-held-dt-text">
             <div className="ed-header-held-dt-text-1">End Date</div>
-            <div className="ed-header-held-dt-text-2">25-01-2025</div>
+            <div className="ed-header-held-dt-text-2">
+              {new Date(props.endDate)
+                .toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })
+                .split("/")
+                .join("-")}
+            </div>
           </div>
         </div>
         <div className="ed-header-held-dt">
