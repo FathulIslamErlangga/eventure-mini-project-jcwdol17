@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    .event-det-skl{
+        @apply w-full h-full flex flex-col gap-4 px-5 py-32;
+    }
+
+    .event-det-skl-header{
+        @apply w-full h-[200px] animate-pulse border-[5px] border-[#04002D79] bg-gray-200 rounded-[5px];
+    }
+
+    .event-det-skl-content{
+        @apply w-full h-[450px] flex gap-3;
+    }
+
+    .event-det-skl-pic{
+        @apply w-full h-full animate-pulse border-[5px] border-[#04002D79] bg-gray-200 rounded-[5px];
+    }
+
+    .event-det-skl-btn{
+        @apply w-[200px] h-full flex flex-col gap-2;
+    }
+
+    .event-det-skl-btn-x{
+        @apply w-full h-[80px] animate-pulse border-[5px] border-[#04002D79] bg-gray-200 rounded-[5px];
+    }
+
+    .event-det-skl-desc{
+        @apply w-full h-[450px] flex flex-row gap-2;
+    }
+
+    .event-det-skl-desc-1{
+        @apply w-full h-full animate-pulse border-[5px] border-[#04002D79] bg-gray-200 rounded-[5px];
+    }
+
+    .event-det-skl-desc-2{
+        @apply w-full h-full animate-pulse border-[5px] border-[#04002D79] bg-gray-200 rounded-[5px];
+    }
+}

@@ -36,16 +36,16 @@ export function About() {
           <div className="about-page-content-2-list">
             <TeamCard
               props={{
-                pic: "herry.JPG",
-                github: "Gutemonmon052",
-              }}
-            />
-            <TeamCard
-              props={{
-                pic: "angga.JPG",
+                pic: "Mas Angga.jpg",
                 github: "FathulIslamErlangga",
               }}
             />
+              <TeamCard
+                props={{
+                  pic: "herry2.JPG",
+                  github: "Gutemonmon052",
+                }}
+              />
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import "@/css/eventsPage/eventCard2.css";
 import Link from "next/link";
+import { IEvents } from "@/utils/interfaces/interfaces";
 
 interface EventCard3Props {
   onEdit?: () => void;

@@ -98,6 +98,14 @@ export function TransactionContent() {
           <div className="transaction-promotion-content">
             <form className="eventure-form" action="">
               <label className="border-[2.5px] border-[#04002D] input input-bordered flex items-center gap-2">
+                Point
+                <input
+                  type="number"
+                  className="grow"
+                  placeholder="10000"
+                />
+              </label>
+              <label className="border-[2.5px] border-[#04002D] input input-bordered flex items-center gap-2">
                 Code
                 <input
                   type="text"

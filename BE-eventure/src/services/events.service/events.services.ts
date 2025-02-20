@@ -60,14 +60,14 @@ export class EventsServices {
     const filters: any = {};
     if (search) {
       filters.OR = [
-        { name: { contains: String(search).toLocaleLowerCase() } },
-        { description: { contains: String(search).toLocaleLowerCase() } },
+        { name: { contains: String(search), mode: "insensitive" } },
+        { description: { contains: String(search), mode: "insensitive" } },
       ];
     }
 
     if (city) {
       filters.address = {
-        city: { contains: String(city).toLocaleLowerCase() },
+        city: { contains: String(city), mode: "insensitive" },
       };
     }
 

@@ -3,12 +3,18 @@ import "@/css/eventsPage/eventCard2.css";
 import Link from "next/link";
 import useEvent from "@/hooks/useEvent.hooks";
 import { IEvents } from "@/utils/interfaces/interfaces";
+import { useLoadingNavigation } from "@/hooks/loadingNav.hook";
 
-export function EventCard2(props: IEvents & { category?: { name: string } }) {
+export function EventCard2(props: IEvents) {
+  const { navigateWithLoading, LoadingWrapper } = useLoadingNavigation();
+  const handleClick = (path: string) => {
+    navigateWithLoading(path);
+  };
   return (
     <>
-      <Link href={`/events/${props.slug}`}>
-        <div className="event-card2">
+      <LoadingWrapper/>
+
+        <div className="event-card2" onClick={() => handleClick(`/events/${props.slug}`)}>
           <div className="event-card2-pic">
             <Image
               src={
@@ -23,7 +29,7 @@ export function EventCard2(props: IEvents & { category?: { name: string } }) {
           <div className="event-card2-cov">
             <div className="event-card2-cov-up">
               <div className="event-card2-ctg">
-                {props.category?.name || "Uncategorized"}
+                {props.category && props.category.name}
               </div>
               <div className="event-card2-date">
                 {new Date(props.startDate).toLocaleDateString("en-US", {
@@ -38,30 +44,37 @@ export function EventCard2(props: IEvents & { category?: { name: string } }) {
             </div>
             <div className="event-card2-cov-down">
               <div className="event-card2-cov-down-1">
-                <div className="event-card2-price"> Rp {props.price}</div>
+                <div className="event-card2-price">
+                  {" "}
+                  Rp {props.price?.toLocaleString()}  
+                </div>
               </div>
               <div className="event-card2-cov-down-2">
                 <div className="event-card2-btn cart-btn">
+                <Link href={`/events/${props.slug}`}>
                   <Image
                     src="/assets/images/icons/cart.svg"
                     alt="cart"
                     width={30}
                     height={30}
                   />
+                </Link> 
                 </div>
-                <div className="event-card2-btn buy-btn">
+                <div className="event-card2-btn buy-btn" onClick={() => handleClick(`/events/${props.slug}`)}>
+                <Link href={`/events/${props.slug}`}>
                   <Image
                     src="/assets/images/icons/dollar.svg"
                     alt="buy"
                     width={30}
                     height={30}
                   />
+                </Link> 
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </Link>
+      
     </>
   );
 }

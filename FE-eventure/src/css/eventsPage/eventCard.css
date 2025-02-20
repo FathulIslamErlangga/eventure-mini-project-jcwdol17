@@ -43,7 +43,7 @@
 
     .event-card-title{
         font-family: var(--font-archivo-bold);
-        @apply w-fit h-fit bg-neutral p-3 text-[22px] md:text-[36px] lg:text-[36px] text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-center rounded-[5px];
+        @apply w-fit h-fit bg-neutral p-3 text-[22px] md:text-[26px] lg:text-[26px] text-[#04002D] border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] text-center rounded-[5px];
     }
 
     .event-card-price{
@@ -52,11 +52,11 @@
     }
 
     .event-card-cov-down-2{
-        @apply w-full h-full flex gap-2 items-end justify-end;
+        @apply w-fit h-full flex gap-2 items-end justify-end;
     }
 
     .event-card-btn{
-        @apply w-fit h-fit p-5 flex justify-center items-center border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] cursor-pointer;
+        @apply w-fit h-fit p-3 flex justify-center items-center border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] cursor-pointer;
     }
 
     .event-card-btn img{
