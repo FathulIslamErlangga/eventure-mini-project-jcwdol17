@@ -275,3 +275,109 @@ Can't reach database server at `aws-0-ap-southeast-1.pooler.supabase.com:6543`
 Please make sure your database server is running at `aws-0-ap-southeast-1.pooler.supabase.com:6543`.
 2025-02-18T13:33:00.367Z [INFO]: Running cron job: Deleting expired referral points...
 2025-02-18T13:33:02.767Z [INFO]: No expired points found.
+2025-02-18T14:39:02.436Z [INFO]: No expired points found.
+2025-02-18T14:40:02.365Z [INFO]: No expired points found.
+2025-02-18T14:42:02.979Z [INFO]: No expired points found.
+2025-02-18T14:46:04.369Z [INFO]: No expired points found.
+2025-02-18T14:47:03.206Z [INFO]: No expired points found.
+2025-02-18T14:48:22.605Z [INFO]: No expired points found.
+2025-02-18T14:49:06.366Z [INFO]: No expired points found.
+2025-02-18T14:51:05.362Z [INFO]: No expired points found.
+2025-02-18T14:56:01.783Z [INFO]: No expired points found.
+2025-02-18T14:57:02.509Z [INFO]: No expired points found.
+2025-02-18T14:58:04.083Z [INFO]: No expired points found.
+2025-02-18T14:59:05.508Z [INFO]: No expired points found.
+2025-02-18T15:00:02.940Z [INFO]: No expired points found.
+2025-02-18T15:02:02.071Z [INFO]: No expired points found.
+2025-02-18T15:04:03.032Z [INFO]: No expired points found.
+2025-02-18T15:05:04.013Z [INFO]: No expired points found.
+2025-02-19T03:17:00.015Z [INFO]: No expired points found.
+2025-02-19T03:17:58.700Z [INFO]: No expired points found.
+2025-02-19T03:20:58.291Z [INFO]: No expired points found.
+2025-02-19T03:21:57.906Z [INFO]: No expired points found.
+2025-02-19T03:22:58.078Z [INFO]: No expired points found.
+2025-02-19T03:23:57.438Z [INFO]: No expired points found.
+2025-02-19T03:24:57.230Z [INFO]: No expired points found.
+2025-02-19T03:25:57.667Z [INFO]: No expired points found.
+2025-02-19T03:26:56.975Z [INFO]: No expired points found.
+2025-02-19T03:31:58.066Z [INFO]: No expired points found.
+2025-02-19T03:32:58.451Z [INFO]: No expired points found.
+2025-02-19T03:33:57.486Z [INFO]: No expired points found.
+2025-02-19T03:40:59.644Z [INFO]: No expired points found.
+2025-02-19T03:41:57.879Z [INFO]: No expired points found.
+2025-02-19T03:45:04.308Z [ERROR]: Error in cronjob: PrismaClientInitializationError: 
+Invalid `prisma.pointLog.findMany()` invocation in
+C:\Users\User\Documents\latihan\mini-project\be-eventure\src\cronJob\expiredReferralPoint.ts:17:50
+
+  14 const warningThreshold = new Date();
+  15 warningThreshold.setDate(now.getDate() + 3);
+  16 
+→ 17 const warningPoint = await prisma.pointLog.findMany(
+Can't reach database server at `aws-0-ap-southeast-1.pooler.supabase.com:6543`
+
+Please make sure your database server is running at `aws-0-ap-southeast-1.pooler.supabase.com:6543`.
+2025-02-19T03:51:58.883Z [INFO]: No expired points found.
+2025-02-19T03:52:57.971Z [INFO]: No expired points found.
+2025-02-19T03:55:57.913Z [INFO]: No expired points found.
+2025-02-19T03:56:57.326Z [INFO]: No expired points found.
+2025-02-19T04:08:58.249Z [INFO]: No expired points found.
+2025-02-19T04:10:57.851Z [INFO]: No expired points found.
+2025-02-19T04:11:56.873Z [INFO]: No expired points found.
+2025-02-19T04:15:58.571Z [INFO]: No expired points found.
+2025-02-19T04:16:56.817Z [INFO]: No expired points found.
+2025-02-19T04:20:57.012Z [INFO]: No expired points found.
+2025-02-19T04:21:58.275Z [INFO]: No expired points found.
+2025-02-19T04:22:57.258Z [INFO]: No expired points found.
+2025-02-19T04:25:57.061Z [INFO]: No expired points found.
+2025-02-19T04:28:00.107Z [INFO]: No expired points found.
+2025-02-19T04:28:56.933Z [INFO]: No expired points found.
+2025-02-19T04:29:57.442Z [INFO]: No expired points found.
+2025-02-19T04:31:56.798Z [INFO]: No expired points found.
+2025-02-19T04:32:58.235Z [INFO]: No expired points found.
+2025-02-19T04:33:57.442Z [INFO]: No expired points found.
+2025-02-19T04:34:56.631Z [INFO]: No expired points found.
+2025-02-19T04:35:57.668Z [INFO]: No expired points found.
+2025-02-19T04:36:57.364Z [INFO]: No expired points found.
+2025-02-19T04:37:57.041Z [INFO]: No expired points found.
+2025-02-19T04:42:58.296Z [INFO]: No expired points found.
+2025-02-19T04:43:57.980Z [INFO]: No expired points found.
+2025-02-19T04:44:57.072Z [INFO]: No expired points found.
+2025-02-19T04:45:56.953Z [INFO]: No expired points found.
+2025-02-19T06:20:59.130Z [INFO]: No expired points found.
+2025-02-19T06:24:57.617Z [INFO]: No expired points found.
+2025-02-19T06:25:56.832Z [INFO]: No expired points found.
+2025-02-19T06:29:03.196Z [INFO]: No expired points found.
+2025-02-19T06:31:00.757Z [INFO]: No expired points found.
+2025-02-19T06:32:01.538Z [INFO]: No expired points found.
+2025-02-19T06:33:01.196Z [INFO]: No expired points found.
+2025-02-19T06:37:02.400Z [INFO]: No expired points found.
+2025-02-19T06:39:01.550Z [INFO]: No expired points found.
+2025-02-19T06:40:01.685Z [INFO]: No expired points found.
+2025-02-19T06:41:01.052Z [INFO]: No expired points found.
+2025-02-19T06:42:01.385Z [INFO]: No expired points found.
+2025-02-19T06:43:02.954Z [INFO]: No expired points found.
+2025-02-19T06:44:00.945Z [INFO]: No expired points found.
+2025-02-19T06:45:01.157Z [INFO]: No expired points found.
+2025-02-19T06:46:02.244Z [INFO]: No expired points found.
+2025-02-19T09:34:07.951Z [ERROR]: Error in cronjob: PrismaClientInitializationError: 
+Invalid `prisma.pointLog.findMany()` invocation in
+C:\Users\User\Documents\latihan\mini-project\be-eventure\src\cronJob\expiredReferralPoint.ts:17:50
+
+  14 const warningThreshold = new Date();
+  15 warningThreshold.setDate(now.getDate() + 3);
+  16 
+→ 17 const warningPoint = await prisma.pointLog.findMany(
+Can't reach database server at `aws-0-ap-southeast-1.pooler.supabase.com:6543`
+
+Please make sure your database server is running at `aws-0-ap-southeast-1.pooler.supabase.com:6543`.
+2025-02-19T09:44:05.534Z [INFO]: No expired points found.
+2025-02-19T09:45:03.623Z [INFO]: No expired points found.
+2025-02-19T09:48:02.044Z [INFO]: No expired points found.
+2025-02-19T09:49:03.600Z [INFO]: No expired points found.
+2025-02-19T09:50:01.728Z [INFO]: No expired points found.
+2025-02-19T09:51:02.684Z [INFO]: No expired points found.
+2025-02-19T09:58:04.788Z [INFO]: No expired points found.
+2025-02-19T09:59:01.941Z [INFO]: No expired points found.
+2025-02-19T17:00:00.026Z [INFO]: Running cron job: Deleting expired referral points...
+2025-02-19T17:00:02.294Z [INFO]: No expired points found.
+2025-02-20T16:00:06.117Z [INFO]: No expired points found.

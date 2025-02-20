@@ -12,6 +12,10 @@ import categoryRoute from "./routes/category.route";
 import path from "path";
 import { startCronJobs } from "./utils/cron";
 import addressRoute from "./routes/address.route";
+import cartRoute from "./routes/carts.route";
+import transactionRoute from "./routes/transactions.route";
+import notifRoute from "./routes/notification.route";
+import analyticsRoute from "./routes/analytics,route";
 
 export class App {
   private app: Application;
@@ -38,7 +42,11 @@ export class App {
       eventRoute(),
       reviewRoute(),
       categoryRoute(),
-      addressRoute()
+      addressRoute(),
+      cartRoute(),
+      transactionRoute(),
+      notifRoute(),
+      analyticsRoute()
     );
     this.app.use(
       "/public/uploads",

@@ -188,9 +188,10 @@ model Transaction {
   voucherId String? @db.VarChar(250)
   voucher Voucher? @relation(fields: [voucherId], references: [id])
   paymentProof  String?       @db.VarChar(250)
-  paymentMethod PaymentMethod
+  referralPointsUsed Int
+  paymentMethod PaymentMethod?
   statusLogs    StatusLog[]
-  attendee    Attendee?
+  attendee    Attendee[]
   expiresAt     DateTime
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
@@ -238,13 +239,13 @@ model Voucher {
 
 model Attendee {
   id          String   @id @default(uuid())
-  transactionId String @unique
-  transaction Transaction @relation(fields: [transactionId], references: [id])
-  eventId     String    @db.VarChar(250)
-  event       Event     @relation(fields: [eventId], references: [id])
-  userId      String    @db.VarChar(250)
-  user        User      @relation(fields: [userId], references: [id])
-  ticketCount Int
+  transactionId String?  @db.VarChar(250)
+  transaction Transaction? @relation(fields: [transactionId], references: [id])
+  eventId     String?    @db.VarChar(250)
+  event       Event?     @relation(fields: [eventId], references: [id])
+  userId      String?    @db.VarChar(250)
+  user        User?      @relation(fields: [userId], references: [id])
+  ticketCount Int?
   checkedIn   Boolean   @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt

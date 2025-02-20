@@ -4,6 +4,7 @@ import "dotenv/config";
 import prisma from "../utils/prismaClient";
 import { Request } from "express";
 import { appError } from "../utils/responses";
+import redis from "../utils/redisClient";
 
 export class authService {
   async registerUser(req: Request) {
@@ -72,7 +73,8 @@ export class authService {
       },
       include: { profile: true },
     });
-
+    // const cacheKey = `user:${newUser.id}`;
+    // await redis.del(cacheKey);
     if (referrer) {
       const referral = await prisma.referral.create({
         data: {
@@ -117,6 +119,7 @@ export class authService {
         },
       });
     }
+    // await redis.setex(cacheKey, 3600, JSON.stringify(newUser));
     return newUser;
   }
 }

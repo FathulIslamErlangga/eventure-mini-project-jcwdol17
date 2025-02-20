@@ -66,19 +66,19 @@ export class Auth {
     const Request = req as ValidationRequest;
     const userId = Request.userData.id;
 
-    const cachedUser = await redis.get(`user:${userId}`);
+    // const cachedUser = await redis.get(`user:${userId}`);
 
-    if (cachedUser) {
-      userLogger.info(
-        `Fetched user data from cache, ${Request.userData.email}`
-      );
-      return appSuccsess(
-        200,
-        "Get data user successfully",
-        res,
-        JSON.parse(cachedUser)
-      );
-    }
+    // if (cachedUser) {
+    //   userLogger.info(
+    //     `Fetched user data from cache, ${Request.userData.email}`
+    //   );
+    //   return appSuccsess(
+    //     200,
+    //     "Get data user successfully",
+    //     res,
+    //     JSON.parse(cachedUser)
+    //   );
+    // }
     const user = await prisma.user.findUnique({
       where: { id: userId },
       include: {
@@ -116,7 +116,7 @@ export class Auth {
         },
       },
     };
-    await redis.setex(`user:${userId}`, 3600, JSON.stringify(getUser));
+    // await redis.setex(`user:${userId}`, 3600, JSON.stringify(getUser));
     userLogger.info(`Get data user succsessfully, ${getUser.profile.name}`);
     appSuccsess(201, "Get data user succsessfully", res, getUser);
   });
@@ -156,6 +156,10 @@ export class Auth {
   logoutUser = asyncHandler(async (req: Request, res: Response) => {
     const isDev = process.env.NODE_ENV === "development" ? true : false;
 
+    const user = req as ValidationRequest;
+    if (user.userData) {
+      await redis.del(`user:${user.userData.id}`);
+    }
     res.cookie("jwt", "", {
       httpOnly: true,
       secure: isDev,

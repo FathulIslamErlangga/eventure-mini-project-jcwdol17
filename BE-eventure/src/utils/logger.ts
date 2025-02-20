@@ -48,3 +48,5 @@ class Logger {
 export const cronLogger = new Logger("expiredPoints.log");
 export const notifLogger = new Logger("notification.log");
 export const userLogger = new Logger("user.log");
+export const cartLogger = new Logger("cart.log");
+export const checkoutLogger = new Logger("checkout.log");

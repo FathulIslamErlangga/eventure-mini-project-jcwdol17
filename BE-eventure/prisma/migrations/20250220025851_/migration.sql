@@ -169,7 +169,8 @@ CREATE TABLE "Transaction" (
     "totalPrice" INTEGER NOT NULL,
     "voucherId" VARCHAR(250),
     "paymentProof" VARCHAR(250),
-    "paymentMethod" "PaymentMethod" NOT NULL,
+    "referralPointsUsed" INTEGER NOT NULL,
+    "paymentMethod" "PaymentMethod",
     "expiresAt" TIMESTAMP(3) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -207,10 +208,10 @@ CREATE TABLE "Voucher" (
 -- CreateTable
 CREATE TABLE "Attendee" (
     "id" TEXT NOT NULL,
-    "transactionId" TEXT NOT NULL,
-    "eventId" VARCHAR(250) NOT NULL,
-    "userId" VARCHAR(250) NOT NULL,
-    "ticketCount" INTEGER NOT NULL,
+    "transactionId" VARCHAR(250),
+    "eventId" VARCHAR(250),
+    "userId" VARCHAR(250),
+    "ticketCount" INTEGER,
     "checkedIn" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -253,9 +254,6 @@ CREATE UNIQUE INDEX "Event_slug_key" ON "Event"("slug");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Voucher_userId_key" ON "Voucher"("userId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Attendee_transactionId_key" ON "Attendee"("transactionId");
 
 -- AddForeignKey
 ALTER TABLE "Profile" ADD CONSTRAINT "Profile_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -321,10 +319,10 @@ ALTER TABLE "Voucher" ADD CONSTRAINT "Voucher_eventId_fkey" FOREIGN KEY ("eventI
 ALTER TABLE "Voucher" ADD CONSTRAINT "Voucher_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Attendee" ADD CONSTRAINT "Attendee_transactionId_fkey" FOREIGN KEY ("transactionId") REFERENCES "Transaction"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Attendee" ADD CONSTRAINT "Attendee_transactionId_fkey" FOREIGN KEY ("transactionId") REFERENCES "Transaction"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Attendee" ADD CONSTRAINT "Attendee_eventId_fkey" FOREIGN KEY ("eventId") REFERENCES "Event"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Attendee" ADD CONSTRAINT "Attendee_eventId_fkey" FOREIGN KEY ("eventId") REFERENCES "Event"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Attendee" ADD CONSTRAINT "Attendee_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Attendee" ADD CONSTRAINT "Attendee_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
