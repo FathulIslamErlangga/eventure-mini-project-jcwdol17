@@ -2,6 +2,10 @@
 import "@/css/navbar.css";
 import Image from "next/image";
 import { useAuth } from "./contexts/AuthContexts";
+import { useState } from "react";
+import { LoadingPage } from "./loadingPage";
+import { useRouter } from "next/navigation";
+import { useLoadingNavigation } from "@/hooks/loadingNav.hook";
 
 interface ListMenuProps {
   isMenuOpen: boolean;
@@ -11,14 +15,15 @@ interface ListMenuProps {
 export function ListMenu({ isMenuOpen, toggleMenu }: ListMenuProps) {
   const { auth } = useAuth();
   const users = auth.user?.data.slug;
-
+ 
+  const { navigateWithLoading, LoadingWrapper } = useLoadingNavigation();
   const handleMenuClick = (path: string) => {
-    window.location.href = path;
     toggleMenu();
+    navigateWithLoading(path);
   };
-
   return (
     <>
+      <LoadingWrapper/>
       <div className={`list-menu ${isMenuOpen ? "active" : ""}`}>
         <div className="list-menu-btn">
           <div className="close-icon" onClick={toggleMenu}>

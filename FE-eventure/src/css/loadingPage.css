@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .loading-page {
+    @apply fixed top-0 left-0 w-full h-full 
+    bg-[#fafaface] flex items-center justify-center 
+    z-[9999] overflow-hidden;
+  }
+
+  .loading-page-content {
+    @apply w-fit h-fit flex flex-col md:flex-col lg:flex-row gap-4 items-center justify-center;
+  }
+
+  @keyframes rotateAnimate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .cd {
+    animation: rotateAnimate 10s linear infinite;
+    transform-origin: center center;
+    @apply w-fit h-fit bg-[#04002D] rounded-full;
+  }
+
+  .cd-layer-1 {
+    @apply w-[150px] h-[150px] rounded-full bg-transparent border-[2px]  border-neutral flex justify-center items-center p-2;
+  }
+
+  .cd-layer-2 {
+    @apply w-[125px] h-[125px] rounded-full bg-transparent border-[2px]  border-neutral flex justify-center items-center p-2;
+  }
+
+  .cd-layer-3 {
+    @apply w-[110px] h-[110px] rounded-full bg-transparent border-[2px]  border-neutral flex justify-center items-center p-2;
+  }
+
+  .cd-pic {
+    font-family: var(--font-archivo-bold);
+    @apply w-full h-full text-[#04002d] border-[3px] border-neutral rounded-full p-2 flex justify-center items-center text-[36px];
+  }
+}

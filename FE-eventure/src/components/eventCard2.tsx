@@ -3,12 +3,18 @@ import "@/css/eventsPage/eventCard2.css";
 import Link from "next/link";
 import useEvent from "@/hooks/useEvent.hooks";
 import { IEvents } from "@/utils/interfaces/interfaces";
+import { useLoadingNavigation } from "@/hooks/loadingNav.hook";
 
 export function EventCard2(props: IEvents) {
+  const { navigateWithLoading, LoadingWrapper } = useLoadingNavigation();
+  const handleClick = (path: string) => {
+    navigateWithLoading(path);
+  };
   return (
     <>
-      <Link href={`/events/${props.slug}`}>
-        <div className="event-card2">
+      <LoadingWrapper/>
+
+        <div className="event-card2" onClick={() => handleClick(`/events/${props.slug}`)}>
           <div className="event-card2-pic">
             <Image
               src={
@@ -54,7 +60,7 @@ export function EventCard2(props: IEvents) {
                   />
                 </Link> 
                 </div>
-                <div className="event-card2-btn buy-btn">
+                <div className="event-card2-btn buy-btn" onClick={() => handleClick(`/events/${props.slug}`)}>
                 <Link href={`/events/${props.slug}`}>
                   <Image
                     src="/assets/images/icons/dollar.svg"
@@ -68,7 +74,7 @@ export function EventCard2(props: IEvents) {
             </div>
           </div>
         </div>
-      </Link>
+      
     </>
   );
 }
