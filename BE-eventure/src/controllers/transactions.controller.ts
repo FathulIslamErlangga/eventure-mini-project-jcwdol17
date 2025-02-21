@@ -23,20 +23,12 @@ export class Transactions {
     const { status } = req.body;
     const user = req as ValidationRequest;
     const organizerId = user.userData.id;
-    const updateStatusTransaction = await organizerNotification.add(
-      "StatusApproval",
-      {
-        transactionId,
-        status,
-        organizerId,
-      }
-    );
-    appSuccsess(
-      201,
-      "Update status succssesfully",
-      res,
-      updateStatusTransaction
-    );
+    await organizerNotification.add("StatusApproval", {
+      transactionId,
+      status,
+      organizerId,
+    });
+    appSuccsess(201, "Update status succssesfully", res);
   });
 
   detailTransaction = asyncHandler(async (req: Request, res: Response) => {

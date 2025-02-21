@@ -36,4 +36,35 @@ export class Notification {
 
     appSuccsess(201, "Notification processed successfully", res);
   });
+
+  getNotification = asyncHandler(async (req: Request, res: Response) => {
+    const user = req as ValidationRequest;
+    const userId = user.userData.id;
+    if (!userId) {
+      notifLogger.warn("User not found , please login first");
+      throw new appError("User not found", 404);
+    }
+    const notifications = await prisma.notification.findMany({
+      where: { userId },
+      select: {
+        id: true,
+        isRead: true,
+        title: true,
+        message: true,
+        user: {
+          select: {
+            id: true,
+            email: true,
+            role: true,
+          },
+        },
+      },
+    });
+    // if (!notifications) {
+    //   notifLogger.warn(`notification not found ${user.userData.email}`);
+    //   throw new appError("notification not found", 404);
+    // }
+    notifLogger.info(`get data notification succsess `);
+    appSuccsess(201, "get data notification succsess", res, notifications);
+  });
 }

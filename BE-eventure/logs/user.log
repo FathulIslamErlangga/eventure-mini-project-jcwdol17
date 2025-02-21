@@ -346,3 +346,15 @@
 2025-02-20T02:43:17.662Z [INFO]: Fetched user data from cache, erlangga.fie@gmail.com
 2025-02-20T02:43:18.628Z [INFO]: Fetched user data from cache, erlangga.fie@gmail.com
 >>>>>>> a18e49620f72ed85a1573914058fadf75483cebd
+2025-02-21T04:16:22.861Z [INFO]: User login succsessfully ,erlangga.fie@gmail.com
+2025-02-21T05:57:45.378Z [WARN]: User not found. ,nobody.fie@gmail.com
+2025-02-21T06:03:28.562Z [INFO]: User registered, Please verify your email., nobody.fie@gmail.com
+2025-02-21T06:04:11.630Z [INFO]: User login succsessfully ,nobody.fie@gmail.com
+2025-02-21T07:10:49.376Z [INFO]: User login succsessfully ,nobody.fie@gmail.com
+2025-02-21T07:10:50.420Z [INFO]: User login succsessfully ,nobody.fie@gmail.com
+2025-02-21T07:10:50.432Z [INFO]: User login succsessfully ,nobody.fie@gmail.com
+2025-02-21T07:12:45.187Z [INFO]: Get data user succsessfully, nobody
+2025-02-21T07:12:59.219Z [INFO]: Get data user succsessfully, nobody
+2025-02-21T07:13:47.844Z [INFO]: Get data user succsessfully, nobody
+2025-02-21T07:14:00.336Z [INFO]: Get data user succsessfully, nobody
+2025-02-21T07:33:33.227Z [INFO]: User login succsessfully ,nobody.fie@gmail.com

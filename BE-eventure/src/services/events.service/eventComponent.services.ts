@@ -169,8 +169,8 @@ export class ComponentEvent {
 
   async imageComponentUpdate(tsx: any, req: ValidationRequest, event: any) {
     const files = req.files || {};
-    const coverImage = files.cover?.[0] || null;
-    const thumbnailImage = files.thumbnail?.[0] || null;
+    const coverImage = files.cover?.[0];
+    const thumbnailImage = files.thumbnail?.[0];
 
     const storageGallery = [];
     if (event.gallery.length) {
@@ -181,14 +181,14 @@ export class ComponentEvent {
     if (coverImage) {
       storageGallery.push({
         eventId: event.id,
-        imageUrl: getFilePath("cover", req),
+        imageUrl: coverImage.path,
         imageType: "cover",
       });
     }
     if (thumbnailImage) {
       storageGallery.push({
         eventId: event.id,
-        imageUrl: getFilePath("thumbnail", req),
+        imageUrl: thumbnailImage.path,
         imageType: "thumbnail",
       });
     }
