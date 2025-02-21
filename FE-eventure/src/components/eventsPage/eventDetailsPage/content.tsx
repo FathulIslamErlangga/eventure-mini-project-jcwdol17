@@ -9,10 +9,13 @@ import { useParams } from "next/navigation";
 import { IEvents } from "@/utils/interfaces/interfaces";
 import { useRouter } from "next/navigation";
 import { useLoadingNavigation } from "@/hooks/loadingNav.hook";
+import { useCart } from "@/hooks/cart.hooks";
+import { toast } from "react-toastify";
 
 export function EventDetailsContent(props: IEvents) {
-  const [count, setCount] = useState(0);
   const router = useRouter();
+  const { handleCreateCart, isLoading } = useCart();
+  const [count, setCount] = useState(0);
 
   const increment = () => {
     setCount(count + 1);
@@ -25,6 +28,31 @@ export function EventDetailsContent(props: IEvents) {
   const { navigateWithLoading, LoadingWrapper } = useLoadingNavigation();
   const handleClick = (path: string) => {
     navigateWithLoading(path);
+  };
+
+  const handleAddToCart = async () => {
+    if (count === 0) {
+      toast.error("Please select at least one ticket");
+      return;
+    }
+
+    try {
+      const cartData = {
+        eventId: props.id,
+        ticketCount: count,
+        eventName: props.name,
+        price: props.price,
+        totalPrice: props.price * count,
+      };
+
+
+      await handleCreateCart(cartData);
+      toast.success("Added to cart successfully!");
+      setCount(0); 
+    } catch (error) {
+      toast.error("Failed to add to cart");
+      console.error(error);
+    }
   };
 
   return (
@@ -86,14 +114,20 @@ export function EventDetailsContent(props: IEvents) {
               <span>Buy Now</span>
             </div>
 
-            <div className="btn-add-cart" onClick={() => handleClick(`/cart`)}>
+            <div
+              className={`btn-add-cart ${
+                isLoading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              onClick={handleAddToCart}
+              style={{ pointerEvents: isLoading ? "none" : "auto" }}
+            >
               <Image
                 src="/assets/images/icons/cart.svg"
                 alt="cart"
                 width={30}
                 height={30}
               />
-              <span>Add to Cart</span>
+              <span>{isLoading ? "Adding..." : "Add to Cart"}</span>
             </div>
           </div>
         </div>

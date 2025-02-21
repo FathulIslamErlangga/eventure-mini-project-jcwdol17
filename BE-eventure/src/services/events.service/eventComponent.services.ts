@@ -120,6 +120,7 @@ export class ComponentEvent {
                 name: true,
               },
             },
+            slug : true,
           },
         },
         reviews: true,

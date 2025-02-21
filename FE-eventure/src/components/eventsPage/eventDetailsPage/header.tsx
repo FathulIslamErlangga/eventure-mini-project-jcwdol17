@@ -2,11 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import "@/css/eventsPage/eventDetailsPage/eventDetHeader.css";
 import { IEvents } from "@/utils/interfaces/interfaces";
+import { format } from "date-fns";
 
 export function EDPHeader(props: IEvents) {
   return (
     <div className="ed-header">
-      <Link href={`/eo/${props.organizer && props.organizer.slug}`}>
+      <Link href={`/eo/${props.organizer?.slug}`}>
         <div className="ed-header-eo">
           <div className="ed-header-eo-pic">
             <Image
@@ -118,7 +119,7 @@ export function EDPHeader(props: IEvents) {
           </div>
           <div className="ed-header-held-dt-text">
             <div className="ed-header-held-dt-text-1">Time</div>
-            <div className="ed-header-held-dt-text-2">10:00 AM</div>
+            <div className="ed-header-held-dt-text-2">{format(new Date(props.startDate), "HH:mm")}</div>
           </div>
         </div>
       </div>

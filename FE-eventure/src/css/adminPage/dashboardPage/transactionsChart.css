@@ -4,12 +4,12 @@
 
 @layer base{
     .transactions-chart{
-        @apply w-fit h-fit flex flex-col gap-4 border-[4px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-md bg-neutral p-5;
+        @apply w-full h-fit flex flex-col gap-4 border-[4px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-md bg-neutral p-5;
     }
 
     .transactions-chart-title{
         font-family: var(--font-archivo-bold);
-        @apply w-fit h-fit flex flex-row justify-between items-center text-2xl md:text-3xl lg:text-3xl text-[#04002D] p-5 border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-md bg-neutral;
+        @apply w-fit h-fit flex flex-row justify-between text-2xl md:text-3xl lg:text-3xl text-[#04002D] p-5 border-[5px] border-[#04002D] shadow-[6px_4px_0_#04002D] rounded-md bg-neutral;
     }
 
     .transactions-chart-content{

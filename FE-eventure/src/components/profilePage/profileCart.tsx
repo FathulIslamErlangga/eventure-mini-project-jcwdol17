@@ -2,25 +2,61 @@ import Image from "next/image";
 import { CartCard } from "../cartPage/cartCard";
 import "@/css/profilePage/profileCart.css";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useLoadingNavigation } from "@/hooks/loadingNav.hook";
+import { useAuth } from "@/components/contexts/AuthContexts";
+import { useCart } from "@/hooks/cart.hooks";
+import { useEffect } from "react";
 
 export function ProfileCart() {
+  const { auth } = useAuth();
+  const userSlug = auth.user?.data.slug;
+  const { cartData, handleFetchCartItems, isLoading, error } = useCart();
+
+  const { navigateWithLoading, LoadingWrapper } = useLoadingNavigation();
+  const router = useRouter();
+  const handleClick = (path: string) => {
+    navigateWithLoading(path);
+  };
+
+  useEffect(() => {
+    if (userSlug) {
+      handleFetchCartItems(userSlug);
+    }
+  }, [userSlug]);
+
+  if (isLoading) return <div>Loading cart items...</div>;
+  if (error) return <div>Error loading cart: {error}</div>;
+
   return (
-    <div className="profile-cart">
-      <div className="profile-cart-title">
-        <div className="profile-cart-title-text">
-          <span>Cart</span>
+    <>
+      <LoadingWrapper />
+      <div className="profile-cart">
+        <div className="profile-cart-title">
+          <div className="profile-cart-title-text">
+            <span>Cart</span>
+          </div>
+          <div className="profile-cart-title-btn">
+            <button
+              className="e-btn bg-primary text-neutral"
+              onClick={() => handleClick("/cart")}
+            >
+              See More
+            </button>
+          </div>
         </div>
-        <div className="profile-cart-title-btn">
-          <Link href="/cart">
-            <button className="e-btn bg-primary text-neutral">See More</button>
-          </Link>
+        <div className="profile-cart-content">
+          {cartData?.data?.length > 0 ? (
+            cartData.data
+              .slice(0, 2)
+              .map((cartItem: any, index: number) => (
+                <CartCard key={index} cartItem={cartItem} />
+              ))
+          ) : (
+            <div>No cart items found</div>
+          )}
         </div>
       </div>
-      <div className="profile-cart-content">
-        <CartCard />
-        <CartCard />
-        <CartCard />
-      </div>
-    </div>
+    </>
   );
 }
