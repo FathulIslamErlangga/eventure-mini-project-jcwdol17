@@ -117,7 +117,7 @@ export function EventsPage() {
             </div>
           ) : (
             <>
-              <NoData messages={`${error}`} />
+              <NoData messages={`No events found`} />
             </>
           )}
         </div>

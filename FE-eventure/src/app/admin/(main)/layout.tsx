@@ -4,6 +4,8 @@ import Archivo from "next/font/local";
 import "../../globals.css";
 import { AuthContexts } from "@/components/contexts/AuthContexts";
 import { Sidebar } from "@/components/admin/sidebar";
+import withAuth from "@/middlewares/auth.middleware";
+
 
 const archivoBold = Archivo({
   src: "../../../../public/assets/fonts/Archivo/static/Archivo-Bold.ttf",
@@ -36,4 +38,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};

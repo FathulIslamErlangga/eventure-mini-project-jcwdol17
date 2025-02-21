@@ -1,6 +1,9 @@
+'use client';
 import { AttandanceData } from "@/components/admin/attandance/attandanceData";
 import '@/css/adminPage/attandancePage/attandancePage.css'
-export default function AdminAttandance(){
+import withAuth from "@/middlewares/auth.middleware";
+
+export default withAuth(function AdminAttandance(){
     return(
         <div className="admin-attandance">
             <div className="admin-attandance-title">
@@ -11,4 +14,4 @@ export default function AdminAttandance(){
             </div>
         </div>
     )
-}
+},["ORGANIZER"])

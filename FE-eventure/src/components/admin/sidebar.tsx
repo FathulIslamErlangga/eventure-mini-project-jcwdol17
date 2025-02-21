@@ -1,8 +1,19 @@
+"use client";
 import Image from "next/image";
 import "@/css/adminPage/sidebar.css";
 import Link from "next/link";
+import { useAuth } from "@/components/contexts/AuthContexts";
+import { useRouter } from "next/navigation";
 
 export function Sidebar() {
+  const { auth } = useAuth();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    auth.logout();
+    router.push("/admin/signin");
+  };
+
   return (
     <div className="drawer">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -44,16 +55,16 @@ export function Sidebar() {
         <ul className="menu bg-primary text-neutral min-h-full w-80 p-4 border-[#03002D] border-[5px] shadow-[6px_4px_0_#03002D] flex flex-col justify-between">
           {/* Sidebar content here */}
           <div className="w-full h-fit flex flex-col gap-3">
-            <Link href='/admin'>
-            <div className="w-full h-fit flex flex-row gap-2 items-center text-[20px] font-bold">
-              <Image
-                src="/assets/images/icons/logo-white.svg"
-                alt="eventureicon"
-                width={50}
-                height={50}
-              />
-              <span>Eventure</span>
-            </div>
+            <Link href="/admin">
+              <div className="w-full h-fit flex flex-row gap-2 items-center text-[20px] font-bold">
+                <Image
+                  src="/assets/images/icons/logo-white.svg"
+                  alt="eventureicon"
+                  width={50}
+                  height={50}
+                />
+                <span>Eventure</span>
+              </div>
             </Link>
             <div className="w-full h-fit flex flex-col ">
               <li>
@@ -110,7 +121,9 @@ export function Sidebar() {
               </li>
             </div>
           </div>
-          <button className="admin-btn">Logout</button>
+          <button onClick={handleLogout} className="admin-btn">
+            Logout
+          </button>
         </ul>
       </div>
     </div>

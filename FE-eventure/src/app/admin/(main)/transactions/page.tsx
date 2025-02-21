@@ -1,6 +1,9 @@
+'use client';
 import "@/css/adminPage/transactionPage/transactionPage.css";
 import { TransactionData } from "@/components/admin/transactions/listdata";
-export default function AdminTransaction() {
+import withAuth from "@/middlewares/auth.middleware";
+
+export default withAuth (function AdminTransaction() {
   return (
     <div className="admin-transactions">
       <div className="admin-transactions-title">
@@ -11,4 +14,4 @@ export default function AdminTransaction() {
       </div>
     </div>
   );
-}
+}, ["ORGANIZER"])

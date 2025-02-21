@@ -1,6 +1,15 @@
 import { EventListDataItem } from "./eventListDataItem";
+import useEvent from "@/hooks/useEvent.hooks";
+import { useEffect } from "react";
 
 export function EventListData() {
+  const { events } = useEvent();
+  const { getevent, loading, error, getEventData } = events;
+
+  useEffect(() => {
+    getEventData(1);
+  }, []);
+
   return (
     <div className="overflow-x-auto">
       <table className="table">
@@ -16,11 +25,12 @@ export function EventListData() {
             <th>Start date</th>
             <th>End date</th>
             <th>Price</th>
-            <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          <EventListDataItem/>
+          {getevent?.data && getevent?.data.map((event) => (
+            <EventListDataItem key={event.id} {...event} />
+          ))}
         </tbody>
         {/* foot */}
         <tfoot>

@@ -15,7 +15,7 @@ import addressRoute from "./routes/address.route";
 import cartRoute from "./routes/carts.route";
 import transactionRoute from "./routes/transactions.route";
 import notifRoute from "./routes/notification.route";
-import analyticsRoute from "./routes/analytics,route";
+import analyticsRoute from "./routes/analytics.route";
 
 export class App {
   private app: Application;

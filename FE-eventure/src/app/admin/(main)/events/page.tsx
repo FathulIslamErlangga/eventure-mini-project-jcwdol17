@@ -1,8 +1,11 @@
+'use client';
 import { EventListData } from "@/components/admin/events/eventListData";
 import "@/css/adminPage/eventsPage/eventsPage.css";
 import Link from "next/link";
+import withAuth from "@/middlewares/auth.middleware";
 
-export default function AdminEvent() {
+
+export default withAuth (function AdminEvent() {
   return (
     <div className="admin-events">
       <div className="admin-events-title">
@@ -20,4 +23,4 @@ export default function AdminEvent() {
       </div>
     </div>
   );
-}
+},["ORGANIZER"])

@@ -5,6 +5,7 @@ import { useLoadingNavigation } from "@/hooks/loadingNav.hook";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
+import { toast } from "react-toastify";
 
 interface SearchBarProps {
   isSearchOpen: boolean;
@@ -59,22 +60,61 @@ export function SearchBar({
     return category.data.sort((a, b) => a.name.localeCompare(b.name));
   }, [category?.data]);
 
-  const handleSearch = () => {
-    const searchParams = new URLSearchParams();
+  const handleSearch = async () => {
+    try {
+      const searchParams = new URLSearchParams();
 
-    if (searchQuery) {
-      searchParams.append("search", searchQuery);
-    }
-    if (selectedLocation) {
-      searchParams.append("location", selectedLocation);
-    }
-    if (selectedCategory) {
-      searchParams.append("category", selectedCategory);
-    }
+      if (searchQuery) {
+        searchParams.append("search", searchQuery);
+      }
+      if (selectedLocation) {
+        searchParams.append("location", selectedLocation);
+      }
+      if (selectedCategory) {
+        searchParams.append("category", selectedCategory);
+      }
 
-    const queryString = searchParams.toString();
-    navigateWithLoading(`/events${queryString ? `?${queryString}` : ""}`);
-    toggleSearch();
+      const queryString = searchParams.toString();
+      const url = `/events${queryString ? `?${queryString}` : ""}`;
+
+      if (!searchQuery.trim() && !selectedLocation && !selectedCategory) {
+        toast.warning("Please enter a search term", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        return;
+      }
+
+      navigateWithLoading(url);
+      toggleSearch();
+
+      // Show success toast
+      toast.success("Search successful!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    } catch (error) {
+      // Show error toast for any search-related errors
+      toast.error("An error occurred during search", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+
+      // Optional: Log the error for debugging
+      console.error("Search error:", error);
+    }
   };
 
   return (

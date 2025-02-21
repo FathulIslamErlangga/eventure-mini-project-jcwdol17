@@ -181,17 +181,17 @@ export class ComponentEvent {
     if (coverImage) {
       storageGallery.push({
         eventId: event.id,
-        imageUrl: getFilePath("cover", req),
+        imageUrl: coverImage.path,
         imageType: "cover",
       });
     }
     if (thumbnailImage) {
       storageGallery.push({
         eventId: event.id,
-        imageUrl: getFilePath("thumbnail", req),
+        imageUrl: thumbnailImage.path,
         imageType: "thumbnail",
-      });
-    }
+      });
+    }
 
     if (storageGallery.length > 0) {
       await tsx.gallery.createMany({

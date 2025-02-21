@@ -1,7 +1,9 @@
+'use client';
 import { NotifCard } from "@/components/notifPage/notifCard";
 import '@/css/adminPage/notificationPage/notificationPage.css'
+import withAuth from "@/middlewares/auth.middleware";
 
-export default function AdminNotification(){
+export default withAuth (function AdminNotification(){
     return (
         <div className="admin-notifications">
             <div className="admin-notifications-title">
@@ -14,4 +16,4 @@ export default function AdminNotification(){
             </div>
         </div>
     )
-}
+},["ORGANIZER"])

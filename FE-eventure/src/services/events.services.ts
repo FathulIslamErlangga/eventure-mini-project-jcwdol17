@@ -34,3 +34,28 @@ export const getEventsSlug = async (slug: string): Promise<eventsResponse> => {
     throw error;
   }
 };
+
+export const updateEvents = async (slug: string, update: FormData) => {
+  try {
+    const response = await api.patch<eventsResponse>(`/events/v4/${slug}`, update, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    console.log("response update:", response.data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteEvents = async (slug: string) => {
+  try {
+    const response = await api.delete<eventsResponse>(`/events/v5/${slug}`);
+    console.log("deleted events:", response.data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+

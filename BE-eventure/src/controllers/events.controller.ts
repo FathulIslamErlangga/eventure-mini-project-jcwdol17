@@ -38,4 +38,9 @@ export class Events {
     const events = await this.events.updatedEvent(req, updated);
     appSuccsess(201, "updated succsessfully", res, events);
   });
+
+  deleteEvents = asyncHandler(async (req: Request, res: Response) => {
+    const events = await this.events.deleteEvent(req);
+    appSuccsess(201, "deleted succsessfully", res, events);
+  });
 }
