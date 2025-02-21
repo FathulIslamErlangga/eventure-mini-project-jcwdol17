@@ -1,6 +1,8 @@
+'use client';
 import "@/css/adminPage/transactionPage/transactionDetPage.css";
+import withAuth from "@/middlewares/auth.middleware";
 
-export default function TransactionDetailPage() {
+export default withAuth (function TransactionDetailPage() {
   return (
     <div className="transaction-detail-page">
       <div className="transaction-detail-title">
@@ -82,4 +84,4 @@ export default function TransactionDetailPage() {
       </div>
     </div>
   );
-}
+},["ORGANIZER"])

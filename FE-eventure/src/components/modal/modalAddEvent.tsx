@@ -4,6 +4,8 @@ import "@/css/modal.css";
 import useEvent from "@/hooks/useEvent.hooks";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ModalAddEventProps {
   onClose: () => void;
@@ -21,9 +23,22 @@ export function ModalAddEvent({ onClose }: ModalAddEventProps) {
     handleChangeFile,
     handleChangeInput,
     handleSubmit,
+    isLoading,
   } = useEvent();
   return (
     <div className="emodal2">
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="emodal2-content">
         <div className="emodal-close">
           <div className="emodal-btn-close" onClick={onClose}>
@@ -172,11 +187,14 @@ export function ModalAddEvent({ onClose }: ModalAddEventProps) {
             </div>
           </div>
           <button
-            className="eventure-button"
+            className={`eventure-button ${
+              isLoading ? "cursor-wait opacity-50" : ""
+            }`}
             type="submit"
             onClick={handleSubmit}
+            disabled={isLoading}
           >
-            Submit
+            {isLoading ? "Submitting..." : "Submit"}
           </button>
         </form>
       </div>

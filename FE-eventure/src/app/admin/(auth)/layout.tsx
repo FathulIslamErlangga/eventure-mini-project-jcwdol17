@@ -6,6 +6,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { AuthContexts } from "@/components/contexts/AuthContexts";
 import { Logo } from "@/components/authPage/logo";
+import withAuth from "@/middlewares/auth.middleware";
 
 const archivoBold = Archivo({
   src: "../../../../public/assets/fonts/Archivo/static/Archivo-Bold.ttf",

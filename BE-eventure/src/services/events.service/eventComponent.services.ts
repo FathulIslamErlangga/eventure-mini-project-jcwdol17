@@ -190,8 +190,8 @@ export class ComponentEvent {
         eventId: event.id,
         imageUrl: thumbnailImage.path,
         imageType: "thumbnail",
-      });
-    }
+      });
+    }
 
     if (storageGallery.length > 0) {
       await tsx.gallery.createMany({

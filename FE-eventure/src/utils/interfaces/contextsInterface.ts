@@ -9,6 +9,7 @@ import {
   IUpdatedPassword,
   LoginData,
   RegisterData,
+  transactionResponse,
   UserResponse,
 } from "./customInsterface";
 
@@ -40,9 +41,12 @@ export interface eventsProps {
   message: string | undefined;
   loading: boolean;
   error: string | null;
+  setMessage?: (message: string | undefined) => void;
   eventsCreated: (create: FormData) => Promise<void>;
   getEventData: (page?: number) => Promise<void>;
   getEventBySlug: (slug: string) => Promise<eventsResponse>;
+  updateEvent: (slug: string, update: FormData) => Promise<void>;
+  deleteEvent: (slug: string) => Promise<void>;
 }
 
 export interface categoriesProps {
@@ -55,6 +59,10 @@ export interface addressProps {
   message: string | undefined;
 }
 
+export interface transactionProps {
+  transaction: transactionResponse | undefined;
+  message: string | undefined;
+}
 export interface AllProps {
   auth: AuthProps;
   profilesUser: profilesProps;

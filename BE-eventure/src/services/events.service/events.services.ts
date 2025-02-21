@@ -127,6 +127,64 @@ export class EventsServices {
 
     return await this.component.getBySlug(slug);
   }
+  
+  async deleteEvent(req: Request) {
+    const { slug } = req.params;
+    const Request = req as ValidationRequest;
+    const userId = Request.userData.id;
+    const userRole = Request.userData.role;
+  
+    // Check user permissions
+    if (userRole !== "ORGANIZER") {
+      throw new appError("You do not have permission to delete this event", 403);
+    }
+  
+    return await prisma.$transaction(async (tsx) => {
+      // Find the event first
+      const event = await tsx.event.findUnique({
+        where: { slug },
+        include: {
+          address: true,
+          gallery: true,
+        },
+      });
+  
+      if (!event) {
+        throw new appError("Event not found", 404);
+      }
+  
+      // Check if the event belongs to the user
+      if (event.organizerId !== userId) {
+        throw new appError("You can only delete your own events", 403);
+      }
+  
+      // Delete associated gallery images
+      await tsx.gallery.deleteMany({
+        where: { eventId: event.id }
+      });
+  
+      // Delete the event first (this will automatically handle the address reference)
+      const deletedEvent = await tsx.event.delete({
+        where: { slug }
+      });
+  
+      // Optionally, if you want to explicitly handle address deletion
+      // Only delete address if no other events are using it
+      if (event.addressId) {
+        const otherEventsWithSameAddress = await tsx.event.count({
+          where: { addressId: event.addressId }
+        });
+  
+        if (otherEventsWithSameAddress === 0) {
+          await tsx.address.delete({
+            where: { id: event.addressId }
+          });
+        }
+      }
+  
+      return deletedEvent;
+    });
+  }
 
   async updatedEvent(req: Request, updated: IUpdateEvents) {
     const { slug } = req.params;
@@ -136,6 +194,7 @@ export class EventsServices {
     const coverImage = files.cover?.[0] || null;
     const thumbnailImage = files.thumbnail?.[0] || null;
 
+    
     return await prisma.$transaction(async (tsx) => {
       const event = await prisma.event.findUnique({
         where: { slug },

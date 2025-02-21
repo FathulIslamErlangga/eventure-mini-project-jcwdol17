@@ -27,7 +27,7 @@ const eventRoute = () => {
     upload.fields([{ name: "cover" }, { name: "thumbnail" }]),
     events.updateEvents
   );
-
+  router.delete("/events/v5/:slug", protectedAuth, events.deleteEvents);
   return router;
 };
 export default eventRoute;

@@ -1,8 +1,10 @@
+'use client';
 import TransactionsChart from '@/components/admin/dashboard/chart';
 import EventsChart from '@/components/admin/dashboard/lineChart';
 import '@/css/adminPage/dashboardPage/dashboardPage.css';
+import withAuth from '@/middlewares/auth.middleware';
 
-export default function Dashboard(){
+export default withAuth(function Dashboard(){
     return(
         <div className="dashboard">
             <div className="dashboard-title">
@@ -14,4 +16,4 @@ export default function Dashboard(){
             </div>
         </div>
     )
-}
+},["ORGANIZER"])

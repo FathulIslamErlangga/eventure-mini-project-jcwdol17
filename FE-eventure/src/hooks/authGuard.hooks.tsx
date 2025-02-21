@@ -6,7 +6,7 @@ export const useAuthGuard = (allowedRoles: string[]) => {
   const { auth } = useAuth();
   const router = useRouter();
   const [isAuthorized, setIsAuthorized] = useState(false);
- const loading = auth.loading;
+  const loading = auth.loading;
   useEffect(() => {
     if (!auth.loading) {
       if (!auth.isAuth) {
@@ -18,6 +18,6 @@ export const useAuthGuard = (allowedRoles: string[]) => {
       }
     }
   }, [auth.isAuth, auth.loading, auth.user, allowedRoles, router]);
- 
+
   return { isAuthorized, loading };
 };

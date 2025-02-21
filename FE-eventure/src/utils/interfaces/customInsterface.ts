@@ -1,4 +1,12 @@
-import { ICategory, IEvents, IGallery, IProfiles, IUsers, IAddress } from "./interfaces";
+import {
+  ICategory,
+  IEvents,
+  IGallery,
+  IProfiles,
+  IUsers,
+  IAddress,
+  ITransactions,
+} from "./interfaces";
 
 export interface IChangePassword {
   newPassword: string;
@@ -70,14 +78,13 @@ export interface createEvents {
   thumbnail: string;
   address: string;
   city: string;
-
   categoryId: string;
 }
 
 export interface eventsResponse {
   message: string;
   data: IEvents;
-  meta?: Meta;  
+  meta?: Meta;
 }
 export interface categoriesResponse {
   message: string;
@@ -96,11 +103,16 @@ export interface getEvent {
   data: IEvents[];
   meta: Meta;
 }
-export interface addressResponse{
+export interface addressResponse {
   message: string;
   data: IAddress[];
 }
-export interface categoryResponse{
+export interface categoryResponse {
   message: string;
   data: ICategory[];
+}
+
+export interface transactionResponse {
+  message: string;
+  data: ITransactions[];
 }

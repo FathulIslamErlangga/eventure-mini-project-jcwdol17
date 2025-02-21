@@ -15,15 +15,21 @@ interface ListMenuProps {
 export function ListMenu({ isMenuOpen, toggleMenu }: ListMenuProps) {
   const { auth } = useAuth();
   const users = auth.user?.data.slug;
- 
+
   const { navigateWithLoading, LoadingWrapper } = useLoadingNavigation();
+  const router = useRouter();
   const handleMenuClick = (path: string) => {
     toggleMenu();
     navigateWithLoading(path);
   };
+  const handleLogout = () => {
+    auth.logout();
+    router.push("/");
+    toggleMenu();
+  };
   return (
     <>
-      <LoadingWrapper/>
+      <LoadingWrapper />
       <div className={`list-menu ${isMenuOpen ? "active" : ""}`}>
         <div className="list-menu-btn">
           <div className="close-icon" onClick={toggleMenu}>
@@ -98,7 +104,10 @@ export function ListMenu({ isMenuOpen, toggleMenu }: ListMenuProps) {
                     </div>
                   </div>
 
-                  <div className="list-menu-dt bg-error" onClick={auth.logout}>
+                  <div
+                    className="list-menu-dt bg-error"
+                    onClick={() => handleLogout()}
+                  >
                     <div className="list-menu-text">
                       <span>Logout</span>
                     </div>
