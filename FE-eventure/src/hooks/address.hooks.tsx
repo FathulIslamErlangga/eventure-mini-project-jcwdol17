@@ -1,4 +1,4 @@
-import { getAddress } from "@/services/address.service";
+import { getAddress } from "@/services/address.services";
 import { addressProps } from "@/utils/interfaces/contextsInterface";
 import { addressResponse } from "@/utils/interfaces/customInsterface";
 import React, { useEffect, useState } from "react";

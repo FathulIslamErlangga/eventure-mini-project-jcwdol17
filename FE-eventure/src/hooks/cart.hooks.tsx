@@ -5,7 +5,8 @@ import {
   deleteCartItem,
   updateAttendee,
   fetchCartItems,
-} from "@/services/cart.service";
+  GetAttendee,
+} from "@/services/cart.services";
 
 export const useCart = () => {
   const [cartData, setCartData] = useState<any>(null);
@@ -96,6 +97,23 @@ export const useCart = () => {
     }
   };
 
+  // Get attendee in cart
+  const handleGetAttendeeOwner = async () => {
+    try {
+      setIsLoading(true);
+      const attendee = await GetAttendee();
+      setCartData(attendee);
+      setError(null);
+      return attendee;
+    } catch (err: any) {
+      setError(err.message || "Failed to get attendee");
+      console.error(err);
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return {
     cartData,
     isLoading,
@@ -105,7 +123,7 @@ export const useCart = () => {
     handleDeleteCartItem,
     handleFetchCartItems,
     handleUpdateAttendee,
+    handleGetAttendeeOwner,
   };
 };
 
-export default useCart;

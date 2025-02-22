@@ -74,6 +74,15 @@ export const fetchCartItems = async (userSlug: string) => {
   }
 };
 
+export const GetAttendee = async () => {
+  try {
+    const response = await api.get<attendeeResponse>("/carts/v5");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 // Existing Attendee method
 export const Attendee = async () => {
   try {
