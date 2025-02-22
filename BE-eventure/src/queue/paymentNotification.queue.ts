@@ -66,6 +66,7 @@ const worker = new Worker(
             eventId: transaction.eventId,
             userId: transaction.customer.id,
             ticketCount: transaction.ticketQuantity,
+            organizerId: transaction.event.organizerId,
           },
         });
       } else {

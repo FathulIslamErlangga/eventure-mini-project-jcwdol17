@@ -8,7 +8,8 @@ const cartRoute = () => {
   router.post("/carts/v1", protectedAuth, cart.createCart);
   router.get("/carts/v2/:slug", protectedAuth, cart.getItem);
   router.delete("/carts/v3/:attendeeId", protectedAuth, cart.deleteItem);
-  router.patch("/carts/v4/", protectedAuth, cart.updatedAttendee);
+  router.patch("/carts/v4", protectedAuth, cart.updatedAttendee);
+  router.get("/carts/v5", protectedAuth, cart.getOwnerEvent);
   return router;
 };
 

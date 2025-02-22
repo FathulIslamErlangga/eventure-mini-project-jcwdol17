@@ -51,7 +51,7 @@ export class Notification {
         isRead: true,
         title: true,
         message: true,
-        
+        createdAt: true,
         user: {
           select: {
             id: true,

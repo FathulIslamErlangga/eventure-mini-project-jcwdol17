@@ -71,7 +71,7 @@ export function ModalAddEvent({ onClose }: ModalAddEventProps) {
               name="categoryId"
               onChange={handleChangeInput}
             >
-              <option value="">Select a category</option>
+              <option defaultValue="">Select a category</option>
               {categories.category?.data.map((category) => (
                 <>
                   <option key={category.id} value={category.id}>

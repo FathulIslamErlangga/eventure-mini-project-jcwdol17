@@ -48,6 +48,7 @@ export class cartService {
           eventId,
           ticketCount: Number(ticketCount),
           userId,
+          organizerId: events.organizerId,
         },
       });
     }

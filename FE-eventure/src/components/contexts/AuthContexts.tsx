@@ -7,6 +7,7 @@ import profileHooks from "@/hooks/profile.hooks";
 import { AllProps } from "@/utils/interfaces/contextsInterface";
 import eventsHooks from "@/hooks/events.hooks";
 import categoriesHooks from "@/hooks/categories.hooks";
+import notificationHooks from "@/hooks/notification.hooks";
 
 const AuthContext = createContext<AllProps | undefined>(undefined);
 
@@ -15,9 +16,12 @@ export const AuthContexts = ({ children }: { children: React.ReactNode }) => {
   const profilesUser = profileHooks();
   const events = eventsHooks();
   const categories = categoriesHooks();
+  const notifications = notificationHooks();
 
   return (
-    <AuthContext.Provider value={{ auth, profilesUser, events, categories }}>
+    <AuthContext.Provider
+      value={{ auth, profilesUser, events, categories, notifications }}
+    >
       {children}
     </AuthContext.Provider>
   );

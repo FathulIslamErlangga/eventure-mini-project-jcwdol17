@@ -88,6 +88,13 @@ export class Auth {
             address: true,
           },
         },
+        transactions: true,
+        attendee: true,
+        wallet: {
+          include: {
+            pointLogs: true,
+          },
+        },
       },
     });
 
@@ -114,6 +121,17 @@ export class Auth {
           address: user.profile?.address?.address,
           city: user.profile?.address?.city,
         },
+      },
+      wallet: {
+        id: user.wallet?.id,
+        points: user.wallet?.points,
+        pointLogs: user.wallet?.pointLogs.map((_) => ({
+          id: _.id,
+          type: _.type,
+          amount: _.amount,
+          expirationDate: _.expirationDate,
+          description: _.description,
+        })),
       },
     };
     // await redis.setex(`user:${userId}`, 3600, JSON.stringify(getUser));

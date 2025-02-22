@@ -8,23 +8,23 @@ import "@/css/authPage/signIn.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 const SignIn = () => {
   const { auth } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   // Validation schema using Yup
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
-      .email('Invalid email address')
-      .required('Email is required'),
+      .email("Invalid email address")
+      .required("Email is required"),
     password: Yup.string()
-      .min(6, 'Password must be at least 6 characters')
-      .required('Password is required'),
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
   });
 
   const handleChangeForgot = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,14 +89,14 @@ const SignIn = () => {
             <h2>Sign In</h2>
           </div>
           <Formik
-            initialValues={{ email: '', password: '' }}
+            initialValues={{ email: "", password: "" }}
             validationSchema={LoginSchema}
             onSubmit={async (values, { setSubmitting }) => {
               setIsLoading(true);
               try {
                 await auth.login(values);
               } catch (error) {
-                console.error('Login error', error);
+                console.error("Login error", error);
               } finally {
                 setSubmitting(false);
               }
@@ -114,18 +114,18 @@ const SignIn = () => {
                     <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
                     <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
                   </svg>
-                  <Field 
-                    type="email" 
-                    name="email" 
+                  <Field
+                    type="email"
+                    name="email"
                     className="grow"
-                    placeholder="Email" 
+                    placeholder="Email"
                   />
                 </label>
-                  <ErrorMessage 
-                    name="email" 
-                    component="div" 
-                    className="text-danger" 
-                  />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="text-danger"
+                />
                 <label className="input input-bordered border-[#04002D] border-[3px] flex items-center gap-2 py-7 pl-7 pr-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -139,11 +139,11 @@ const SignIn = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <Field 
-                    type={showPassword ? "text" : "password"} 
-                    name="password" 
+                  <Field
+                    type={showPassword ? "text" : "password"}
+                    name="password"
                     className="grow"
-                    placeholder="Password" 
+                    placeholder="Password"
                   />
                   <button
                     className="btn-show-hide-pwd"
@@ -173,19 +173,19 @@ const SignIn = () => {
                     )}
                   </button>
                 </label>
-                  <ErrorMessage 
-                    name="password" 
-                    component="div" 
-                    className="text-danger" 
-                  />
-                <button 
-                  type="submit" 
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className="text-danger"
+                />
+                <button
+                  type="submit"
                   className={`eventure-button ${
-                  isLoading || isSubmitting ? "cursor-wait opacity-50" : ""
-                }`}
+                    isLoading || isSubmitting ? "cursor-wait opacity-50" : ""
+                  }`}
                   disabled={isLoading || isSubmitting}
                 >
-                  {isLoading ? 'Signing In...' : 'Sign In'}
+                  {isLoading ? "Signing In..." : "Sign In"}
                 </button>
               </Form>
             )}

@@ -23,6 +23,11 @@ const transactionRoute = () => {
     upload.single("payment"),
     transactions.paymentProof
   );
+  router.get(
+    "/midtrans/v5",
+
+    transactions.getTransaction
+  );
   return router;
 };
 

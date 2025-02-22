@@ -33,6 +33,7 @@ model User {
   transactions    Transaction[]
   notifications   Notification[] 
   attendee        Attendee[]
+  attendees        Attendee[] @relation(name: "Owner events")
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt
 }
@@ -245,6 +246,8 @@ model Attendee {
   event       Event?     @relation(fields: [eventId], references: [id])
   userId      String?    @db.VarChar(250)
   user        User?      @relation(fields: [userId], references: [id])
+  organizerId      String?    @db.VarChar(250)
+  organizer        User?      @relation(name: "Owner events",fields: [organizerId], references: [id])
   ticketCount Int?
   checkedIn   Boolean   @default(false)
   createdAt   DateTime  @default(now())

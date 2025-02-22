@@ -122,4 +122,22 @@ export class Transactions {
       updateTransactionProof
     );
   });
+
+  getTransaction = asyncHandler(async (req: Request, res: Response) => {
+    const transactions = await prisma.transaction.findMany({
+      select: {
+        id: true,
+        status: true,
+        ticketQuantity: true,
+        totalPrice: true,
+        referralPointsUsed: true,
+        paymentProof: true,
+        expiresAt: true,
+        event: true,
+        attendee: true,
+        customer: true,
+      },
+    });
+    appSuccsess(201, "get data transaction succsess", res, transactions);
+  });
 }

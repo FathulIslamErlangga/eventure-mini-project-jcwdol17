@@ -16,6 +16,7 @@ export interface IUsers {
   transactions?: ITransactions[];
   notifications?: INotifications[];
   attendee?: IAtendees[];
+  attendees?: IAtendees[];
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -147,6 +148,7 @@ export interface ITransactions {
   id: string;
   ticketQuantity: number;
   totalPrice: number;
+  referralPointsUsed: number;
   paymentProof: string;
   customerId: IUsers;
   eventId: IEvents;
@@ -191,6 +193,7 @@ export interface IAtendees {
   id: string;
   tiketCount: number;
   checkedIn: boolean;
+  organizerId: IUsers;
   transactionId: ITransactions;
   eventId: IEvents;
   userId: IUsers;

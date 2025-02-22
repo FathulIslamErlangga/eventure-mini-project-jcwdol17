@@ -15,6 +15,35 @@ export class Cart {
     cartLogger.info(`add to cart succsess: ${userEmail}`);
     appSuccsess(201, "add to cart succsess", res, carts);
   });
+  getOwnerEvent = asyncHandler(async (req: Request, res: Response) => {
+    const user = req as ValidationRequest;
+    const usersId = user.userData.id;
+
+    const events = await prisma.event.findFirst({
+      where: { organizerId: usersId },
+      include: { organizer: true },
+    });
+    if (!events) {
+      cartLogger.warn("Events not found");
+      throw new appError("Events not found", 404);
+    }
+
+    const attendee = await prisma.attendee.findMany({
+      where: { organizerId: events.organizerId },
+      include: {
+        transaction: true,
+        user: {
+          include: { attendee: true },
+        },
+        organizer: true,
+        event: true,
+      },
+    });
+    cartLogger.warn(
+      `get data attendee customer succsess ${events.organizer.email}`
+    );
+    appSuccsess(201, "get data attendee customer succsess", res, attendee);
+  });
 
   getItem = asyncHandler(async (req: Request, res: Response) => {
     const carts = await this.services.getCartData(req);

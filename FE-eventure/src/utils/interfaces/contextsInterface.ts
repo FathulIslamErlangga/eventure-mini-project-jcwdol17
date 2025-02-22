@@ -8,6 +8,7 @@ import {
   IProfileResponse,
   IUpdatedPassword,
   LoginData,
+  notificationResponse,
   RegisterData,
   transactionResponse,
   UserResponse,
@@ -63,9 +64,15 @@ export interface transactionProps {
   transaction: transactionResponse | undefined;
   message: string | undefined;
 }
+export interface notificationProps {
+  notification: notificationResponse | undefined;
+  message: string | undefined;
+}
+
 export interface AllProps {
   auth: AuthProps;
   profilesUser: profilesProps;
   events: eventsProps;
   categories: categoriesProps;
+  notifications: notificationProps;
 }

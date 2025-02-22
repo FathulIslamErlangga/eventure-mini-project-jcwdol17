@@ -1,8 +1,6 @@
 "use client";
 import "@/css/navbar.css";
 import Image from "next/image";
-import Link from "next/link";
-import { useAuth } from "./contexts/AuthContexts";
 import { useLoadingNavigation } from "@/hooks/loadingNav.hook";
 
 interface MainNavbarProps {
@@ -16,9 +14,6 @@ export function MainNavbar({
   toggleSearch,
   isSearchOpen,
 }: MainNavbarProps) {
-  const { auth } = useAuth();
-  const users = auth.user?.data.slug;
-
   const { navigateWithLoading, LoadingWrapper } = useLoadingNavigation();
   const handleClick = (path: string) => {
     navigateWithLoading(path);

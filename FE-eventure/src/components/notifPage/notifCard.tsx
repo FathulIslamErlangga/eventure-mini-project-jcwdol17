@@ -1,17 +1,26 @@
-import '@/css/notifPage/notifCard.css';
+"use client";
+import "@/css/notifPage/notifCard.css";
+import { useAuth } from "../contexts/AuthContexts";
+import { format } from "date-fns";
 
 export function NotifCard() {
+  const { notifications } = useAuth();
+
   return (
-    <div className="notif-card">
-      <div className="notif-card-date">
-        <span>23/01/2025</span>
-      </div>
-      <div className="notif-card-title">
-        <span>Transaction</span>
-      </div>
-      <div className="notif-card-message">
-        <span>Your transaction has been successfully completed</span>
-      </div>
-    </div>
+    <>
+      {notifications.notification?.data.map((_) => (
+        <div className="notif-card">
+          <div className="notif-card-date">
+            <span>{format(new Date(_.createdAt), "dd MMMM yyyy")}</span>
+          </div>
+          <div className="notif-card-title">
+            <span>{_.title}</span>
+          </div>
+          <div className="notif-card-message">
+            <span>{_.message}</span>
+          </div>
+        </div>
+      ))}
+    </>
   );
 }

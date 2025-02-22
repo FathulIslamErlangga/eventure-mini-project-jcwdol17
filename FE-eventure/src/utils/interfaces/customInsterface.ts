@@ -1,3 +1,4 @@
+// import { INotification } from '../../../../be-eventure/src/utils/interfaceCustom';
 import {
   ICategory,
   IEvents,
@@ -6,6 +7,7 @@ import {
   IUsers,
   IAddress,
   ITransactions,
+  INotifications,
 } from "./interfaces";
 
 export interface IChangePassword {
@@ -115,4 +117,15 @@ export interface categoryResponse {
 export interface transactionResponse {
   message: string;
   data: ITransactions[];
+}
+export interface IRange {
+  range: string;
+}
+export interface IAnalytics {
+  totalProfit: number;
+}
+
+export interface notificationResponse {
+  message: string;
+  data: INotifications[];
 }

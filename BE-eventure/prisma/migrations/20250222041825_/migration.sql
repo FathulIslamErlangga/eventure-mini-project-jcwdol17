@@ -211,6 +211,7 @@ CREATE TABLE "Attendee" (
     "transactionId" VARCHAR(250),
     "eventId" VARCHAR(250),
     "userId" VARCHAR(250),
+    "organizerId" VARCHAR(250),
     "ticketCount" INTEGER,
     "checkedIn" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -326,3 +327,6 @@ ALTER TABLE "Attendee" ADD CONSTRAINT "Attendee_eventId_fkey" FOREIGN KEY ("even
 
 -- AddForeignKey
 ALTER TABLE "Attendee" ADD CONSTRAINT "Attendee_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Attendee" ADD CONSTRAINT "Attendee_organizerId_fkey" FOREIGN KEY ("organizerId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
