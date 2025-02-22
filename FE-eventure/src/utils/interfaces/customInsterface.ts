@@ -8,6 +8,7 @@ import {
   IAddress,
   ITransactions,
   INotifications,
+  IAtendees,
 } from "./interfaces";
 
 export interface IChangePassword {
@@ -118,14 +119,49 @@ export interface transactionResponse {
   message: string;
   data: ITransactions[];
 }
-export interface IRange {
-  range: string;
-}
-export interface IAnalytics {
-  totalProfit: number;
-}
 
 export interface notificationResponse {
   message: string;
   data: INotifications[];
+}
+
+export interface attendeeResponse {
+  message: string;
+  data: IAtendees[];
+}
+
+export interface ICartData {
+  eventId: string;
+  ticketCount: number;
+  eventName: string;
+  price: number;
+  totalPrice: number;
+}
+
+export interface ICartItemsParams {
+  page?: number;
+  limit?: number;
+  userSlug?: string;
+}
+
+export interface ICartItem {
+  id: string;
+  event: IEvents;
+  quantity: number;
+}
+
+export interface ICartResponse {
+  message: string;
+  data: ICartItem[];
+  meta?: Meta;
+}
+
+export interface AnalyticsResponse {
+  totalProfit: number;
+}
+
+export interface ProfitTrackFilter {
+  range?: "daily" | "weekly" | "monthly" | "yearly" | "custom";
+  startDate?: string;
+  endDate?: string;
 }

@@ -2003,6 +2003,10 @@ Timed out fetching a new connection from the connection pool. More info: http://
 2025-02-19T16:00:00.769Z [INFO]: Running cron job: Deleting expired referral points...
 2025-02-19T16:00:01.843Z [INFO]: No expired points found.
 >>>>>>> a18e49620f72ed85a1573914058fadf75483cebd
+<<<<<<< HEAD
 2025-02-21T16:00:02.581Z [INFO]: No expired points found.
 2025-02-21T17:00:00.953Z [INFO]: Running cron job: Deleting expired referral points...
 2025-02-21T17:00:02.944Z [INFO]: No expired points found.
+=======
+2025-02-21T16:00:00.503Z [INFO]: Running cron job: Deleting expired referral points...
+>>>>>>> ecfc3b4a3b3c04780eeb4d77670ba9603588a27e

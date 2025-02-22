@@ -6,9 +6,68 @@
 2025-02-19T16:01:15.124Z [INFO]: add to cart succsess: erlangga.fie@gmail.com
 2025-02-20T16:40:11.532Z [INFO]: add to cart succsess: nobody.fie@gmail.com
 2025-02-20T20:40:39.332Z [INFO]: updated checkin succsessfully: nobody.fie@gmail.com
+<<<<<<< HEAD
 2025-02-21T06:11:49.584Z [INFO]: add to cart succsess: nobody.fie@gmail.com
 2025-02-21T10:03:42.398Z [INFO]: get data event in cart succsess
 2025-02-21T18:39:17.784Z [INFO]: updated checkin succsessfully: nobody.fie@gmail.com
 2025-02-22T05:10:43.226Z [INFO]: add to cart succsess: nobody.fie@gmail.com
 2025-02-22T05:23:29.598Z [WARN]: Events not found
 2025-02-22T05:23:59.687Z [WARN]: get data attendee customer succsess nobody.fie@gmail.com
+=======
+2025-02-21T11:06:15.083Z [WARN]: eventId and ticketCount is required
+2025-02-21T11:07:16.129Z [WARN]: eventId and ticketCount is required
+2025-02-21T11:10:38.968Z [INFO]: add to cart succsess: nobody.fie@gmail.com
+2025-02-21T11:18:25.975Z [INFO]: add to cart succsess: nobody.fie@gmail.com
+2025-02-21T11:18:34.906Z [INFO]: add to cart succsess: nobody.fie@gmail.com
+2025-02-21T11:21:18.734Z [INFO]: add to cart succsess: nobody.fie@gmail.com
+2025-02-21T11:22:36.142Z [INFO]: add to cart succsess: nobody.fie@gmail.com
+2025-02-21T11:22:53.321Z [INFO]: add to cart succsess: nobody.fie@gmail.com
+2025-02-21T11:23:47.180Z [INFO]: add to cart succsess: nobody.fie@gmail.com
+2025-02-21T11:27:45.280Z [INFO]: add to cart succsess: asunakirito211@gmail.com
+2025-02-21T11:27:51.831Z [INFO]: add to cart succsess: asunakirito211@gmail.com
+2025-02-21T11:27:58.280Z [INFO]: add to cart succsess: asunakirito211@gmail.com
+2025-02-21T11:28:20.049Z [INFO]: add to cart succsess: asunakirito211@gmail.com
+2025-02-21T11:29:12.700Z [INFO]: add to cart succsess: asunakirito211@gmail.com
+2025-02-21T11:29:28.327Z [INFO]: add to cart succsess: asunakirito211@gmail.com
+2025-02-21T11:29:33.467Z [INFO]: add to cart succsess: asunakirito211@gmail.com
+2025-02-21T11:29:46.267Z [INFO]: add to cart succsess: asunakirito211@gmail.com
+2025-02-21T13:02:21.966Z [INFO]: add to cart succsess: asunakirito211@gmail.com
+2025-02-21T13:51:04.431Z [INFO]: get data event in cart succsess
+2025-02-21T14:17:43.094Z [INFO]: get data event in cart succsess
+2025-02-21T14:18:14.772Z [INFO]: get data event in cart succsess
+2025-02-21T14:19:28.262Z [INFO]: get data event in cart succsess
+2025-02-21T14:30:22.412Z [INFO]: get data event in cart succsess
+2025-02-21T14:55:35.956Z [INFO]: get data event in cart succsess
+2025-02-21T14:56:16.297Z [INFO]: get data event in cart succsess
+2025-02-21T15:08:08.449Z [INFO]: get data event in cart succsess
+2025-02-21T15:12:52.041Z [INFO]: get data event in cart succsess
+2025-02-21T15:13:19.851Z [INFO]: get data event in cart succsess
+2025-02-21T15:17:36.605Z [INFO]: get data event in cart succsess
+2025-02-21T15:18:32.647Z [INFO]: get data event in cart succsess
+2025-02-21T15:18:40.909Z [INFO]: get data event in cart succsess
+2025-02-21T15:18:41.987Z [INFO]: get data event in cart succsess
+2025-02-21T15:19:32.181Z [INFO]: get data event in cart succsess
+2025-02-21T15:19:33.212Z [INFO]: get data event in cart succsess
+2025-02-21T15:20:52.572Z [INFO]: get data event in cart succsess
+2025-02-21T15:20:53.585Z [INFO]: get data event in cart succsess
+2025-02-21T15:22:22.596Z [INFO]: get data event in cart succsess
+2025-02-21T15:22:24.756Z [INFO]: get data event in cart succsess
+2025-02-21T15:25:20.860Z [INFO]: add to cart succsess: asunakirito211@gmail.com
+2025-02-21T15:25:27.371Z [INFO]: add to cart succsess: asunakirito211@gmail.com
+2025-02-21T15:27:27.072Z [INFO]: get data event in cart succsess
+2025-02-21T15:27:28.122Z [INFO]: get data event in cart succsess
+2025-02-21T15:32:27.452Z [INFO]: get data event in cart succsess
+2025-02-21T15:33:28.157Z [INFO]: get data event in cart succsess
+2025-02-21T15:36:42.445Z [INFO]: get data event in cart succsess
+2025-02-21T15:44:50.985Z [INFO]: get data event in cart succsess
+2025-02-21T15:44:56.163Z [INFO]: Cart item deleted successfully
+2025-02-21T15:45:07.614Z [INFO]: get data event in cart succsess
+2025-02-21T15:46:05.480Z [INFO]: get data event in cart succsess
+2025-02-21T17:46:08.807Z [INFO]: get data event in cart succsess
+2025-02-21T17:46:10.322Z [INFO]: get data event in cart succsess
+2025-02-21T19:21:20.548Z [INFO]: add to cart succsess: nobody.fie@gmail.com
+2025-02-21T19:28:17.925Z [INFO]: get data event in cart succsess
+2025-02-21T19:28:18.995Z [INFO]: get data event in cart succsess
+2025-02-21T19:29:25.896Z [INFO]: get data event in cart succsess
+2025-02-21T19:29:27.616Z [INFO]: get data event in cart succsess
+>>>>>>> ecfc3b4a3b3c04780eeb4d77670ba9603588a27e

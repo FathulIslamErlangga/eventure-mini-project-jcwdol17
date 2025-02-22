@@ -1,3 +1,4 @@
+'use client';
 import "@/css/eoPage/eoDetailsPage/eoDetPage.css";
 import { EoDetHeader } from "./eoDetHeader";
 import { EoDetContent } from "./eoDetContent";
