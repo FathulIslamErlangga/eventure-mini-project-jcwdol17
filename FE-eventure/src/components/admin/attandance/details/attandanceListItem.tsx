@@ -1,4 +1,4 @@
-import useCart from "@/hooks/cart.hooks";
+import { useCart } from "@/hooks/cart.hooks";
 import Image from "next/image";
 
 export function AttandanceDetListItem() {

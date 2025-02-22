@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { AnalyticsService } from "@/services/analitycs.service";
+import { AnalyticsService } from "@/services/analitycs.services";
 import { ProfitTrackFilter } from "@/utils/interfaces/customInsterface";
 
 export const useProfitTracking = (initialFilter?: ProfitTrackFilter) => {

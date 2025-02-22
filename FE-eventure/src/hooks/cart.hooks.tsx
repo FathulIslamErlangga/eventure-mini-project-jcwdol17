@@ -7,7 +7,7 @@ import {
   fetchCartItems,
   getAttendeeEvent,
   getAttendeeSlug,
-} from "@/services/cart.service";
+} from "@/services/cart.services";
 import {
   attendeeResponse,
   attendeeResponseBySlug,
@@ -22,7 +22,6 @@ export const useCart = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const { slug } = useParams();
-  console.log("slug", slug as string);
 
   useEffect(() => {
     getAttendee();
@@ -147,5 +146,3 @@ export const useCart = () => {
     handleUpdateAttendee,
   };
 };
-
-export default useCart;

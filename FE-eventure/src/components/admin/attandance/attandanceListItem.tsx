@@ -1,4 +1,4 @@
-import useCart from "@/hooks/cart.hooks";
+import { useCart } from "@/hooks/cart.hooks";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";

@@ -57,14 +57,14 @@ export function ListMenu({ isMenuOpen, toggleMenu }: ListMenuProps) {
               </div>
             </div>
 
-            <div
+            {/* <div
               className="list-menu-dt"
               onClick={() => handleMenuClick("/eo")}
             >
               <div className="list-menu-text">
                 <span>Event Organizer</span>
               </div>
-            </div>
+            </div> */}
             <div
               className="list-menu-dt"
               onClick={() => handleMenuClick("/purchase")}

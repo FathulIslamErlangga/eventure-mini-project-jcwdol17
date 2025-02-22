@@ -16,10 +16,10 @@ interface CartCardProps {
 }
 
 export function CartCard({ cartItem }: CartCardProps) {
-  const { handleDeleteCartItem,isLoading } = useCart();
+  const { handleDeleteCartItem, isLoading } = useCart();
   const [localTicketCount, setLocalTicketCount] = useState(cartItem.quantity);
 
-  console.log('ini qty nya : '+cartItem.quantity);
+  console.log("ini qty nya : " + cartItem.quantity);
   const formatRupiah = (number: number) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -103,7 +103,10 @@ export function CartCard({ cartItem }: CartCardProps) {
           </span>
         </div>
         <div className="cart-card-action-btn">
-          <div className="cart-card-action-btn-remove" onClick={handleDeleteCart}>
+          <div
+            className="cart-card-action-btn-remove"
+            onClick={handleDeleteCart}
+          >
             <Image
               src="/assets/images/icons/delete.svg"
               alt="remove"

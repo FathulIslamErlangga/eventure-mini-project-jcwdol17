@@ -1,5 +1,4 @@
 "use client";
-import TransactionsChart from "@/components/admin/dashboard/chart";
 import EventsChart from "@/components/admin/dashboard/lineChart";
 import EventsChart2 from "@/components/admin/dashboard/BarChart";
 import "@/css/adminPage/dashboardPage/dashboardPage.css";
