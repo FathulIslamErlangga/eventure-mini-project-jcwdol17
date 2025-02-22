@@ -151,11 +151,13 @@ export interface ITransactions {
   referralPointsUsed: number;
   paymentProof: string;
   customerId: IUsers;
+  customer: IUsers;
   eventId: IEvents;
+  event: IEvents;
   status: TransactionStatus;
   paymentMethod: PaymentMethod;
   statusLogs: IStatusLogs[];
-  attendee: IAtendees;
+  attendee: IAtendees[];
   expiresAt: Date;
   createdAt: Date;
   updatedAt: Date;
@@ -195,8 +197,11 @@ export interface IAtendees {
   checkedIn: boolean;
   organizerId: IUsers;
   transactionId: ITransactions;
+  transaction: ITransactions;
   eventId: IEvents;
+  event: IEvents;
   userId: IUsers;
+  user: IUsers;
   createdAt: Date;
   updatedAt: Date;
 }

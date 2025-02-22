@@ -36,7 +36,12 @@ export class Cart {
           include: { attendee: true },
         },
         organizer: true,
-        event: true,
+        event: {
+          include: {
+            gallery: true,
+            address: true,
+          },
+        },
       },
     });
     cartLogger.warn(
@@ -84,5 +89,36 @@ export class Cart {
     });
     cartLogger.info(`updated checkin succsessfully: ${users.email}`);
     appSuccsess(201, "updated checkin succsessfully", res, updateAttendee);
+  });
+
+  getSlugAttendee = asyncHandler(async (req: Request, res: Response) => {
+    const { slug } = req.params;
+
+    const user = await prisma.user.findUnique({
+      where: { slug },
+      include: { attendee: true },
+    });
+
+    if (!user) {
+      cartLogger.warn("user not found");
+      throw new appError("user not found", 404);
+    }
+
+    const getDataSlug = await prisma.attendee.findUnique({
+      where: { id: user.attendee[0].id },
+      include: {
+        user: true,
+        organizer: true,
+        transaction: true,
+        event: {
+          include: {
+            gallery: true,
+            address: true,
+          },
+        },
+      },
+    });
+    cartLogger.info(`get detail attendee succsess: ${user.email}`);
+    appSuccsess(201, "get detail attendee succsess", res, getDataSlug);
   });
 }

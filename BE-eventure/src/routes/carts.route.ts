@@ -10,6 +10,7 @@ const cartRoute = () => {
   router.delete("/carts/v3/:attendeeId", protectedAuth, cart.deleteItem);
   router.patch("/carts/v4", protectedAuth, cart.updatedAttendee);
   router.get("/carts/v5", protectedAuth, cart.getOwnerEvent);
+  router.get("/carts/v6/:slug", protectedAuth, cart.getSlugAttendee);
   return router;
 };
 

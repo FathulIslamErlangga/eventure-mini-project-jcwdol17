@@ -133,9 +133,22 @@ export class Transactions {
         referralPointsUsed: true,
         paymentProof: true,
         expiresAt: true,
-        event: true,
+        event: {
+          include: {
+            address: true,
+            category: true,
+          },
+        },
         attendee: true,
-        customer: true,
+        customer: {
+          include: {
+            profile: {
+              include: {
+                imageProfile: true,
+              },
+            },
+          },
+        },
       },
     });
     appSuccsess(201, "get data transaction succsess", res, transactions);

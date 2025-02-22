@@ -1,16 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   createCart,
   getCartItem,
   deleteCartItem,
   updateAttendee,
   fetchCartItems,
+  getAttendeeEvent,
+  getAttendeeSlug,
 } from "@/services/cart.service";
+import {
+  attendeeResponse,
+  attendeeResponseBySlug,
+} from "@/utils/interfaces/customInsterface";
+import { useParams } from "next/navigation";
 
 export const useCart = () => {
   const [cartData, setCartData] = useState<any>(null);
+  const [attendee, setAttendee] = useState<attendeeResponse>();
+  const [attendeeBySlug, setAttendeeBySlug] =
+    useState<attendeeResponseBySlug>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const { slug } = useParams();
+  console.log("slug", slug as string);
+
+  useEffect(() => {
+    getAttendee();
+  }, []);
+  useEffect(() => {
+    getAttendeeBySlug(slug as string);
+  }, []);
 
   // Create a new cart
   const handleCreateCart = async (cartDetails?: any) => {
@@ -96,10 +115,31 @@ export const useCart = () => {
     }
   };
 
+  const getAttendee = async () => {
+    try {
+      const response = await getAttendeeEvent();
+      if (!response) {
+        setError("attendee not found");
+      }
+      setAttendee(response);
+    } catch (error: any) {}
+  };
+
+  const getAttendeeBySlug = async (slug: string) => {
+    try {
+      const response = await getAttendeeSlug(slug);
+      setAttendeeBySlug(response);
+    } catch (error: any) {
+      setError(error.message);
+    }
+  };
+
   return {
     cartData,
     isLoading,
     error,
+    attendee,
+    attendeeBySlug,
     handleCreateCart,
     handleGetCartItem,
     handleDeleteCartItem,

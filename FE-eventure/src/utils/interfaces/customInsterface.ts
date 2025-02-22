@@ -127,7 +127,11 @@ export interface notificationResponse {
 
 export interface attendeeResponse {
   message: string;
-  data: IAtendees[];
+  data: IAtendees[] | undefined;
+}
+export interface attendeeResponseBySlug {
+  message: string;
+  data: IAtendees | undefined;
 }
 
 export interface ICartData {

@@ -1,43 +1,63 @@
+import useTransactionsHooks from "@/hooks/useTransactions.hooks";
+import Image from "next/image";
 import Link from "next/link";
 
 export function ListDataItem() {
+  const { transactions } = useTransactionsHooks();
   return (
     <>
-      <tr>
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
-        <td>
-          <div className="flex items-center gap-3">
-            <div className="avatar">
-              <div className="mask mask-squircle h-12 w-12">
-                <img
-                  src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                  alt="Avatar Tailwind CSS Component"
-                />
+      {transactions?.data.map((transaction) => {
+        const findImage = transaction.customer.profile?.imageProfile.find(
+          (image) => image.imageType === "profile"
+        );
+        return (
+          <tr>
+            <th>
+              <label>
+                <input type="checkbox" className="checkbox" />
+              </label>
+            </th>
+            <td>
+              <div className="flex items-center gap-3">
+                <div className="avatar">
+                  <div className="mask mask-squircle h-12 w-12">
+                    <Image
+                      src={findImage?.imageUrl || "/fallback.jpg"}
+                      alt="Event Thumbnail"
+                      width={48}
+                      height={48}
+                      className="rounded-full"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className="font-bold">
+                    {transaction.customer.profile?.name}
+                  </div>
+                  <div className="text-sm opacity-50">
+                    {transaction.customer.profile?.address?.city}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div>
-              <div className="font-bold">Hart Hagerty</div>
-              <div className="text-sm opacity-50">United States</div>
-            </div>
-          </div>
-        </td>
-        <td>
-          Blackpink Comeback
-          <br />
-          <span className="badge badge-ghost badge-sm">Music & Concert</span>
-        </td>
-        <td>2</td>
-        <td>$20</td>
-        <th>
-          <button className="btn btn-ghost btn-xs">
-            <Link href="/admin/transactions/1">Details</Link>
-          </button>
-        </th>
-      </tr>
+            </td>
+            <td>
+              {transaction.event.name}
+              <br />
+              <span className="badge badge-ghost badge-sm">
+                {transaction.event.category?.name}
+              </span>
+            </td>
+            <td>{transaction.status}</td>
+            <td>{transaction.ticketQuantity}</td>
+            <td>{transaction.totalPrice}</td>
+            <th>
+              <button className="btn btn-ghost btn-xs">
+                <Link href={`/admin/${transaction.id}/status`}>Details</Link>
+              </button>
+            </th>
+          </tr>
+        );
+      })}
     </>
   );
 }

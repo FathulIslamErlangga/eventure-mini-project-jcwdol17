@@ -1,9 +1,10 @@
 import api from "@/utils/api/axios";
-import { 
-  attendeeResponse, 
-  ICartData, 
-  ICartItemsParams, 
-  ICartResponse 
+import {
+  attendeeResponse,
+  attendeeResponseBySlug,
+  ICartData,
+  ICartItemsParams,
+  ICartResponse,
 } from "@/utils/interfaces/customInsterface";
 
 // Create a new cart
@@ -12,12 +13,12 @@ export const createCart = async (cartData: ICartData) => {
     const response = await api.post("/carts/v1", cartData);
     return {
       message: "Cart created successfully",
-      data: response.data
+      data: response.data,
     };
   } catch (error) {
     throw {
       message: "Failed to create cart",
-      data: null
+      data: null,
     };
   }
 };
@@ -68,8 +69,8 @@ export const fetchCartItems = async (userSlug: string) => {
         totalItems: 0,
         perPage: 0,
         hasNextPage: false,
-        hasPrevPage: false
-      }
+        hasPrevPage: false,
+      },
     };
   }
 };
@@ -78,6 +79,25 @@ export const fetchCartItems = async (userSlug: string) => {
 export const Attendee = async () => {
   try {
     const response = await api.get<attendeeResponse>("/carts/v1");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getAttendeeEvent = async () => {
+  try {
+    const response = await api.get<attendeeResponse>("/carts/v5");
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const getAttendeeSlug = async (slug: string) => {
+  try {
+    const response = await api.get<attendeeResponseBySlug>(`/carts/v6/${slug}`);
+
     return response.data;
   } catch (error) {
     throw error;
