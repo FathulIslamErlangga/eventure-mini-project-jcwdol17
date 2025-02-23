@@ -119,6 +119,10 @@ export interface transactionResponse {
   message: string;
   data: ITransactions[];
 }
+export interface transactionsResponse {
+  message: string;
+  data: ITransactions;
+}
 
 export interface notificationResponse {
   message: string;
@@ -130,6 +134,10 @@ export interface attendeeResponse {
   data: IAtendees[] | undefined;
 }
 export interface attendeeResponseBySlug {
+  message: string;
+  data: IAtendees | undefined;
+}
+export interface attendeeResponseCheckin {
   message: string;
   data: IAtendees | undefined;
 }

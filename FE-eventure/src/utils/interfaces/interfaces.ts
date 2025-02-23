@@ -162,13 +162,13 @@ export interface ITransactions {
   createdAt: Date;
   updatedAt: Date;
 }
-enum PaymentMethod {
+export enum PaymentMethod {
   BANK_TRANSFER = "BANK_TRANSFER",
   E_WALLET = "E_WALLET",
   CREDIT_CARD = "CREDIT_CARD",
 }
 
-enum TransactionStatus {
+export enum TransactionStatus {
   WAITING_PAYMENT = "WAITING_PAYMENT",
   WAITING_CONFIRMATION = "WAITING_CONFIRMATION",
   DONE = "DONE",

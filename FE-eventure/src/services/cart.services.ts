@@ -2,6 +2,7 @@ import api from "@/utils/api/axios";
 import {
   attendeeResponse,
   attendeeResponseBySlug,
+  attendeeResponseCheckin,
   ICartData,
   ICartItemsParams,
   ICartResponse,
@@ -82,7 +83,7 @@ export const GetAttendee = async () => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 // Existing Attendee method
 export const Attendee = async () => {
@@ -107,6 +108,22 @@ export const getAttendeeSlug = async (slug: string) => {
   try {
     const response = await api.get<attendeeResponseBySlug>(`/carts/v6/${slug}`);
 
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const checkinAttendee = async (checkedIn: boolean, slug: string) => {
+  try {
+    console.log("Sending check-in request:", checkedIn);
+    const response = await api.patch<attendeeResponseCheckin>(
+      `/carts/v4/${slug}`,
+      {
+        checkedIn,
+      }
+    );
+    console.log(response.data);
     return response.data;
   } catch (error) {
     throw error;

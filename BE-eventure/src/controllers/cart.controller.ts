@@ -63,26 +63,32 @@ export class Cart {
   });
 
   updatedAttendee = asyncHandler(async (req: Request, res: Response) => {
-    const user = req as ValidationRequest;
-    const userId = user.userData.id;
+    const { slug } = req.params;
     const { checkedIn } = req.body;
 
     const users = await prisma.user.findUnique({
-      where: { id: userId },
+      where: { slug },
       include: { attendee: true },
     });
-
     if (!users) {
       cartLogger.warn("user not found");
       throw new appError("user not found", 404);
     }
-    if (users.attendee[0].checkedIn === true) {
+    const attendee = await prisma.attendee.findFirst({
+      where: { userId: users.id },
+    });
+    if (!attendee) {
+      cartLogger.warn("attendee not found");
+      throw new appError("attendee not found", 404);
+    }
+
+    if (attendee.checkedIn === true) {
       cartLogger.warn(`Attendee sudah melakukan check-in: ${users.email}`);
       throw new appError("Attendee sudah melakukan check-in", 404);
     }
 
     const updateAttendee = await prisma.attendee.update({
-      where: { id: users.attendee[0].id },
+      where: { id: attendee.id },
       data: {
         checkedIn: Boolean(checkedIn),
       },

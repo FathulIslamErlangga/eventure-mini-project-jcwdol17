@@ -49,3 +49,95 @@
 2025-02-22T05:20:08.803Z [INFO]: Your transaction succsess: Sheep.fie@gmail.com
 2025-02-22T14:24:30.007Z [INFO]: Redirect URL Midtrans: https://app.sandbox.midtrans.com/snap/v4/redirection/789ae6af-2a5a-4031-9b2b-2dcd6294f651
 2025-02-22T14:24:30.018Z [INFO]: Your transaction succsess: nobody.fie@gmail.com
+2025-02-22T14:41:47.116Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T16:09:23.689Z [WARN]: User not found, please login first
+2025-02-22T16:09:24.205Z [WARN]: User not found, please login first
+2025-02-22T16:09:25.518Z [WARN]: User not found, please login first
+2025-02-22T16:09:25.881Z [WARN]: User not found, please login first
+2025-02-22T16:11:34.466Z [WARN]: get detail transaction: Sheep.fie@gmail.com
+2025-02-22T16:22:01.771Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T16:22:02.907Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T16:27:26.147Z [WARN]: get detail transaction: Sheep.fie@gmail.com
+2025-02-22T16:28:56.637Z [WARN]: get detail transaction: Sheep.fie@gmail.com
+2025-02-22T16:33:22.974Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T16:33:25.569Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T16:33:27.372Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T16:33:29.408Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T16:34:52.817Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T16:34:57.275Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T16:44:02.624Z [WARN]: get detail transaction: Sheep.fie@gmail.com
+2025-02-22T16:45:50.271Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T16:45:51.543Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T16:45:52.410Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T16:45:53.514Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T16:56:32.593Z [WARN]: get detail transaction: Sheep.fie@gmail.com
+2025-02-22T16:56:53.756Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T16:57:04.542Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T16:59:03.808Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T17:04:22.978Z [WARN]: get detail transaction: nobody.fie@gmail.com
+2025-02-22T17:14:36.017Z [WARN]: get detail transaction: Galaktus
+2025-02-22T17:17:16.072Z [WARN]: get detail transaction: Galaktus
+2025-02-22T17:17:17.963Z [WARN]: get detail transaction: Galaktus
+2025-02-22T17:39:44.060Z [WARN]: get detail transaction: Galaktus
+2025-02-22T17:39:45.048Z [WARN]: get detail transaction: Galaktus
+2025-02-22T17:39:46.385Z [WARN]: get detail transaction: Galaktus
+2025-02-22T17:39:47.229Z [WARN]: get detail transaction: Galaktus
+2025-02-22T17:47:49.737Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T17:47:50.736Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T17:54:24.255Z [WARN]: get detail transaction: Galaktus
+2025-02-22T17:54:33.100Z [INFO]: Redirect URL Midtrans: https://app.sandbox.midtrans.com/snap/v4/redirection/ffcaad1c-aa0b-432a-bbf3-400d1aac73d0
+2025-02-22T17:54:33.100Z [INFO]: Your transaction succsess: nobody.fie@gmail.com
+2025-02-22T19:22:54.180Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:22:55.593Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:22:57.170Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:22:58.326Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:28:40.631Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:28:46.341Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:28:49.301Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:28:51.341Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:29:19.387Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:29:21.375Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:29:38.277Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:29:39.601Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:29:40.582Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:29:41.936Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:32:52.893Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:32:54.340Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:32:56.042Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:32:58.448Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:33:43.508Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:33:54.746Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:33:58.435Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:33:58.437Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:36:21.974Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:36:23.346Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:36:24.333Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:36:25.482Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:44:31.579Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T19:44:33.643Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T20:42:05.208Z [WARN]: User not found, please login first
+2025-02-22T20:42:11.125Z [WARN]: User not found, please login first
+2025-02-22T20:42:13.285Z [WARN]: User not found, please login first
+2025-02-22T20:42:16.753Z [WARN]: User not found, please login first
+2025-02-22T20:42:37.483Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T20:42:40.560Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T20:42:51.740Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T20:46:17.880Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T20:46:19.069Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T20:46:20.151Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T20:46:21.635Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T20:46:28.525Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T20:51:00.843Z [INFO]: Update status succssesfully: nobody.fie@gmail.com
+2025-02-22T20:53:53.787Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T21:01:44.202Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T21:01:45.667Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T21:01:48.271Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T21:01:49.493Z [WARN]: get detail transaction: Dj Vi
+2025-02-22T21:01:59.812Z [INFO]: Update status succssesfully: nobody.fie@gmail.com
+2025-02-22T21:02:02.816Z [WARN]: get detail transaction: Dj Vi
+2025-02-23T06:37:06.264Z [WARN]: User not found, please login first
+2025-02-23T06:37:08.470Z [WARN]: User not found, please login first
+2025-02-23T06:39:02.357Z [WARN]: User not found, please login first
+2025-02-23T06:39:02.825Z [WARN]: User not found, please login first
+2025-02-23T06:41:04.030Z [WARN]: User not found, please login first
+2025-02-23T06:41:05.094Z [WARN]: User not found, please login first

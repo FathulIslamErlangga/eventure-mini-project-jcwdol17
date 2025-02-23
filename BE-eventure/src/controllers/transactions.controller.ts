@@ -34,24 +34,38 @@ export class Transactions {
   detailTransaction = asyncHandler(async (req: Request, res: Response) => {
     const { slug } = req.params;
 
-    const user = await prisma.user.findUnique({
+    const event = await prisma.event.findUnique({
       where: { slug },
+      include: {
+        transactions: true,
+      },
     });
 
-    if (!user) {
+    if (!event) {
       checkoutLogger.warn("User not found, please login first");
       throw new appError("User not found, please login first", 404);
     }
 
-    const transactions = await prisma.transaction.findMany({
-      where: { customerId: user.id },
+    const transactions = await prisma.transaction.findUnique({
+      where: { id: event.transactions[0].id },
       include: {
+        customer: {
+          include: {
+            profile: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
         event: {
           select: {
             id: true,
             name: true,
             startDate: true,
             endDate: true,
+
             address: {
               select: { id: true, address: true, city: true },
             },
@@ -70,11 +84,25 @@ export class Transactions {
                 },
               },
             },
+            // attendees: {
+            //   include: {
+            //     user: {
+            //       include: {
+            //         profile: {
+            //           select: {
+            //             id: true,
+            //             name: true,
+            //           },
+            //         },
+            //       },
+            //     },
+            //   },
+            // },
           },
         },
       },
     });
-    checkoutLogger.warn(`get detail transaction: ${user.email}`);
+    checkoutLogger.warn(`get detail transaction: ${event.name}`);
     appSuccsess(201, "get detail transaction", res, transactions);
   });
 

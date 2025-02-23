@@ -8,7 +8,7 @@ const transactionRoute = () => {
   const router = express.Router();
   router.post("/midtrans/v1", protectedAuth, transactions.checkout);
   router.patch(
-    "/:transactionId/v2",
+    "/midtrans/v2/:transactionId",
     protectedAuth,
     transactions.statusTransaction
   );

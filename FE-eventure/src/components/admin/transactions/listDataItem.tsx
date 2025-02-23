@@ -1,9 +1,9 @@
-import useTransactionsHooks from "@/hooks/useTransactions.hooks";
+import transactionsHooks from "@/hooks/transactions.hooks";
 import Image from "next/image";
 import Link from "next/link";
 
 export function ListDataItem() {
-  const { transactions } = useTransactionsHooks();
+  const { transactions } = transactionsHooks();
   return (
     <>
       {transactions?.data.map((transaction) => {
@@ -52,7 +52,9 @@ export function ListDataItem() {
             <td>{transaction.totalPrice}</td>
             <th>
               <button className="btn btn-ghost btn-xs">
-                <Link href={`/admin/${transaction.id}/status`}>Details</Link>
+                <Link href={`/admin/transactions/${transaction.event.slug}`}>
+                  Details
+                </Link>
               </button>
             </th>
           </tr>

@@ -1,12 +1,21 @@
 import { useCart } from "@/hooks/cart.hooks";
+import { log } from "console";
 import Image from "next/image";
 
 export function AttandanceDetListItem() {
-  const { attendeeBySlug } = useCart();
+  const {
+    attendeeBySlug,
+    checkedIn,
+    isLoading,
+    updateCheckin,
+    handleCheckinChange,
+  } = useCart();
+  console.log("checked", checkedIn);
   const attendee = attendeeBySlug?.data;
-  const findImage = attendee?.event.gallery.find(
-    (_) => _.imageType === "thumbnail"
-  );
+  const event = attendee?.event;
+  const address = event?.address; // Perbaikan dengan optional chaining
+  const gallery = event?.gallery || [];
+  const findImage = gallery.find((img) => img.imageType === "thumbnail");
   return (
     <>
       {attendee && (
@@ -30,14 +39,12 @@ export function AttandanceDetListItem() {
                 </div>
               </div>
               <div>
-                <div className="font-bold">{attendee.event.name}</div>
-                <div className="text-sm opacity-50">
-                  {attendee.event.address?.city}
-                </div>
+                <div className="font-bold">{event?.name}</div>
+                <div className="text-sm opacity-50">{address?.city}</div>
               </div>
             </div>
           </td>
-          {attendee.transaction.status === "DONE" ? (
+          {attendee.checkedIn === true ? (
             <>
               <td>
                 <label>
@@ -52,11 +59,21 @@ export function AttandanceDetListItem() {
             <>
               <td>
                 <label>
-                  <input type="checkbox" className="checkbox" disabled />
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    checked={checkedIn}
+                    onChange={handleCheckinChange}
+                    disabled={isLoading || checkedIn}
+                  />
                 </label>
               </td>
               <th>
-                <button className="btn btn-primary" disabled>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => updateCheckin(checkedIn)}
+                  disabled={isLoading || checkedIn}
+                >
                   Save
                 </button>
               </th>

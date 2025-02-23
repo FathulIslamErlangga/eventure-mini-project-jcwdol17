@@ -7,6 +7,7 @@ import {
   fetchCartItems,
   getAttendeeEvent,
   getAttendeeSlug,
+  checkinAttendee,
 } from "@/services/cart.services";
 import {
   attendeeResponse,
@@ -20,6 +21,7 @@ export const useCart = () => {
   const [attendeeBySlug, setAttendeeBySlug] =
     useState<attendeeResponseBySlug>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [checkedIn, setCheckedIn] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const { slug } = useParams();
 
@@ -133,13 +135,36 @@ export const useCart = () => {
     }
   };
 
+  const updateCheckin = async (newCheckedIn: boolean) => {
+    try {
+      setIsLoading(true);
+      const response = await checkinAttendee(newCheckedIn, slug as string);
+      setAttendeeBySlug(response);
+      await getAttendee();
+    } catch (error: any) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleCheckinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newCheckedIn = e.target.checked;
+    // Update nilai lokal terlebih dahulu untuk responsivitas UI
+    setCheckedIn(newCheckedIn);
+    updateCheckin(newCheckedIn);
+  };
+
   return {
     cartData,
     isLoading,
     error,
     attendee,
     attendeeBySlug,
+    checkedIn,
+    handleCheckinChange,
     handleCreateCart,
+    updateCheckin,
     handleGetCartItem,
     handleDeleteCartItem,
     handleFetchCartItems,

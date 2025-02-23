@@ -27,10 +27,11 @@ export class App {
   }
 
   configure() {
+    this.app.use(Cors);
+    // this.app.options("*", Cors);
     this.app.use(express.json());
     this.app.use(cookieParser());
     this.app.use(express.urlencoded({ extended: true }));
-    this.app.use(Cors);
   }
 
   routes() {

@@ -62,14 +62,14 @@ export interface addressProps {
 }
 
 export interface transactionProps {
-  transaction: transactionResponse | undefined; 
-  loading: boolean; 
-  error: any; 
-  createTransactions: (data: any) => Promise<transactionResponse>; 
-  getAllTransaction: () => Promise<transactionResponse[]>; 
-  getTransaction: (id: string) => Promise<transactionResponse>; 
-  updateTransaction: (id: string, data: any) => Promise<void>; 
-  uploadProof: (data: FormData) => Promise<void>; 
+  transaction: transactionResponse | undefined;
+  loading: boolean;
+  error: any;
+  createTransactions: (data: any) => Promise<transactionResponse>;
+  getAllTransaction: () => Promise<transactionResponse[]>;
+  getTransaction: (id: string) => Promise<transactionResponse>;
+  updateTransaction: (id: string, data: any) => Promise<void>;
+  uploadProof: (data: FormData) => Promise<void>;
 }
 
 export interface notificationProps {
@@ -77,7 +77,7 @@ export interface notificationProps {
   message: string | undefined;
 }
 
-export interface attendeeProps{
+export interface attendeeProps {
   attendee: attendeeResponse | undefined;
   message: string | undefined;
 }
