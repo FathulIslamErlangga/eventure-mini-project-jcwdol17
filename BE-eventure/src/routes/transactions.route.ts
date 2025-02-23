@@ -28,6 +28,12 @@ const transactionRoute = () => {
 
     transactions.getTransaction
   );
+  router.get(
+    "/midtrans/v6/:slug",
+    protectedAuth,
+    transactions.detailUserTransaction
+  );
+  
   return router;
 };
 

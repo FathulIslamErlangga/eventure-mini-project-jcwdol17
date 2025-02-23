@@ -5,7 +5,8 @@ import "../../globals.css";
 import { AuthContexts } from "@/components/contexts/AuthContexts";
 import { Sidebar } from "@/components/admin/sidebar";
 import withAuth from "@/middlewares/auth.middleware";
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const archivoBold = Archivo({
   src: "../../../../public/assets/fonts/Archivo/static/Archivo-Bold.ttf",
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body
         className={`${archivoBold.variable} ${archivoRegular.variable} antialiased`}
       >
+
         <Sidebar/>
         <AuthContexts>{children}</AuthContexts>
       </body>

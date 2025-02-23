@@ -201,6 +201,11 @@ export default withAuth(
                 ✕
               </button>
               <h2 className="text-xl font-bold mb-4">Payment Proof</h2>
+              <img
+                src={transaction?.data?.paymentProof}
+                alt={`Payment Proof`}
+                className="max-w-full max-h-[70vh] mx-auto object-contain"
+              />
             </div>
           </div>
         )}

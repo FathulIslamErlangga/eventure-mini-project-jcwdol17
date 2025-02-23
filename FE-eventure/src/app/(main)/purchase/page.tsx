@@ -1,70 +1,96 @@
+"use client";
+import { useAuth } from "@/components/contexts/AuthContexts";
 import { ModalReview } from "@/components/modal/modalReview";
 import { ModalUploadFile } from "@/components/modal/modalUploadFile";
 import { PurchaseCard } from "@/components/purchaseCard";
 import "@/css/purchasePage/purchasePage.css";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import {
+  transactionResponse,
+  transactionsUserResponse,
+} from "@/utils/interfaces/customInsterface";
+import transactionsHooks from "@/hooks/transactions.hooks";
 
 export default function PurchasePage() {
+  const { auth } = useAuth();
+  const userSlug = auth.user?.data.slug;
+  const { getUserTransactionBySlug, userTransactions } = transactionsHooks();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchTransactionDetail = async () => {
+      if (userSlug) {
+        try {
+          await getUserTransactionBySlug(userSlug);
+          setLoading(false);
+        } catch (error) {
+          if (error instanceof Error) {
+            setError(error.message);
+          }
+          setLoading(false);
+        }
+      }
+    };
+    fetchTransactionDetail();
+  }, [userSlug, getUserTransactionBySlug]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+
+  const indexOfLastTransaction = currentPage * itemsPerPage;
+  const indexOfFirstTransaction = indexOfLastTransaction - itemsPerPage;
+
+  const currentTransactions =
+    userTransactions?.data?.slice(
+      indexOfFirstTransaction,
+      indexOfLastTransaction
+    ) || [];
+
+  const totalPages = userTransactions?.data
+    ? Math.ceil(userTransactions.data.length / itemsPerPage)
+    : 0;
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   return (
     <>
-    
-    <div className="purchase-page">
-      <div className="purchase-page-title">
-        <span>Purchase</span>
-      </div>
-      <div className="purchase-page-content">
-        <div className="purchase-page-content-list">
-          <div className="purchase-card">
-            <div className="purchase-card-pic">
-              <Image
-                src="/assets/images/contents/events/Sample 1.jpg"
-                alt="sample-1"
-                width={200}
-                height={200}
-              />
-            </div>
-            <div className="purchase-card-info">
-              <div className="purchase-card-info-title">
-                <span>Blackpink Comeback</span>
-              </div>
-              <div className="list-divided">
-                <div className="purchase-card-info-ctg">
-                  <span>Concert & Music</span>
-                </div>
-                <div className="purchase-card-info-date">
-                  <span>Date : 01/01/2024</span>
-                </div>
-              </div>
-              <div className="list-divided">
-                <div className="purchase-card-info-price">
-                  <span>Total : Rp. 100.000</span>
-                </div>
-                <div className="purchase-card-info-qty">
-                  <span>Qty : 1</span>
-                </div>
-              </div>
-            </div>
-            <div className="purchase-card-status">
-              <span>Waiting for Payment</span>
-            </div>
-            <div className="purchase-card-action">
-              <button className="e-btn bg-info ">Upload Payment Proof</button>
-              <button className="e-btn bg-secondary hidden">Review</button>
-              <button className="e-btn bg-error">Cancel</button>
-            </div>
-          </div>
-          <PurchaseCard/>
+      <div className="purchase-page">
+        <div className="purchase-page-title">
+          <span>Purchase</span>
         </div>
-        <div className="purchase-page-content-pagination">
-          <div className="join">
-            <button className="join-item btn">1</button>
-            <button className="join-item btn btn-active">2</button>
-            <button className="join-item btn">3</button>
-            <button className="join-item btn">4</button>
+        <div className="purchase-page-content">
+          <div className="purchase-page-content-list">
+            {loading ? (
+              <div>Loading...</div>
+            ) : currentTransactions.length > 0 ? (
+              currentTransactions.map((transaction, index) => (
+                <PurchaseCard key={index} {...transaction} />
+              ))
+            ) : (
+              <div>No transactions available.</div>
+            )}
+          </div>
+          <div className="purchase-page-content-pagination">
+            <div className="join">
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index + 1}
+                  className={`join-item btn ${
+                    currentPage === index + 1 ? "btn-active" : ""
+                  }`}
+                  onClick={() => handlePageChange(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 }

@@ -5,6 +5,7 @@ import "../globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { AuthContexts } from "@/components/contexts/AuthContexts";
+import { midtrans_client_key } from "@/helpers/config";
 
 const archivoBold = Archivo({
   src: "../../../public/assets/fonts/Archivo/static/Archivo-Bold.ttf",
@@ -29,6 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+
       <body
         className={`${archivoBold.variable} ${archivoRegular.variable} antialiased`}
       >

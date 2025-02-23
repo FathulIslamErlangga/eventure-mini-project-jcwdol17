@@ -42,8 +42,8 @@ export class Transactions {
     });
 
     if (!event) {
-      checkoutLogger.warn("User not found, please login first");
-      throw new appError("User not found, please login first", 404);
+      checkoutLogger.warn("event not found");
+      throw new appError("User not found", 404);
     }
 
     const transactions = await prisma.transaction.findUnique({
@@ -83,6 +83,12 @@ export class Transactions {
                   },
                 },
               },
+            },
+            gallery : {
+              select :{
+                id:true,
+                imageUrl:true,
+              }
             },
             // attendees: {
             //   include: {
@@ -180,5 +186,86 @@ export class Transactions {
       },
     });
     appSuccsess(201, "get data transaction succsess", res, transactions);
+  });
+
+  detailUserTransaction = asyncHandler(async (req: Request, res: Response) => {
+    const { slug } = req.params;
+
+    const user = await prisma.user.findUnique({
+      where: { slug },
+      include: {
+        transactions: true,
+      },
+    });
+
+    if (!user) {
+      checkoutLogger.warn("User not found, please login first");
+      throw new appError("User not found, please login first", 404);
+    }
+
+    const transactions = await prisma.transaction.findMany({
+      where: { customerId : user.id },
+      include: {
+        customer: {
+          include: {
+            profile: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
+        event: {
+          select: {
+            id: true,
+            name: true,
+            startDate: true,
+            endDate: true,
+
+            address: {
+              select: { id: true, address: true, city: true },
+            },
+            category: {
+              select: { id: true, name: true },
+            },
+            organizer: {
+              select: {
+                id: true,
+                email: true,
+                profile: {
+                  select: {
+                    id: true,
+                    name: true,
+                  },
+                },
+              },
+            },
+            gallery : {
+              select :{
+                id:true,
+                imageUrl:true,
+              }
+            },
+            attendees: {
+              include: {
+                user: {
+                  include: {
+                    profile: {
+                      select: {
+                        id: true,
+                        name: true,
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    });
+    checkoutLogger.warn(`get detail transaction: ${user.email}`);
+    appSuccsess(201, "get detail transaction", res, transactions);
   });
 }

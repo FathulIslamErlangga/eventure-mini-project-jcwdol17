@@ -2,6 +2,8 @@
 import "@/css/notifPage/notifCard.css";
 import { useAuth } from "../contexts/AuthContexts";
 import { format } from "date-fns";
+import { toast, ToastContainer } from "react-toastify";
+import { useEffect } from "react";
 
 export function NotifCard() {
   const { notifications } = useAuth();

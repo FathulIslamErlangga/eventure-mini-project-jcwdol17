@@ -27,11 +27,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
+
   return (
     <html lang="en">
       <body
         className={`${archivoBold.variable} ${archivoRegular.variable} antialiased`}
       >
+   
         <AuthContexts>{children}</AuthContexts>
       </body>
     </html>

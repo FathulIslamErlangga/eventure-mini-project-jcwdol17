@@ -117,6 +117,11 @@ export interface categoryResponse {
 
 export interface transactionResponse {
   message: string;
+  data: ITransactions;
+}
+
+export interface transactionsUserResponse {
+  message: string;
   data: ITransactions[];
 }
 export interface transactionsResponse {

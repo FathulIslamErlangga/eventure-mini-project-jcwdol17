@@ -45,10 +45,9 @@ export function EventDetailsContent(props: IEvents) {
         totalPrice: props.price * count,
       };
 
-
       await handleCreateCart(cartData);
       toast.success("Added to cart successfully!");
-      setCount(0); 
+      setCount(0);
     } catch (error) {
       toast.error("Failed to add to cart");
       console.error(error);
@@ -103,7 +102,9 @@ export function EventDetailsContent(props: IEvents) {
 
             <div
               className="btn-buy-now"
-              onClick={() => handleClick(`/transaction/id`)}
+              onClick={() =>
+                handleClick(`/transaction/${props.slug}?ticketCount=${count}`)
+              }
             >
               <Image
                 src="/assets/images/icons/dollar.svg"

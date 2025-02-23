@@ -4,12 +4,19 @@ import "@/css/purchasePage/purchaseCard.css";
 import { useState } from "react";
 import { ModalUploadFile } from "./modal/modalUploadFile";
 import { ModalReview } from "./modal/modalReview";
+import { ITransactions } from "@/utils/interfaces/interfaces";
 
-export function PurchaseCard() {
+export function PurchaseCard(props: ITransactions) {
   const [isUploadModalOpen, setUploadModalOpen] = useState(false);
   const [isReviewModalOpen, setReviewModalOpen] = useState(false);
-
-  const handleUploadModalClick = () => {
+  const [uploadModalQueryParam, setUploadModalQueryParam] = useState("");
+  const [statusModalQueryParam, setStatusModalQueryParam] = useState("");
+  
+  const handleUploadModalClick = (id: string, status: string) => {
+    const queryParam = `${id}`;
+    const statusParam = `${status}`;
+    setUploadModalQueryParam(queryParam);
+    setStatusModalQueryParam(statusParam);
     setUploadModalOpen(true);
   };
 
@@ -21,7 +28,7 @@ export function PurchaseCard() {
     <div className="purchase-card">
       <div className="purchase-card-pic">
         <Image
-          src="/assets/images/contents/events/Sample 1.jpg"
+          src={props.event.gallery[0].imageUrl}
           alt="sample-1"
           width={200}
           height={200}
@@ -29,34 +36,46 @@ export function PurchaseCard() {
       </div>
       <div className="purchase-card-info">
         <div className="purchase-card-info-title">
-          <span>Blackpink Comeback</span>
+          <span>{props.event.name}</span>
         </div>
         <div className="list-divided">
           <div className="purchase-card-info-ctg">
-            <span>Concert & Music</span>
+            <span>{props.event?.category?.name}</span>
           </div>
           <div className="purchase-card-info-date">
-            <span>Date : 01/01/2024</span>
+            <span>
+              {new Date(props.event?.startDate).toLocaleDateString("en-US", {
+                day: "2-digit",
+                month: "short",
+                year: "2-digit",
+              })}
+            </span>
           </div>
         </div>
         <div className="list-divided">
           <div className="purchase-card-info-price">
-            <span>Total : Rp. 100.000</span>
+            <span>Total : Rp. {props.totalPrice}</span>
           </div>
           <div className="purchase-card-info-qty">
-            <span>Qty : 1</span>
+            <span>Qty : {props.ticketQuantity}</span>
           </div>
         </div>
       </div>
       <div className="purchase-card-status">
-        <span>Waiting for Payment</span>
+        <span>{props.status}</span>
       </div>
       <div className="purchase-card-action">
-        <button onClick={handleUploadModalClick} className="e-btn bg-info ">
+        <button
+          onClick={() => handleUploadModalClick(props.id,props.status)}
+          className="e-btn bg-info "
+        >
           Upload Payment Proof
         </button>
         {isUploadModalOpen && (
-          <ModalUploadFile onClose={() => setUploadModalOpen(false)} />
+          <ModalUploadFile
+            onClose={() => setUploadModalOpen(false)}
+            queryParam={uploadModalQueryParam}
+          />
         )}{" "}
         <button onClick={handleReviewModalClick} className="e-btn bg-secondary">
           Review
