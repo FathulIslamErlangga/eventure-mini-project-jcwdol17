@@ -1,9 +1,8 @@
-'use client';
+"use client";
 import "@/css/profilePage/profileEvents.css";
 import { EventCard3 } from "../eventCard3";
 import { ModalAddEvent } from "../modal/modalAddEvent";
 import { useState } from "react";
-
 
 export function ProfileEvents() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,15 +23,20 @@ export function ProfileEvents() {
             <span>Events</span>
           </div>
           <div className="profile-events-title-btn">
-            <button className="e-btn bg-primary text-neutral" onClick={handleAddNewEvent}>Add New +</button>
+            <button
+              className="e-btn bg-primary text-neutral"
+              onClick={handleAddNewEvent}
+            >
+              Add New +
+            </button>
           </div>
         </div>
         <div className="profile-events-content">
+          {/* <EventCard3 onEdit={() => setIsModalOpen(true)}/>
           <EventCard3 onEdit={() => setIsModalOpen(true)}/>
           <EventCard3 onEdit={() => setIsModalOpen(true)}/>
           <EventCard3 onEdit={() => setIsModalOpen(true)}/>
-          <EventCard3 onEdit={() => setIsModalOpen(true)}/>
-          <EventCard3 onEdit={() => setIsModalOpen(true)}/>
+          <EventCard3 onEdit={() => setIsModalOpen(true)}/> */}
         </div>
         <div className="w-full h-fit flex justify-center items-center">
           <div className="join">

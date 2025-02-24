@@ -7,6 +7,8 @@ import { useLoadingNavigation } from "@/hooks/loadingNav.hook";
 import { useAuth } from "@/components/contexts/AuthContexts";
 import { useCart } from "@/hooks/cart.hooks";
 import { useEffect } from "react";
+import { Skeleton } from "../skeleton";
+import { NoData } from "../noData";
 
 export function ProfileCart() {
   const { auth } = useAuth();
@@ -25,8 +27,8 @@ export function ProfileCart() {
     }
   }, [userSlug]);
 
-  if (isLoading) return <div>Loading cart items...</div>;
-  if (error) return <div>Error loading cart: {error}</div>;
+  if (isLoading) return <div><Skeleton/></div>;
+  if (error) return <><NoData messages="No Cart Data"/></>;
 
   return (
     <>
@@ -53,7 +55,7 @@ export function ProfileCart() {
                 <CartCard key={index} cartItem={cartItem} />
               ))
           ) : (
-            <div>No cart items found</div>
+            <div><NoData messages={"No Cart Data"}/></div>
           )}
         </div>
       </div>

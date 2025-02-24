@@ -40,9 +40,6 @@ export function Sidebar() {
                 height={50}
               />
             </div>
-            <span className="badge badge-md badge-primary indicator-item">
-              8
-            </span>
           </div>
         </Link>
       </div>

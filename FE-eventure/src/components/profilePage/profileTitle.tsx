@@ -12,6 +12,7 @@ export function ProfileTitle() {
   const [copied, setCopied] = useState(false);
   const { auth } = useAuth();
   const referralCopy = `http://localhost:3000/signup?code=${auth.user?.data.code}`;
+  const referralCode = auth.user?.data.code;
   const handlePointLogs = () => {
     setIsModalOpen(true);
   };
@@ -21,9 +22,9 @@ export function ProfileTitle() {
       await navigator.clipboard.writeText(referralCopy);
       setCopied(true);
       setTimeout(() => setCopied(false), 1000);
-      toast.success("Teks berhasil disalin!");
+      toast.success("Referral code copied!");
     } catch (err) {
-      toast.error("Gagal menyalin teks.");
+      toast.error("Failed to copy referral code");
     }
   };
 
@@ -39,14 +40,16 @@ export function ProfileTitle() {
         </div>
         <div>
           <h1 className="text-2xl text-center">Referral</h1>
-          <span className="text-lg pr-3">{referralCopy}</span>
-          <button onClick={handleCopy} className=" bg-gray-200 rounded-full">
-            {copied ? (
-              <ClipboardCheck className="text-green-500 w-50" />
-            ) : (
-              <Clipboard />
-            )}
-          </button>
+          <div className="w-fit h-fit flex items-center gap-2  p-3">
+            <span className="text-lg pr-3">{referralCode}</span>
+            <button onClick={handleCopy} className=" bg-gray-200 rounded-sm p-2">
+              {copied ? (
+                <ClipboardCheck className="text-green-500 w-50" />
+              ) : (
+                <Clipboard />
+              )}
+            </button>
+          </div>
         </div>
         <div className="profile-page-title-btn">
           <button

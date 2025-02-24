@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    .skeleton{
+        @apply w-full h-[300px] border-[5px] border-[#04002D79] bg-gray-200 rounded-[5px] animate-pulse shadow-[6px_4px_0_#04002D79];
+    }
+}

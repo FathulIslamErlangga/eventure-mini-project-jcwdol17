@@ -5,8 +5,8 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { AuthContexts } from "@/components/contexts/AuthContexts";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const archivoBold = Archivo({
   src: "../../public/assets/fonts/Archivo/static/Archivo-Bold.ttf",
@@ -35,7 +35,7 @@ export default function RootLayout({
         className={`${archivoBold.variable} ${archivoRegular.variable} antialiased`}
       >
         <AuthContexts>{children}</AuthContexts>
-        <ToastContainer 
+        <ToastContainer
           position="top-center"
           autoClose={3000}
           hideProgressBar={false}
