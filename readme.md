@@ -5,7 +5,7 @@
 **Eventure** is an online event transaction platform designed to make it easy for users to find, purchase tickets, and manage events quickly and efficiently. With innovative features, Eventure is the best solution for event organizers and participants to connect in one secure and convenient ecosystem.
 
 ## 🎯 Fitur Utama
-✅ **Easy Event Search** - Browse various events from various categories with a fast and accurate search. Fast & Secure Ticket Transaction
+✅ **Easy Event Search** - Browse various events from various categories with a fast and accurate search.
 ✅ **Fast & Secure Ticket Transaction** - Ticket purchase process with a trusted payment system.      
 ✅ **Manage Your Own Event** - Create and promote your event with an intuitive management system.  
 ✅ **Event Notifications & Reminders** - Never miss an event with the automatic reminder feature.   
