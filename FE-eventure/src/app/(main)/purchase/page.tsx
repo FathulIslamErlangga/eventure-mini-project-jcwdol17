@@ -11,6 +11,8 @@ import {
   transactionsUserResponse,
 } from "@/utils/interfaces/customInsterface";
 import transactionsHooks from "@/hooks/transactions.hooks";
+import { Skeleton } from "@/components/skeleton";
+import { NoData } from "@/components/noData";
 
 export default function PurchasePage() {
   const { auth } = useAuth();
@@ -65,13 +67,17 @@ export default function PurchasePage() {
         <div className="purchase-page-content">
           <div className="purchase-page-content-list">
             {loading ? (
-              <div>Loading...</div>
+              <div className="w-full h-fit flex flex-col items-center justify-center gap-3">
+                <Skeleton />
+                <Skeleton />
+                <Skeleton />
+              </div>
             ) : currentTransactions.length > 0 ? (
               currentTransactions.map((transaction, index) => (
                 <PurchaseCard key={index} {...transaction} />
               ))
             ) : (
-              <div>No transactions available.</div>
+              <div><NoData messages={"No transactions available."} /></div>
             )}
           </div>
           <div className="purchase-page-content-pagination">

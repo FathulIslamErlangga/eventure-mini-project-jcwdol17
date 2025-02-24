@@ -153,7 +153,7 @@ export function ModalUploadFile({
           </button>
         </form>
       </div>
-      <ToastContainer />{" "}
+      <ToastContainer position="bottom-right"/>{" "}
       {/* Use ToastContainer to display toast notifications */}
     </div>
   );

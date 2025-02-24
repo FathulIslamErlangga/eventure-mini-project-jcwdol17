@@ -5,6 +5,8 @@ import { CartCard } from "./cartCard";
 import { useAuth } from "@/components/contexts/AuthContexts";
 import { useCart } from "@/hooks/cart.hooks";
 import { useEffect } from "react";
+import { Skeleton } from "../skeleton";
+import { NoData } from "../noData";
 
 export function Cart() {
   const { auth } = useAuth();
@@ -17,8 +19,12 @@ export function Cart() {
     }
   }, [userSlug]);
 
-  if (isLoading) return <div>Loading cart items...</div>;
-  if (error) return <div>Error loading cart: {error}</div>;
+  if (error)
+    return (
+      <div className="flex items-center justify-center h-full pt-32 pb-24 px-15">
+        <NoData messages={error} />
+      </div>
+    );
 
   return (
     <div className="cart-page">
@@ -36,12 +42,20 @@ export function Cart() {
         </div>
       </div>
       <div className="cart-page-content">
-        {cartData?.data?.length > 0 ? (
+        {isLoading ? (
+          <div className="w-full h-fit flex flex-col items-center justify-center gap-3">
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
+          </div>
+        ) : cartData?.data?.length > 0 ? (
           cartData.data.map((cartItem: any, index: number) => (
             <CartCard key={index} cartItem={cartItem} />
           ))
         ) : (
-          <div>No cart items found</div>
+          <div>
+            <NoData messages={"No cart items found"} />
+          </div>
         )}
       </div>
       {cartData?.meta && (

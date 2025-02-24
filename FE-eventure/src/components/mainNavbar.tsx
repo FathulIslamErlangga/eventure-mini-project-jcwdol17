@@ -82,9 +82,9 @@ export function MainNavbar({
                   height={50}
                 />
               </div>
-              <span className="badge badge-md badge-primary indicator-item">
+              {/* <span className="badge badge-md badge-primary indicator-item">
                 8
-              </span>
+              </span> */}
             </div>
           </div>
         </div>

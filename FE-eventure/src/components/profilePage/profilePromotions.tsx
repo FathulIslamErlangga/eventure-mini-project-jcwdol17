@@ -32,9 +32,9 @@ export function ProfilePromotions() {
           </div>
         </div>
         <div className="profile-promotions-content">
+          {/* <PromotionCard onEdit={() => setIsModalOpen(true)}/>
           <PromotionCard onEdit={() => setIsModalOpen(true)}/>
-          <PromotionCard onEdit={() => setIsModalOpen(true)}/>
-          <PromotionCard onEdit={() => setIsModalOpen(true)}/>
+          <PromotionCard onEdit={() => setIsModalOpen(true)}/> */}
         </div>
         <div className="w-full h-fit flex justify-center items-center">
           <div className="join">

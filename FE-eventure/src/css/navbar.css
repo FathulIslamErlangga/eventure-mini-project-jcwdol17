@@ -43,7 +43,7 @@
 
   .list-menu-text {
     font-family: var(--font-archivo-bold);
-    @apply text-[#04002D] text-[32px] leading-[32px] flex items-center;
+    @apply text-[#04002D] text-[32px] leading-[32px] flex items-center cursor-pointer;
   }
 
   .list-menu-dt:hover,

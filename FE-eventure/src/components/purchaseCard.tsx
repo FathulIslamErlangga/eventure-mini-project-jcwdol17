@@ -11,7 +11,7 @@ export function PurchaseCard(props: ITransactions) {
   const [isReviewModalOpen, setReviewModalOpen] = useState(false);
   const [uploadModalQueryParam, setUploadModalQueryParam] = useState("");
   const [statusModalQueryParam, setStatusModalQueryParam] = useState("");
-  
+
   const handleUploadModalClick = (id: string, status: string) => {
     const queryParam = `${id}`;
     const statusParam = `${status}`;
@@ -66,7 +66,7 @@ export function PurchaseCard(props: ITransactions) {
       </div>
       <div className="purchase-card-action">
         <button
-          onClick={() => handleUploadModalClick(props.id,props.status)}
+          onClick={() => handleUploadModalClick(props.id, props.status)}
           className="e-btn bg-info "
         >
           Upload Payment Proof
@@ -75,15 +75,23 @@ export function PurchaseCard(props: ITransactions) {
           <ModalUploadFile
             onClose={() => setUploadModalOpen(false)}
             queryParam={uploadModalQueryParam}
+            status={statusModalQueryParam}
           />
-        )}{" "}
-        <button onClick={handleReviewModalClick} className="e-btn bg-secondary">
-          Review
-        </button>
+        )}
+        {props.event?.attendees?.[0]?.checkedIn == true && (
+          <button
+            onClick={handleReviewModalClick}
+            className="e-btn bg-secondary"
+          >
+            Review
+          </button>
+        )}
         {isReviewModalOpen && (
           <ModalReview onClose={() => setReviewModalOpen(false)} />
         )}
-        <button className="e-btn bg-error">Cancel</button>
+        {props.status != "DONE" && (
+          <button className="e-btn bg-error">Cancel</button>
+        )}
       </div>
     </div>
   );
