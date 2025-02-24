@@ -1,8 +1,7 @@
 # Eventure - Online Event Transaction Platform
 
-![Eventure Logo](https://ibb.co.com/TDYB3BSs)
 
-## 🚀 Tentang Eventure
+## 🚀 About Eventure
 **Eventure** is an online event transaction platform designed to make it easy for users to find, purchase tickets, and manage events quickly and efficiently. With innovative features, Eventure is the best solution for event organizers and participants to connect in one secure and convenient ecosystem.
 
 ## 🎯 Fitur Utama
