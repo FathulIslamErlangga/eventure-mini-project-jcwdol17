@@ -62,8 +62,8 @@ const SignUp = () => {
 
   useEffect(() => {
     // Redirect to profile when user is successfully registered
-    if (auth.user && auth.user.data && auth.user.data.slug) {
-      router.push(`/eprofile/${auth.user.data.slug}`);
+    if (auth.user && auth.user.data ) {
+      router.push(`/signin`);
     }
   }, [auth.user, router]);
 

@@ -101,9 +101,9 @@ const ModalChangePassword = ({
               </label>
 
               <button
-               className={`eventure-button ${
-                formik.isSubmitting ? "cursor-wait opacity-50" : ""
-              }`}
+                className={`eventure-button ${
+                  formik.isSubmitting ? "cursor-wait opacity-50" : ""
+                }`}
                 type="submit"
                 disabled={formik.isSubmitting} // Disable button while submitting
               >

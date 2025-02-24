@@ -7,11 +7,7 @@ export function AttandanceListItem() {
   const { attendee } = useCart();
 
   // Filter attendee yang sesuai dengan kondisi
-  const filteredAttendees =
-    attendee?.data?.filter(
-      (attendeeItem) =>
-        !attendeeItem.checkedIn && attendeeItem.transaction.status === "DONE"
-    ) || [];
+  const filteredAttendees = attendee?.data || [];
 
   return (
     <>

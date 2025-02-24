@@ -33,7 +33,7 @@ const transactionRoute = () => {
     protectedAuth,
     transactions.detailUserTransaction
   );
-  
+
   return router;
 };
 

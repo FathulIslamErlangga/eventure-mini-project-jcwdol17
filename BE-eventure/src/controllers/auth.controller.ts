@@ -95,6 +95,7 @@ export class Auth {
             pointLogs: true,
           },
         },
+        vouchers: true,
       },
     });
 
@@ -133,6 +134,15 @@ export class Auth {
           description: _.description,
         })),
       },
+      vouchers: user.vouchers.map((voucher) => ({
+        id: voucher.id,
+        code: voucher.code,
+        discount: voucher.discount,
+        usageLimit: voucher.usageLimit,
+        global: voucher.global,
+        startDate: voucher.startDate,
+        endDate: voucher.endDate,
+      })),
     };
     // await redis.setex(`user:${userId}`, 3600, JSON.stringify(getUser));
     userLogger.info(`Get data user succsessfully, ${getUser.profile.name}`);

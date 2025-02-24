@@ -1,14 +1,13 @@
 "use client";
 import Image from "next/image";
 import "@/css/modal.css";
-import { useState } from "react";
-import { PointLogCard } from "../profilePage/pointLogCard";
+import { VoucherCard } from "../profilePage/voucherCard";
 
-interface ModalPointLogProps {
+interface ModalVoucherProps {
   onClose: () => void;
 }
 
-export function ModalPointLog({ onClose }: ModalPointLogProps) {
+export function ModalVoucher({ onClose }: ModalVoucherProps) {
   return (
     <div className="emodal2">
       <div className="emodal2-content">
@@ -23,11 +22,11 @@ export function ModalPointLog({ onClose }: ModalPointLogProps) {
           </div>
         </div>
         <div className="emodal-title">
-          <span>Point Logs</span>
+          <span>Voucher</span>
         </div>
         <div className="w-full h-fit flex flex-col gap-2">
           <div className="w-full h-fit flex flex-col gap-2">
-            <PointLogCard />
+            <VoucherCard />
           </div>
         </div>
       </div>
