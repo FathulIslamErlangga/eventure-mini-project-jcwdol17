@@ -11,7 +11,7 @@ export function PurchaseCard(props: ITransactions) {
   const [isReviewModalOpen, setReviewModalOpen] = useState(false);
   const [uploadModalQueryParam, setUploadModalQueryParam] = useState("");
   const [statusModalQueryParam, setStatusModalQueryParam] = useState("");
-
+  
   const handleUploadModalClick = (id: string, status: string) => {
     const queryParam = `${id}`;
     const statusParam = `${status}`;
@@ -61,6 +61,7 @@ export function PurchaseCard(props: ITransactions) {
           </div>
         </div>
       </div>
+
       <div className="purchase-card-status">
         <span>{props.status}</span>
       </div>
